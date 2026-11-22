@@ -273,31 +273,56 @@ def build_proposal_pdf(output_path, workspace_dir):
 
         # Embed matching 16:9 widescreen diagrams
         if '1: Problem understanding' in sec_header:
-            img = os.path.join(img_dir, 'diagram_1_before_after_workflow.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=275))
-                story.append(Spacer(1, 6))
+            for img_name in ['gemini_framework_infographic_2.jpg', 'diagram_1_before_after_workflow.jpg']:
+                img = os.path.join(img_dir, img_name)
+                if os.path.exists(img):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img, width=490, height=275))
+                    story.append(Spacer(1, 6))
+                    break
         elif '2: Proposed solution' in sec_header:
-            img = os.path.join(img_dir, 'diagram_2_dual_system_reconciliation.jpg')
-            if os.path.exists(img):
-                story.append(Spacer(1, 4))
-                story.append(Image(img, width=490, height=275))
-                story.append(Spacer(1, 6))
+            for img_name in ['gemini_monsoon_radar_paddy.jpg', 'diagram_2_dual_system_reconciliation.jpg']:
+                img = os.path.join(img_dir, img_name)
+                if os.path.exists(img):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img, width=490, height=275))
+                    story.append(Spacer(1, 6))
+                    break
         elif '3: Describe User Journey' in sec_header:
-            img = os.path.join(img_dir, 'wireframe_1_executive_dashboard.jpg')
+            for img_name in ['gemini_sensor_hierarchy.jpg', 'wireframe_1_executive_dashboard.jpg']:
+                img = os.path.join(img_dir, img_name)
+                if os.path.exists(img):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img, width=490, height=275))
+                    story.append(Spacer(1, 6))
+        elif '4: Technology & solution' in sec_header:
+            for img_name in ['gemini_enterprise_architecture.jpg', 'diagram_7_enterprise_system_architecture.jpg']:
+                img = os.path.join(img_dir, img_name)
+                if os.path.exists(img):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img, width=490, height=275))
+                    story.append(Spacer(1, 6))
+                    break
+        elif '5: Development methodology' in sec_header:
+            img = os.path.join(img_dir, 'gemini_agronomic_cce_sampling.jpg')
             if os.path.exists(img):
                 story.append(Spacer(1, 4))
                 story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
-        elif '4: Technology & solution' in sec_header:
-            img = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
+        elif '6: Development timeline' in sec_header:
+            img = os.path.join(img_dir, 'gemini_development_roadmap.jpg')
             if os.path.exists(img):
                 story.append(Spacer(1, 4))
                 story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
         elif '9: Testing, validation' in sec_header:
             img = os.path.join(img_dir, 'diagram_4_land_health_score_hierarchy.jpg')
+            if os.path.exists(img):
+                story.append(Spacer(1, 4))
+                story.append(Image(img, width=490, height=275))
+                story.append(Spacer(1, 6))
+        elif '10: Security, privacy' in sec_header:
+            img = os.path.join(img_dir, 'gemini_crop_yield_certificate.jpg')
             if os.path.exists(img):
                 story.append(Spacer(1, 4))
                 story.append(Image(img, width=490, height=275))
@@ -363,34 +388,35 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
         story.append(safe_paragraph(sec_title, h2_style))
 
         if '1. Executive Summary' in sec_title:
-            for img_name in ['diagram_1_before_after_workflow.jpg', 'diagram_2_dual_system_reconciliation.jpg']:
+            for img_name in ['gemini_framework_infographic_2.jpg', 'gemini_monsoon_radar_paddy.jpg']:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=275))
                     story.append(Spacer(1, 6))
         elif '2. Empirical Performance' in sec_title:
-            for img_name in ['diagram_4_land_health_score_hierarchy.jpg', 'diagram_5_lat_mandal_mobile_app.jpg']:
+            for img_name in ['gemini_sensor_hierarchy.jpg', 'diagram_4_land_health_score_hierarchy.jpg']:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=275))
                     story.append(Spacer(1, 6))
         elif '3. Operational Time-to-Treatment' in sec_title:
-            for img_name in ['diagram_3_cadastral_anomaly_catalog.jpg', 'diagram_6_citizen_land_health_certificate.jpg']:
+            for img_name in ['gemini_agronomic_cce_sampling.jpg', 'gemini_development_roadmap.jpg']:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=275))
                     story.append(Spacer(1, 6))
         elif '4. Drone Hardware' in sec_title:
-            img_path = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
-            if os.path.exists(img_path):
-                story.append(Spacer(1, 4))
-                story.append(Image(img_path, width=490, height=275))
-                story.append(Spacer(1, 6))
+            for img_name in ['gemini_enterprise_architecture.jpg', 'diagram_7_enterprise_system_architecture.jpg']:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=275))
+                    story.append(Spacer(1, 6))
         elif '5. Security' in sec_title:
-            for img_name in ['wireframe_1_executive_dashboard.jpg', 'wireframe_2_cadastral_webgis.jpg', 'wireframe_3_lat_mandal_mobile.jpg', 'wireframe_4_citizen_certificate.jpg']:
+            for img_name in ['gemini_crop_yield_certificate.jpg', 'wireframe_1_executive_dashboard.jpg', 'wireframe_2_cadastral_webgis.jpg', 'wireframe_3_lat_mandal_mobile.jpg']:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
