@@ -336,12 +336,13 @@ def build_proposal_pdf(output_path, workspace_dir):
         elif '12: Resources, risks' in sec_header:
             budget_data = [
                 [safe_paragraph("<b>Budget Head / Component</b>", meta_style), safe_paragraph("<b>Allocation</b>", meta_style), safe_paragraph("<b>Share</b>", meta_style), safe_paragraph("<b>Scope & Deliverable Description</b>", meta_style)],
-                [safe_paragraph("Geospatial & Radar Pipeline", meta_style), safe_paragraph("₹4.50 Lakh", meta_style), safe_paragraph("22.5%", meta_style), safe_paragraph("Automated Sentinel-1 SAR & Sentinel-2 ingestion, PostGIS database", meta_style)],
-                [safe_paragraph("Epidemiological AI Models (AAU)", meta_style), safe_paragraph("₹5.00 Lakh", meta_style), safe_paragraph("25.0%", meta_style), safe_paragraph("Microclimate pathogen rules, thermal GDD, AAU field correlation", meta_style)],
-                [safe_paragraph("Offline PWA & Edge Diagnostics", meta_style), safe_paragraph("₹3.50 Lakh", meta_style), safe_paragraph("17.5%", meta_style), safe_paragraph("MobileNetV3 INT8 edge AI, SQLite offline caching, RTK GPS lock", meta_style)],
-                [safe_paragraph("Multilingual Advisory Gateway", meta_style), safe_paragraph("₹3.00 Lakh", meta_style), safe_paragraph("15.0%", meta_style), safe_paragraph("Assamese, Bodo, Bengali, English automated SMS & WhatsApp APIs", meta_style)],
-                [safe_paragraph("Field Ground-Truthing & Training", meta_style), safe_paragraph("₹4.00 Lakh", meta_style), safe_paragraph("20.0%", meta_style), safe_paragraph("15,000 farmers, 100+ ADOs/Krishi Sakhis trained, 3 pilot districts", meta_style)],
-                [safe_paragraph("<b>Total Problem Statement Budget</b>", meta_style), safe_paragraph("<b>₹20.00 Lakh</b>", meta_style), safe_paragraph("<b>100.0%</b>", meta_style), safe_paragraph("<b>Full 9-Month MVP Delivery & 3-District Validation</b>", meta_style)],
+                [safe_paragraph("Software Stack Dev Team Cost", meta_style), safe_paragraph("₹20.00 Lakh", meta_style), safe_paragraph("50.0%", meta_style), safe_paragraph("Lead Architect, 2 Geospatial Devs, Edge AI Engineer across 6 phases", meta_style)],
+                [safe_paragraph("Geospatial & Radar Pipeline", meta_style), safe_paragraph("₹4.50 Lakh", meta_style), safe_paragraph("11.25%", meta_style), safe_paragraph("Automated Sentinel-1 SAR & Sentinel-2 ingestion, PostGIS database", meta_style)],
+                [safe_paragraph("Epidemiological AI Models (AAU)", meta_style), safe_paragraph("₹5.00 Lakh", meta_style), safe_paragraph("12.50%", meta_style), safe_paragraph("Microclimate pathogen rules, thermal GDD, AAU field correlation", meta_style)],
+                [safe_paragraph("Offline PWA & Edge Diagnostics", meta_style), safe_paragraph("₹3.50 Lakh", meta_style), safe_paragraph("8.75%", meta_style), safe_paragraph("MobileNetV3 INT8 edge AI, SQLite offline caching, RTK GPS lock", meta_style)],
+                [safe_paragraph("Multilingual Advisory Gateway", meta_style), safe_paragraph("₹3.00 Lakh", meta_style), safe_paragraph("7.50%", meta_style), safe_paragraph("Assamese, Bodo, Bengali, English automated SMS & WhatsApp APIs", meta_style)],
+                [safe_paragraph("Field Ground-Truthing & Training", meta_style), safe_paragraph("₹4.00 Lakh", meta_style), safe_paragraph("10.00%", meta_style), safe_paragraph("15,000 farmers, 100+ ADOs/Krishi Sakhis trained, 3 pilot districts", meta_style)],
+                [safe_paragraph("<b>Total Problem Statement Budget</b>", meta_style), safe_paragraph("<b>₹40.00 Lakh</b>", meta_style), safe_paragraph("<b>100.0%</b>", meta_style), safe_paragraph("<b>Full 9-Month Software Stack & 3-District MVP Validation</b>", meta_style)],
             ]
             t_budget = Table(budget_data, colWidths=[140, 75, 50, 225])
             t_budget.setStyle(TableStyle([
@@ -349,7 +350,7 @@ def build_proposal_pdf(output_path, workspace_dir):
                 ('BACKGROUND', (0,-1), (-1,-1), colors.HexColor('#e0f2fe')),
                 ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#059669')),
                 ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
-                ('PADDING', (0,0), (-1,-1), 4),
+                ('PADDING', (0,0), (-1,-1), 3.5),
                 ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
             ]))
             story.append(Spacer(1, 4))

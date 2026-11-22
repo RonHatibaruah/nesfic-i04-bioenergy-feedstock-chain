@@ -135,12 +135,14 @@ Field 5: Implementation milestones, budget allocation & Swiss Challenge pathway
   • Phase 3 (Months 7–9) — Model Calibration & Advisory Refinement: Calibrate pest thresholds against Kharif/Sali harvest data. Conduct farmer field days and integrate automated WhatsApp broadcast.
   • Phase 4 (Months 10–12) — State-Wide Enterprise Rollout: Expand to all 35 districts across Assam. Transition production hosting to Assam State Data Centre (ASDC) under the Swiss Challenge procurement framework.
 
-[ Proposed Budget Allocation (₹20 Lakh Grant / MVP Pilot) ]
-  • Geospatial & Satellite Processing Pipeline: ₹4.5 Lakhs (22.5%)
-  • Epidemiological AI Models & AAU Jorhat Calibration: ₹5.0 Lakhs (25.0%)
-  • Progressive Web App (PWA) & Offline Mobile Architecture: ₹3.5 Lakhs (17.5%)
-  • Multi-Lingual Advisory Engine & SMS/WhatsApp Integration: ₹3.0 Lakhs (15.0%)
-  • Field Ground-Truthing, ADO Training & Pilot Validation: ₹4.0 Lakhs (20.0%)
+[ Proposed Budget Allocation (₹40 Lakh Grant / MVP Pilot) ]
+  • Software Stack Development Team Cost: ₹20.0 Lakhs (50.0%)
+  • Geospatial & Satellite Processing Pipeline: ₹4.5 Lakhs (11.25%)
+  • Epidemiological AI Models & AAU Jorhat Calibration: ₹5.0 Lakhs (12.50%)
+  • Progressive Web App (PWA) & Offline Mobile Architecture: ₹3.5 Lakhs (8.75%)
+  • Multi-Lingual Advisory Engine & SMS/WhatsApp Integration: ₹3.0 Lakhs (7.50%)
+  • Field Ground-Truthing, ADO Training & Pilot Validation: ₹4.0 Lakhs (10.00%)
+  Total: ₹40.0 Lakhs (100.0%)
 
 [ Swiss Challenge Commercialization Pathway ]
 SasyaSwasthya's open architecture directly positions it as a proprietary intellectual property asset eligible for state adoption under the Swiss Challenge procurement route via the Assam Innovation & Startup Foundation (AISF), ensuring a sustainable SaaS/GovTech partnership with the Department of Agriculture, Government of Assam.

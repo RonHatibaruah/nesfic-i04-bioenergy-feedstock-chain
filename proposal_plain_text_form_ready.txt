@@ -375,17 +375,18 @@ Open-Source & Proprietary Dependencies
 
 ================================================================================
 PROPOSAL FIELD 12: RESOURCES, RISKS & PILOT VALIDATION
-[Word Count: 397 / 500 words | Clean Plain Text Ready to Copy-Paste]
+[Word Count: 427 / 500 words | Clean Plain Text Ready to Copy-Paste]
 ================================================================================
 
-Indicative Resource & Budget Allocation (₹20 Lakh Problem Statement Grant / MVP Pilot)
-The project budget is calibrated to the ₹20.0 Lakhs problem statement grant for 9-month development and 3-district MVP validation:
-1. Geospatial & Sentinel Radar Pipeline (₹4.5 Lakhs / 22.5%): Automated Copernicus Sentinel-1 SAR cloud-penetrating and Sentinel-2 ingestion, radiometric calibration, and Cloudflare PostGIS spatial data storage.
-2. Epidemiological AI Models & AAU Calibration (₹5.0 Lakhs / 25.0%): Microclimate disease forecasting algorithms, thermal degree-day models, and AAU Jorhat field correlation trials.
-3. Offline PWA & Edge AI Diagnostics (₹3.5 Lakhs / 17.5%): SQLite local caching, sub-meter GPS parcel locking, and MobileNetV3 INT8 on-device leaf pathology classification.
-4. Multilingual Advisory & Telecom Gateway (₹3.0 Lakhs / 15.0%): Automated Assamese, Bodo, Bengali, and English bulletin generators and high-throughput SMS/WhatsApp API integration.
-5. Field Ground-Truthing, Training & Validation (₹4.0 Lakhs / 20.0%): Capacity-building workshops for 100+ ADOs and Krishi Sakhis, drone survey bench-testing, and pilot oversight across 15,000 farmers.
-Total Budget: ₹20.0 Lakhs (100%).
+Indicative Resource & Budget Allocation (₹40 Lakh Problem Statement Grant / MVP Pilot)
+The project budget is calibrated to the ₹40.0 Lakhs problem statement grant for 9-month development and 3-district MVP validation:
+1. Software Stack Development Team Cost (₹20.0 Lakhs / 50.0%): Core engineering compensation for Lead Architect, 2 Full-Stack Geospatial Engineers, and Edge AI Specialist across all 6 project delivery phases.
+2. Geospatial & Sentinel Radar Pipeline (₹4.5 Lakhs / 11.25%): Automated Copernicus Sentinel-1 SAR cloud-penetrating and Sentinel-2 ingestion, radiometric calibration, and Cloudflare PostGIS spatial data storage.
+3. Epidemiological AI Models & AAU Calibration (₹5.0 Lakhs / 12.50%): Microclimate disease forecasting algorithms, thermal degree-day models, and AAU Jorhat field correlation trials.
+4. Offline PWA & Edge AI Diagnostics (₹3.5 Lakhs / 8.75%): SQLite local caching, sub-meter GPS parcel locking, and MobileNetV3 INT8 on-device leaf pathology classification.
+5. Multilingual Advisory & Telecom Gateway (₹3.0 Lakhs / 7.50%): Automated Assamese, Bodo, Bengali, and English bulletin generators and high-throughput SMS/WhatsApp API integration.
+6. Field Ground-Truthing, Training & Validation (₹4.0 Lakhs / 10.00%): Capacity-building workshops for 100+ ADOs and Krishi Sakhis, drone survey bench-testing, and pilot oversight across 15,000 farmers.
+Total Budget: ₹40.0 Lakhs (100.0%).
 
 Key Operational Risks & Mitigation Strategies
 1. Monsoon Cloud Cover: Optical imagery blinded during kharif rains. Mitigated by Sentinel-1 C-band SAR radar microwave penetration, supplemented by low-altitude drone flights beneath cloud base (50–100m AGL).
