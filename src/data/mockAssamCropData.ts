@@ -1,4 +1,15 @@
-import { CropHealthRecord, FieldScoutingTask, AdvisoryBroadcast } from '../types/cropHealth';
+import { 
+  CropHealthRecord, 
+  FieldScoutingTask, 
+  AdvisoryBroadcast,
+  DroneAirframe,
+  MultispectralSensorSpec,
+  DroneFlightMission,
+  PathogenRule,
+  AdvisoryTemplate,
+  AdminPersonnel,
+  SystemAuditLog
+} from '../types/cropHealth';
 import { bklToSqMeters, generateAgroAdvisory } from '../services/cropIntelligenceEngine';
 
 export const initialCropRecords: CropHealthRecord[] = [
@@ -558,3 +569,308 @@ export const initialBroadcasts: AdvisoryBroadcast[] = [
     contentEn: 'Protect rapeseed/mustard from aphids: Spray 5% Neem Seed Kernel Extract (NSKE) @ 5ml/L during morning hours.'
   }
 ];
+
+// -------------------------------------------------------------
+// Drone Airframes Suited for Assam Agricultural Operations
+// -------------------------------------------------------------
+export const initialDroneFleet: DroneAirframe[] = [
+  {
+    id: 'DRONE-ASSAC-HX01',
+    name: 'Assam Agro-Hexacopter V3',
+    type: 'Multi-Rotor Hexacopter',
+    manufacturer: 'ASSAC Tech / Garuda Aerospace',
+    wingspanOrDiagonal: '1,200 mm diagonal',
+    mtowKg: 15.5,
+    payloadCapacityKg: 4.5,
+    flightTimeMin: 28,
+    maxSurveySpeedKmh: 45,
+    coveragePerFlightHa: 45,
+    ipRating: 'IP54 (Humid Monsoon Resistant)',
+    batterySpecs: '6S 22,000 mAh LiPo Smart Battery',
+    avionics: 'Cube Orange+ / Dual Redundant GNSS RTK',
+    dgcaTypeCertified: true,
+    status: 'READY',
+    assignedDistrict: 'Kamrup Rural',
+    pilotName: 'Bikash Jyoti Nath',
+    pilotLicense: 'DGCA-RPL-AS-2024-884'
+  },
+  {
+    id: 'DRONE-ASSAC-VT02',
+    name: 'Brahmaputra Long-Range VTOL',
+    type: 'Hybrid VTOL Fixed-Wing',
+    manufacturer: 'ideaForge / ASSAC Geospatial Lab',
+    wingspanOrDiagonal: '2,400 mm wingspan',
+    mtowKg: 12.0,
+    payloadCapacityKg: 2.5,
+    flightTimeMin: 85,
+    maxSurveySpeedKmh: 75,
+    coveragePerFlightHa: 450,
+    ipRating: 'IP54 Rain-Shedding Airframe',
+    batterySpecs: 'Solid-State High Energy Density 30,000 mAh',
+    avionics: 'Triple Redundant PX4 Autopilot / PPK Base Station',
+    dgcaTypeCertified: true,
+    status: 'IN_MISSION',
+    assignedDistrict: 'Nagaon',
+    pilotName: 'Dipankar Saikia',
+    pilotLicense: 'DGCA-RPL-AS-2023-512'
+  },
+  {
+    id: 'DRONE-AAU-HX03',
+    name: 'AAU Jorhat Research Scout',
+    type: 'Multi-Rotor Hexacopter',
+    manufacturer: 'IoTechWorld / AAU Agricultural Engineering',
+    wingspanOrDiagonal: '1,100 mm diagonal',
+    mtowKg: 14.0,
+    payloadCapacityKg: 3.5,
+    flightTimeMin: 32,
+    maxSurveySpeedKmh: 40,
+    coveragePerFlightHa: 50,
+    ipRating: 'IP54 Tropicalized',
+    batterySpecs: '12S 16,000 mAh Semi-Solid Battery',
+    avionics: 'Pixhawk 6X / RTK Centimeter Rover',
+    dgcaTypeCertified: true,
+    status: 'READY',
+    assignedDistrict: 'Jorhat',
+    pilotName: 'Dr. Nilav Hazarika',
+    pilotLicense: 'DGCA-RPL-AS-2024-102'
+  }
+];
+
+export const multispectralSensors: MultispectralSensorSpec[] = [
+  {
+    band: 'Coastal Blue',
+    wavelengthNm: 475,
+    bandwidthNm: 32,
+    primaryAgronomicIndicator: 'Deep canopy penetration, chlorophyll absorption baseline',
+    sensitivity: 'High radiometric calibration (98.4%)'
+  },
+  {
+    band: 'Green Band',
+    wavelengthNm: 560,
+    bandwidthNm: 27,
+    primaryAgronomicIndicator: 'Chlorophyll peak reflectance, canopy health & green vigor',
+    sensitivity: 'Precision DLS2 sunshine normalized'
+  },
+  {
+    band: 'Red Band',
+    wavelengthNm: 668,
+    bandwidthNm: 14,
+    primaryAgronomicIndicator: 'Primary chlorophyll absorption, key numerator in NDVI',
+    sensitivity: 'High-contrast narrow band'
+  },
+  {
+    band: 'RedEdge Band',
+    wavelengthNm: 717,
+    bandwidthNm: 12,
+    primaryAgronomicIndicator: 'Early plant stress & chlorosis detection 72h before human eye',
+    sensitivity: 'Pre-symptomatic fungal blight indicator'
+  },
+  {
+    band: 'Near Infrared (NIR)',
+    wavelengthNm: 842,
+    bandwidthNm: 57,
+    primaryAgronomicIndicator: 'Leaf internal mesophyll cellular structure & biomass density',
+    sensitivity: 'High reflectance in healthy paddy tillers'
+  },
+  {
+    band: 'Long-Wave Thermal IR',
+    wavelengthNm: 11000,
+    bandwidthNm: 4000,
+    primaryAgronomicIndicator: 'Radiometric canopy temperature, plant water stress, transpiration stomatal closure',
+    sensitivity: 'Thermal resolution &plusmn;0.05&deg;C'
+  }
+];
+
+export const initialDroneMissions: DroneFlightMission[] = [
+  {
+    missionId: 'MSN-2026-AS01',
+    droneId: 'DRONE-ASSAC-HX01',
+    droneName: 'Assam Agro-Hexacopter V3',
+    district: 'Kamrup Rural',
+    block: 'Azara / Mikirpara',
+    targetPlots: 'Plot 101, 102, 104 (Sali Paddy)',
+    altitudeM: 80,
+    gsdCmPerPixel: 4.8,
+    forwardOverlapPct: 75,
+    sideOverlapPct: 70,
+    scheduledDate: '2026-11-22',
+    status: 'COMPLETED',
+    areaSurveyedHa: 38.5,
+    capturedImages: 480,
+    orthomosaicTifUrl: 's3://assac-geo/orthomosaics/kamrup_azara_20261122.tif'
+  },
+  {
+    missionId: 'MSN-2026-AS02',
+    droneId: 'DRONE-ASSAC-VT02',
+    droneName: 'Brahmaputra Long-Range VTOL',
+    district: 'Nagaon',
+    block: 'Raha / Phulaguri',
+    targetPlots: 'Contiguous Sali Paddy Belt (250 Bigha)',
+    altitudeM: 120,
+    gsdCmPerPixel: 6.2,
+    forwardOverlapPct: 80,
+    sideOverlapPct: 75,
+    scheduledDate: '2026-11-23',
+    status: 'IN_FLIGHT',
+    areaSurveyedHa: 310.0,
+    capturedImages: 1240
+  },
+  {
+    missionId: 'MSN-2026-AS03',
+    droneId: 'DRONE-AAU-HX03',
+    droneName: 'AAU Jorhat Research Scout',
+    district: 'Jorhat',
+    block: 'Titabor RARS Hub',
+    targetPlots: 'Rice Variety Trial Plots (AAU)',
+    altitudeM: 60,
+    gsdCmPerPixel: 3.5,
+    forwardOverlapPct: 80,
+    sideOverlapPct: 80,
+    scheduledDate: '2026-11-24',
+    status: 'SCHEDULED',
+    areaSurveyedHa: 22.0,
+    capturedImages: 0
+  }
+];
+
+export const initialPathogenRules: PathogenRule[] = [
+  {
+    ruleId: 'RULE-BLAST-01',
+    pest: 'Rice Blast (Magnaporthe oryzae)',
+    title: 'High Humidity Blast Inoculum Trigger',
+    minTempC: 20,
+    maxTempC: 26,
+    minMorningRhPct: 88,
+    minRainfallMm: 15,
+    consecutiveDaysRequired: 3,
+    resultingGrade: 'GRADE_D',
+    enabled: true
+  },
+  {
+    ruleId: 'RULE-STEM-02',
+    pest: 'Yellow Stem Borer (Scirpophaga incertulas)',
+    title: 'Post-Rainfall Larval Eclosion Trigger',
+    minTempC: 28,
+    maxTempC: 34,
+    minMorningRhPct: 78,
+    minRainfallMm: 30,
+    consecutiveDaysRequired: 2,
+    resultingGrade: 'GRADE_C',
+    enabled: true
+  },
+  {
+    ruleId: 'RULE-SHEATH-03',
+    pest: 'Sheath Blight (Rhizoctonia solani)',
+    title: 'Prolonged Standing Water & Humid Canopy',
+    minTempC: 27,
+    maxTempC: 35,
+    minMorningRhPct: 90,
+    minRainfallMm: 50,
+    consecutiveDaysRequired: 4,
+    resultingGrade: 'GRADE_D',
+    enabled: true
+  }
+];
+
+export const initialAdvisoryTemplates: AdvisoryTemplate[] = [
+  {
+    templateId: 'TPL-BLAST-EMERGENCY',
+    category: 'FUNGAL_BLIGHT',
+    title: 'Emergency Rice Blast Warning with Drainage',
+    textAs: 'ধানৰ পাতত ব্লাষ্ট ৰোগৰ প্ৰাথমিক লক্ষণ দেখা গৈছে। প্ৰতি বিঘাত ১৫ গ্ৰাম ট্ৰাইচাইক্লাজল ৭৫ ডব্লিউ পি ২০০ লিটাৰ পানীত মিহলাই স্প্ৰে কৰক। জমা পানী নিকাশ কৰক।',
+    textBodo: 'माइ पाथायाव ब्लास्ट बेराम जादों। बिगानि गेजेराव १५ ग्राम ट्राइसाइक्लाजोल २०० लिटर दैजों फेलेनानै स्प्रे खालाम।',
+    textBn: 'ধানের পাতায় ব্লাস্ট রোগের প্রাথমিক লক্ষণ দেখা গেছে। বিঘা প্রতি ১৫ গ্রাম ট্রাইসাইক্লাজোল স্প্রে করুন এবং জমা জল বের করুন।',
+    textEn: 'Urgent: Rice blast symptoms detected in {BLOCK}. Drain standing water for 48h and spray Tricyclazole 75% WP @ 15g/Bigha in 200L water.',
+    author: 'AAU Jorhat Plant Pathology Dept',
+    approvalStatus: 'AUTHORIZED'
+  },
+  {
+    templateId: 'TPL-STEMBORER-IPM',
+    category: 'STEM_BORER',
+    title: 'Yellow Stem Borer Mass Trapping & Lures',
+    textAs: 'মাজখোৱা পোকৰ সংক্ৰমণ ৰোধৰ বাবে প্ৰতি বিঘাত ৩ টাকৈ ফেৰোম\'ন ফান্দ পাতক। মৰা-ডিলা ১০% অতিক্ৰম কৰিলে ক্ল\'ৰেনট্ৰানিলিপ্ৰ\'ল স্প্ৰে কৰক।',
+    textBodo: 'माय खोवा एनजौरनि थाखाय बिगानि गेजेराव ३ था फेरोमोन फान्द दोन।',
+    textBn: 'মাজরা পোকার জন্য বিঘাতে ৩টি ফেরোমন ফাঁদ পাতুন। মরা-ডিলা ১০% অতিক্রম করলে ক্লোরেনট্রানিলিপ্রোল ব্যবহার করুন।',
+    textEn: 'Yellow Stem Borer alert: Install 3 pheromone traps per Bigha. If dead-hearts exceed 10%, apply Chlorantraniliprole 18.5% SC @ 10ml/Bigha.',
+    author: 'Directorate of Agriculture, Assam',
+    approvalStatus: 'AUTHORIZED'
+  }
+];
+
+export const initialPersonnel: AdminPersonnel[] = [
+  {
+    userId: 'USER-DAO-KAM',
+    name: 'Dr. Tarun Chandra Sarma',
+    designation: 'District Agricultural Officer (DAO)',
+    department: 'Dept of Agriculture',
+    district: 'Kamrup Rural',
+    role: 'DAO (District Officer)',
+    phone: '+91 94350 22104',
+    email: 'dao.kamrup@assam.gov.in',
+    status: 'ACTIVE'
+  },
+  {
+    userId: 'USER-ASSAC-GIS',
+    name: 'Pallabi Goswami',
+    designation: 'Senior Remote Sensing Scientist',
+    department: 'ASSAC (Science & Tech)',
+    district: 'Statewide (HQ Khanapara)',
+    role: 'ASSAC Lead Analyst',
+    phone: '+91 94351 88401',
+    email: 'pallabi.assac@assam.gov.in',
+    status: 'ACTIVE'
+  },
+  {
+    userId: 'USER-AAU-ENTO',
+    name: 'Prof. Hemanta Kalita',
+    designation: 'Principal Entomologist',
+    department: 'AAU Jorhat',
+    district: 'Jorhat (Upper Assam)',
+    role: 'AAU Scientist',
+    phone: '+91 94352 11099',
+    email: 'hemanta.kalita@aau.ac.in',
+    status: 'ACTIVE'
+  },
+  {
+    userId: 'USER-ADO-AZR',
+    name: 'Pranab Jyoti Sarma',
+    designation: 'Agricultural Development Officer (ADO)',
+    department: 'Dept of Agriculture',
+    district: 'Kamrup Rural (Azara Block)',
+    role: 'ADO (Agri Dev Officer)',
+    phone: '+91 98540 66311',
+    email: 'ado.azara@assam.gov.in',
+    status: 'ON_FIELD'
+  }
+];
+
+export const initialAuditLogs: SystemAuditLog[] = [
+  {
+    logId: 'LOG-8841',
+    timestamp: '2026-11-22T08:30:15Z',
+    actor: 'Dr. Tarun Chandra Sarma (DAO Kamrup)',
+    action: 'DISPATCH_EMERGENCY_ADVISORY',
+    module: 'ADVISORY_DISPATCH',
+    details: 'Dispatched Rice Blast advisory BC-2026-901 via SMS Gateway to 1,420 farmers in Azara Block.',
+    sha256Hash: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+  },
+  {
+    logId: 'LOG-8840',
+    timestamp: '2026-11-22T07:15:02Z',
+    actor: 'Pallabi Goswami (ASSAC Lead Analyst)',
+    action: 'INGEST_DRONE_ORTHOMOSAIC',
+    module: 'DRONE_OPS',
+    details: 'Processed 5cm multispectral orthomosaic for Mission MSN-2026-AS01 covering 38.5 Ha in Mikirpara Chakardo.',
+    sha256Hash: 'ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb'
+  },
+  {
+    logId: 'LOG-8839',
+    timestamp: '2026-11-21T18:45:22Z',
+    actor: 'Prof. Hemanta Kalita (AAU Jorhat)',
+    action: 'UPDATE_PATHOGEN_THRESHOLD',
+    module: 'EPIDEMIOLOGY_RULES',
+    details: 'Calibrated Rice Blast morning humidity trigger threshold to 88% based on RARS Titabor trial results.',
+    sha256Hash: '4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce'
+  }
+];
+

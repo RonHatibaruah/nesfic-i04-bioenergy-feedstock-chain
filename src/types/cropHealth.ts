@@ -151,3 +151,106 @@ export interface AdvisoryBroadcast {
   contentAs: string;
   contentEn: string;
 }
+
+// -------------------------------------------------------------
+// Drone Technology & Fleet Operations Types
+// -------------------------------------------------------------
+export type DroneType = 'Multi-Rotor Hexacopter' | 'Hybrid VTOL Fixed-Wing';
+
+export interface DroneAirframe {
+  id: string;
+  name: string;
+  type: DroneType;
+  manufacturer: string;
+  wingspanOrDiagonal: string;
+  mtowKg: number; // Max Takeoff Weight
+  payloadCapacityKg: number;
+  flightTimeMin: number;
+  maxSurveySpeedKmh: number;
+  coveragePerFlightHa: number;
+  ipRating: string;
+  batterySpecs: string;
+  avionics: string;
+  dgcaTypeCertified: boolean;
+  status: 'READY' | 'IN_MISSION' | 'MAINTENANCE';
+  assignedDistrict: string;
+  pilotName: string;
+  pilotLicense: string;
+}
+
+export interface MultispectralSensorSpec {
+  band: string;
+  wavelengthNm: number;
+  bandwidthNm: number;
+  primaryAgronomicIndicator: string;
+  sensitivity: string;
+}
+
+export interface DroneFlightMission {
+  missionId: string;
+  droneId: string;
+  droneName: string;
+  district: string;
+  block: string;
+  targetPlots: string;
+  altitudeM: number;
+  gsdCmPerPixel: number; // Ground Sampling Distance
+  forwardOverlapPct: number;
+  sideOverlapPct: number;
+  scheduledDate: string;
+  status: 'SCHEDULED' | 'IN_FLIGHT' | 'PROCESSING_SFM' | 'COMPLETED';
+  areaSurveyedHa: number;
+  capturedImages: number;
+  orthomosaicTifUrl?: string;
+}
+
+// -------------------------------------------------------------
+// Advanced Admin & Governance Types
+// -------------------------------------------------------------
+export interface PathogenRule {
+  ruleId: string;
+  pest: PestType;
+  title: string;
+  minTempC: number;
+  maxTempC: number;
+  minMorningRhPct: number;
+  minRainfallMm: number;
+  consecutiveDaysRequired: number;
+  resultingGrade: HealthGrade;
+  enabled: boolean;
+}
+
+export interface AdvisoryTemplate {
+  templateId: string;
+  category: 'FUNGAL_BLIGHT' | 'STEM_BORER' | 'MOISTURE_STRESS' | 'GENERAL_CARE';
+  title: string;
+  textAs: string;
+  textBodo: string;
+  textBn: string;
+  textEn: string;
+  author: string;
+  approvalStatus: 'DRAFT' | 'REVIEWED' | 'AUTHORIZED';
+}
+
+export interface AdminPersonnel {
+  userId: string;
+  name: string;
+  designation: string;
+  department: 'Dept of Agriculture' | 'ASSAC (Science & Tech)' | 'AAU Jorhat' | 'Krishi Vigyan Kendra';
+  district: string;
+  role: 'DAO (District Officer)' | 'SDAO (Sub-Divisional)' | 'ADO (Agri Dev Officer)' | 'ASSAC Lead Analyst' | 'AAU Scientist';
+  phone: string;
+  email: string;
+  status: 'ACTIVE' | 'ON_FIELD' | 'OFFLINE';
+}
+
+export interface SystemAuditLog {
+  logId: string;
+  timestamp: string;
+  actor: string;
+  action: string;
+  module: 'DRONE_OPS' | 'EPIDEMIOLOGY_RULES' | 'ADVISORY_DISPATCH' | 'RBAC_SECURITY';
+  details: string;
+  sha256Hash: string;
+}
+

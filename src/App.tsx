@@ -4,13 +4,14 @@ import { ExecutiveDashboard } from './components/ExecutiveDashboard';
 import { CadastralMapViewer } from './components/CadastralMapViewer';
 import { FieldVerificationPortal } from './components/FieldVerificationPortal';
 import { CitizenHealthPortal } from './components/CitizenHealthPortal';
+import { DroneTechnologyPage } from './components/DroneTechnologyPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { RecordDetailModal } from './components/RecordDetailModal';
 import { TutorialModal } from './components/TutorialModal';
 import { initialCropRecords, initialScoutingTasks } from './data/mockAssamCropData';
 import { CropHealthRecord, FieldScoutingTask } from './types/cropHealth';
 import { AgroRuleEngineConfig, DEFAULT_AGRO_CONFIG } from './services/cropIntelligenceEngine';
-import { Mail, Sprout } from 'lucide-react';
+import { Sprout } from 'lucide-react';
 
 export function App() {
   const [records, setRecords] = useState<CropHealthRecord[]>(initialCropRecords);
@@ -29,6 +30,7 @@ export function App() {
       else if (hash === 'gis-viewer' || hash === 'gis-map') setActiveTab('gis-map');
       else if (hash === 'field-scouting' || hash === 'field-verification') setActiveTab('field-verification');
       else if (hash === 'farmer-advisory' || hash === 'citizen-portal') setActiveTab('citizen-portal');
+      else if (hash === 'drone-tech' || hash === 'drone-technology') setActiveTab('drone-tech');
       else if (hash === 'admin-console' || hash === 'admin') setActiveTab('admin');
       else if (hash === 'tutorial') setIsTutorialOpen(true);
     };
@@ -43,6 +45,7 @@ export function App() {
     const hashTarget = tab === 'gis-map' ? 'gis-viewer' :
                        tab === 'field-verification' ? 'field-scouting' :
                        tab === 'citizen-portal' ? 'farmer-advisory' :
+                       tab === 'drone-tech' ? 'drone-technology' :
                        tab === 'admin' ? 'admin-console' : 'dashboard';
     if (window.location.hash !== `#${hashTarget}`) {
       window.history.pushState(null, '', `#${hashTarget}`);
@@ -110,7 +113,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
       {/* Navigation */}
       <Navbar
         activeTab={activeTab}
@@ -157,6 +160,10 @@ export function App() {
           />
         )}
 
+        {activeTab === 'drone-tech' && (
+          <DroneTechnologyPage />
+        )}
+
         {activeTab === 'admin' && (
           <AdminDashboard
             records={records}
@@ -181,18 +188,18 @@ export function App() {
       />
 
       {/* Footer */}
-      <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs py-6 mt-12">
+      <footer className="bg-white border-t border-slate-200 text-slate-600 text-xs py-6 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded bg-emerald-600 flex items-center justify-center text-white">
               <Sprout className="w-4 h-4" />
             </div>
-            <span className="font-bold text-slate-200">SasyaSwasthya (শস্য স্বাস্থ্য)</span>
+            <span className="font-bold text-slate-900">SasyaSwasthya (শস্য স্বাস্থ্য)</span>
             <span>•</span>
             <span>NESFIC-D-11 Official Government Track Solution</span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-slate-400">
+          <div className="flex flex-wrap items-center gap-4 text-slate-600">
             <span>Department of Agriculture, Assam</span>
             <span>•</span>
             <span>Assam State Space Application Centre (ASSAC)</span>

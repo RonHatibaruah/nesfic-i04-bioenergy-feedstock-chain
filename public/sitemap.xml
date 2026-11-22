@@ -44,6 +44,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- Drone Technology & Multispectral Fleet Operations -->
+  <url>
+    <loc>https://sasya-swasthya.pages.dev/#drone-technology</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Agro-Command Center & Administrative Console -->
   <url>
     <loc>https://sasya-swasthya.pages.dev/#admin-console</loc>
