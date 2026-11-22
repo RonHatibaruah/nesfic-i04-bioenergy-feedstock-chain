@@ -49,7 +49,7 @@ SasyaSwasthya (শস্য স্বাস্থ্য) is a unified space-to-g
    - **On-Demand Drone Multispectral Scouting:** Fleet coordination of RTK-equipped multi-rotor and hybrid VTOL UAVs capturing 5 optical bands (Coastal Blue, Green, Red, RedEdge, NIR) and Thermal IR at sub-5cm Ground Sampling Distance (GSD).
 2. **AI Epidemiological Risk Forecasting Engine:**
    - Multi-variate predictive engine combining microclimate telemetry from IMD Automatic Weather Stations (AWS) with spatial stress anomalies.
-   - Computes pathogen-specific incubation vectors: Rice Blast (consecutive 14 hours relative humidity >88%, leaf wetness, temperature 20–28°C), Stem Borer (Growing Degree Days [GDD], thermal thresholds, egg oviposition spikes), and Sheath Blight (canopy moisture + nitrogen excess). Forecasts outbreak probability 72 hours in advance with a 1–100 Crop Health Index (CHI).
+   - Computes pathogen-specific incubation vectors: Rice Blast (consecutive 14 hours relative humidity Greater than 88%, leaf wetness, temperature 20–28°C), Stem Borer (Growing Degree Days [GDD], thermal thresholds, egg oviposition spikes), and Sheath Blight (canopy moisture + nitrogen excess). Forecasts outbreak probability 72 hours in advance with a 1–100 Crop Health Index (CHI).
 3. **Offline-First Ground-Truthing Extension PWA:**
    - Progressive Web App for ADOs and Krishi Sakhis featuring SQLite local caching and sub-meter GPS parcel locking.
    - On-device edge computer vision (MobileNetV3 INT8 quantized) that operates offline without mobile reception to classify leaf blade lesions (Blast vs. Blight vs. Leaf Folder) at 94%+ accuracy.
@@ -72,7 +72,7 @@ The platform replaces manual, uncoordinated paper reports and post-infestation p
 
 ### Proposed User Journey Across Key Personas
 1. **Satellite Anomaly Ingestion & Automated Flagging:**
-   Sentinel-2 and Sentinel-1 SAR telemetry ingest automated passes over Assam. The system computes plot-level NDVI and NDWI across cadastral boundaries. If a plot in Azara, Kamrup exhibits an NDVI drop (>15% deviation from historical baseline) coupled with IMD AWS humidity >88%, the Epidemiological Engine calculates a Pest Risk Score of 84% (Grade D: Critical Outbreak).
+   Sentinel-2 and Sentinel-1 SAR telemetry ingest automated passes over Assam. The system computes plot-level NDVI and NDWI across cadastral boundaries. If a plot in Azara, Kamrup exhibits an NDVI drop (Greater than 15% deviation from historical baseline) coupled with IMD AWS humidity Greater than 88%, the Epidemiological Engine calculates a Pest Risk Score of 84% (Grade D: Critical Outbreak).
 2. **AEO Ground-Truthing Dispatch:**
    The Executive Dashboard automatically assigns a high-priority geo-tagged scouting task to the local Agricultural Development Officer’s PWA (`TASK-2026-081`). The ADO navigates to the farm using RTK geofence coordinates.
 3. **In-Situ Verification & Edge AI Diagnosis:**
@@ -110,16 +110,16 @@ The user interface is designed using high-contrast, clean white government porta
 
 ### Machine Learning & Analytical Models
 - **Leaf Pathology Diagnostic Model:** Lightweight MobileNetV3-Small architecture trained on 42,000 crop pathology images (including Assam Agricultural University reference samples). Quantized to INT8 (model size: 4.2 MB) for sub-100ms offline on-device inference using ONNX Runtime Web / TensorFlow Lite.
-- **Epidemiological Risk Models:** Multi-variable decision trees and random forest regressors integrating 7-day cumulative rainfall, morning relative humidity thresholds (>88%), diurnal temperature oscillations, and satellite NDVI anomaly differentials to predict spore germination trajectories.
+- **Epidemiological Risk Models:** Multi-variable decision trees and random forest regressors integrating 7-day cumulative rainfall, morning relative humidity thresholds (Greater than 88%), diurnal temperature oscillations, and satellite NDVI anomaly differentials to predict spore germination trajectories.
 
 ### Hardware, Avionics & Drone Specifications
 - **Drone Airframes:** Custom hexacopter and hybrid fixed-wing VTOL configurations constructed with carbon fiber composite frames, rated IP54 for monsoon resilience.
 - **Multispectral Sensor Payloads:** 5-band multispectral camera (Coastal Blue 444nm, Green 560nm, Red 668nm, RedEdge 705nm, NIR 842nm) paired with an uncooled microbolometer Long-Wave Thermal IR sensor (8–14 µm) with integrated sunshine sensor for real-time radiometric calibration.
-- **Avionics & Navigation:** Dual-redundant flight controllers (Pixhawk 6X / ArduPilot) integrated with multiband RTK/PPK GNSS supporting Indian **NavIC** (IRNSS), GPS L1/L2, and GLONASS, achieving $\le 1.5\text{ cm}$ horizontal precision.
+- **Avionics & Navigation:** Dual-redundant flight controllers (Pixhawk 6X / ArduPilot) integrated with multiband RTK/PPK GNSS supporting Indian **NavIC** (IRNSS), GPS L1/L2, and GLONASS, achieving Smaller than or equal to  1.5\text{ cm} horizontal precision.
 - **Onboard Edge AI Processing:** NVIDIA Jetson Orin Nano (40 TOPS) running TensorRT-optimized INT8 pipelines for real-time dead-heart and defoliation hotspot segmentation during flight.
 
 ### Data Flow & Interoperability
-Data flows cyclically: Satellite/AWS telemetry $\rightarrow$ Pipeline normalization $\rightarrow$ Epidemiological risk calculation $\rightarrow$ Automated AEO task assignment $\rightarrow$ Sub-meter GPS ground verification $\rightarrow$ Automated multilingual SMS/WhatsApp broadcast dispatch $\rightarrow$ Cryptographic SHA-256 audit ledger logging.
+Data flows cyclically: Satellite/AWS telemetry  to  Pipeline normalization  to  Epidemiological risk calculation  to  Automated AEO task assignment  to  Sub-meter GPS ground verification  to  Automated multilingual SMS/WhatsApp broadcast dispatch  to  Cryptographic SHA-256 audit ledger logging.
 
 ---
 
@@ -138,13 +138,13 @@ The development of SasyaSwasthya follows an Agile-Iterative, Human-Centered Syst
    - *Key Outputs:* Automated radiometric correction pipeline; computation engine for NDVI, NDWI, SAVI, and canopy temperature; scalable PostGIS spatial parcel data layer.
 3. **AI Diagnostic Training & Edge Optimization (Months 4–5):**
    - *Key Activities:* Curating a verified dataset of 42,000 Assam crop disease images (Rice Blast, Stem Borer dead-hearts, Sheath Blight snake-skin lesions, Hispa scarring). Training MobileNetV3 convolutional networks and compiling to ONNX/TFLite INT8 format.
-   - *Key Outputs:* Quantized on-device AI model ($\le 4.2\text{ MB}$) demonstrating $\ge 92\%$ validation accuracy; offline-sync SQLite service worker architecture.
+   - *Key Outputs:* Quantized on-device AI model (Smaller than or equal to  4.2\text{ MB}) demonstrating Greater than or equal to  92\% validation accuracy; offline-sync SQLite service worker architecture.
 4. **Full-Stack Platform Engineering & Prototype Deployment (Months 5–6):**
    - *Key Activities:* Developing the responsive React/TypeScript WebGIS dashboard, offline PWA, automated multilingual advisory builder, and drone mission telemetry interface.
    - *Key Outputs:* Deployed end-to-end working prototype on Cloudflare Pages (`sasya-swasthya.pages.dev`); functional WhatsApp/SMS broadcast mock dispatcher; interactive pathogen rule builder.
 5. **Verification, Benchmarking & AAU Expert Validation (Months 7–8):**
    - *Key Activities:* Rigorous unit, integration, and load testing. Double-blind accuracy assessment comparing satellite-predicted pest hotspots against ground surveys conducted by AAU entomology teams. Drone RTK accuracy calibration against physical benchmarks.
-   - *Key Outputs:* Comprehensive Test and Verification Report; certified model precision matrix (NDVI RMSE < 0.04, GPS RTK precision < 1.5 cm); vulnerability assessment and penetration testing (VAPT) compliance clearance.
+   - *Key Outputs:* Comprehensive Test and Verification Report; certified model precision matrix (NDVI RMSE Smaller than  0.04, GPS RTK precision Smaller than  1.5 cm); vulnerability assessment and penetration testing (VAPT) compliance clearance.
 6. **Pilot Rollout & Handover (Month 9):**
    - *Key Activities:* Controlled deployment across 3 pilot blocks in Kamrup, Nagaon, and Jorhat covering 15,000 farmers and 25 extension circles. Training workshops for ADOs, Krishi Sakhis, and district administrative officers.
    - *Key Outputs:* Production-ready deployment; user manuals in Assamese and English; finalized operational handover to the Department of Agriculture and ASSAC.
@@ -168,7 +168,7 @@ The project is structured across a 9-month phased delivery roadmap divided into 
 - **Milestone 3 (Month 5): Functional MVP & Edge AI Diagnostic Deployment**
   - *Deliverables:* Working MVP deployed to staging; MobileNetV3 edge AI running in offline PWA; sub-meter GPS parcel verification module functional.
   - *Dependencies:* Curation and annotation of AAU crop disease imagery.
-  - *Decision Gate 2:* Technical audit verifying edge inference speed (<150ms) and model classification accuracy (>90%).
+  - *Decision Gate 2:* Technical audit verifying edge inference speed (Smaller than 150ms) and model classification accuracy (Greater than 90%).
 - **Milestone 4 (Month 6): Integrated WebGIS, Drone Suite & Advisory Dispatcher**
   - *Deliverables:* Full platform integration including interactive cadastral WebGIS, Drone fleet telemetry module, multilingual advisory templates (Assamese, Bodo, English), and SMS/WhatsApp gateway sandbox.
   - *Dependencies:* Drone hardware bench-testing and telecom gateway sandbox provisioning.
@@ -252,15 +252,15 @@ The system strictly adheres to the Digital Personal Data Protection Act (DPDPA) 
   * *Sheath Blight (*R. solani*):* Precision: 94.7%, Recall: 93.5%, F1-Score: 0.941.
   * *Mean Inference Latency:* 82 milliseconds on standard low-cost Android mobile browsers via WebAssembly/ONNX Runtime.
 - **Multispectral Calibration & Index Precision:**
-  Radiometric calibration tests against ground spectral radiometers achieved an NDVI Root Mean Square Error (RMSE) < 0.038 across canopy variations.
+  Radiometric calibration tests against ground spectral radiometers achieved an NDVI Root Mean Square Error (RMSE) Smaller than  0.038 across canopy variations.
 - **RTK GNSS Spatial Locking Precision:**
   Static and dynamic drone flight validation against surveyed control monuments demonstrated a horizontal Root Mean Square Error (RMS) of 0.8 cm and vertical RMS of 1.4 cm, ensuring sub-cadastral Dag parcel registration without spatial drift.
 
 ### Field Ground-Truth Correlation Trials
 - **Double-Blind Epidemiological Validation:**
   Conducted across 500 monitored hectares in Kamrup Rural and Nagaon districts during kharif conditions. The Epidemiological Forecast Engine's 72-hour early warnings were benchmarked against daily manual scouting logs recorded by ADOs.
-  * *Forecast True-Positive Rate:* 88.6% for Rice Blast initiation following humidity spikes (>88% RH for 16 consecutive hours).
-  * *False Alarm Rate:* < 7.4%, significantly preventing unwarranted chemical pesticide expenditure.
+  * *Forecast True-Positive Rate:* 88.6% for Rice Blast initiation following humidity spikes (Greater than 88% RH for 16 consecutive hours).
+  * *False Alarm Rate:* Smaller than  7.4%, significantly preventing unwarranted chemical pesticide expenditure.
   * *Scouting Efficiency Gain:* Field scouting turnaround decreased from 8 days to under 24 hours per flagged parcel cluster.
 
 ### System Load & Resilience Testing
@@ -286,13 +286,13 @@ A fully functional prototype is live and accessible for evaluation:
   * *AAU Scientists:* Access anonymized epidemiological datasets for agronomic research.
 
 ### Spatial Data & National Security Compliance
-- **National Geospatial Policy 2022 Adherence:** All geospatial data handling strictly conforms to guidelines issued by the Department of Science & Technology (DST). High-resolution drone imagery (<1m resolution) is securely hosted on sovereign cloud servers located within Indian territory.
+- **National Geospatial Policy 2022 Adherence:** All geospatial data handling strictly conforms to guidelines issued by the Department of Science & Technology (DST). High-resolution drone imagery (Smaller than 1m resolution) is securely hosted on sovereign cloud servers located within Indian territory.
 - **ASSAC Spatial Isolation:** Cadastral parcel vectors and critical agricultural boundary layers are isolated behind private VPC subnets with zero external exposure.
 
 ### DGCA Drone Operations & Aviation Safety
 - **Drone Rules 2021 & Digital Sky Integration:** All autonomous flight operations adhere to Directorate General of Civil Aviation (DGCA) regulations:
-  * Flights operate strictly within designated Green Zones at $\le 120\text{ meters}$ (400 ft) AGL.
-  * Hardware incorporates Type-Certified avionics, Return-to-Home (RTH) failsafes upon link loss or low battery (<25%), and geo-caging around security installations.
+  * Flights operate strictly within designated Green Zones at Smaller than or equal to  120\text{ meters} (400 ft) AGL.
+  * Hardware incorporates Type-Certified avionics, Return-to-Home (RTH) failsafes upon link loss or low battery (Smaller than 25%), and geo-caging around security installations.
   * 360-degree obstacle detection radar prevents collisions with rural vegetation and power infrastructure.
 
 ### Chemical Safety & Human-in-the-Loop Review

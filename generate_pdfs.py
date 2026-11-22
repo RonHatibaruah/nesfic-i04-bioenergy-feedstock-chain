@@ -50,9 +50,9 @@ class NumberedCanvas(canvas.Canvas):
 def clean_inline_markdown(text):
     if not text:
         return ""
-    t = text.strip()
+    t = str(text).strip()
     
-    # Clean Unicode characters not supported by standard PDF Helvetica
+    # 1. Clean Unicode characters not supported by standard PDF Helvetica
     t = t.replace('₹', 'Rs. ')
     t = t.replace('শস্য স্বাস্থ্য', 'SasyaSwasthya')
     t = t.replace('অসমীয়া', 'Assamese')
@@ -61,49 +61,55 @@ def clean_inline_markdown(text):
     t = t.replace('–', '-').replace('—', ' - ')
     t = t.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"')
     
-    # LaTeX Math Cleanup
+    # 2. LaTeX Math Cleanup to clean plain readable English
     t = re.sub(r'\\left\s*\(', '(', t)
     t = re.sub(r'\\right\s*\)', ')', t)
     t = re.sub(r'\\left\s*\[', '[', t)
     t = re.sub(r'\\right\s*\]', ']', t)
-    t = t.replace(r'\left', '').replace(r'\right', '')
-    t = t.replace(r'\%', '%').replace(r'\_', '_').replace(r'\&', '&')
-    
+    t = t.replace('\\left', '').replace('\\right', '')
+    t = t.replace('\\%', '%').replace('\\_', '_').replace('\\&', ' and ')
     t = re.sub(r'\\text\{([^}]+)\}', r'\1', t)
-    t = re.sub(r'\\sum_\{i=1\}\^\{?7\}?', '&Sigma;<sub>i=1</sub><sup>7</sup>', t)
-    t = re.sub(r'\\sum_\{[^}]+\}', '&Sigma;', t)
-    t = re.sub(r'\\sum', '&Sigma;', t)
-    t = re.sub(r'\\times', '&times;', t)
-    t = re.sub(r'\\cdot', '&middot;', t)
-    t = re.sub(r'\\approx', '&asymp;', t)
-    t = re.sub(r'\\le', '&le;', t)
-    t = re.sub(r'\\ge', '&ge;', t)
-    t = re.sub(r'\\in', '&isin;', t)
-    t = re.sub(r'\\rho_\{([^}]+)\}', r'&rho;<sub>\1</sub>', t)
-    t = re.sub(r'\\rho', '&rho;', t)
-    t = re.sub(r'\\frac\{([^}]+)\}\{([^}]+)\}', r'(\1 / \2)', t)
-    t = re.sub(r'\\sqrt\{([^}]+)\}', r'&radic;(\1)', t)
-    t = re.sub(r'\^\{([^}]+)\}', r'<sup>\1</sup>', t)
-    t = re.sub(r'_\{([^}]+)\}', r'<sub>\1</sub>', t)
-    t = t.replace('^2', '<sup>2</sup>').replace('^3', '<sup>3</sup>')
-    t = t.replace(r'^\circ\text{C}', ' &deg;C').replace(r'^\circ', '&deg;')
+    t = re.sub(r'\\le', 'Smaller than or equal to ', t)
+    t = re.sub(r'\\ge', 'Greater than or equal to ', t)
+    t = re.sub(r'\\rightarrow', ' -> ', t)
+    t = re.sub(r'\\times', ' x ', t)
+    t = re.sub(r'\\cdot', ' . ', t)
+    t = re.sub(r'\\approx', ' ~ ', t)
     t = t.replace('$', '')
     
-    # Format inline markdown
-    parts = re.split(r'(\*\*[^*]+\*\*|`[^`]+`)', t)
-    cleaned = []
-    for p in parts:
-        if not p:
-            continue
-        if p.startswith('**') and p.endswith('**'):
-            inner = escape(p[2:-2])
-            cleaned.append(f"<b>{inner}</b>")
-        elif p.startswith('`') and p.endswith('`'):
-            inner = escape(p[1:-1])
-            cleaned.append(f'<font face="Courier" color="#0369a1">{inner}</font>')
-        else:
-            cleaned.append(escape(p))
-    return ''.join(cleaned)
+    # 3. Replace comparison symbols
+    t = t.replace('<=', 'Smaller than or equal to ')
+    t = t.replace('>=', 'Greater than or equal to ')
+    
+    # 4. Convert markdown bold/italic/code to ReportLab tags
+    # Markdown bold: **text** -> <b>text</b>
+    t = re.sub(r'\*\*([^*]+)\*\*', r'<b>\1</b>', t)
+    # Markdown italic: *text* -> <i>text</i> (avoiding double asterisks)
+    t = re.sub(r'(?<!\*)\*([^*]+)\*(?!\*)', r'<i>\1</i>', t)
+    # Code snippet: `code` -> Courier font
+    t = re.sub(r'`([^`]+)`', r'<font face="Courier" color="#0369a1">\1</font>', t)
+    
+    # 5. Tokenize and protect valid ReportLab XML tags:
+    # <b>, </b>, <i>, </i>, <u>, </u>, <sup>, </sup>, <sub>, </sub>, <font...>, </font>
+    valid_tags = []
+    def save_tag(m):
+        idx = len(valid_tags)
+        valid_tags.append(m.group(0))
+        return f"___VALID_TAG_{idx}___"
+    
+    t = re.sub(r'</?(?:b|i|u|sup|sub|font(?:\s+[^>]+)?)/?>', save_tag, t, flags=re.IGNORECASE)
+    
+    # 6. Any remaining '<' or '>' characters are unparsed comparisons -> convert them safely
+    t = t.replace('<', 'Smaller than ').replace('>', 'Greater than ')
+    
+    # 7. Escape standalone ampersands so ReportLab XML parser does not fail
+    t = re.sub(r'&(?!(?:amp|lt|gt|quot|apos|deg);)', '&amp;', t)
+    
+    # 8. Restore the protected valid tags for ReportLab to style natively
+    for idx, tag in enumerate(valid_tags):
+        t = t.replace(f"___VALID_TAG_{idx}___", tag)
+        
+    return t
 
 def safe_paragraph(text, style):
     return Paragraph(clean_inline_markdown(text), style)
