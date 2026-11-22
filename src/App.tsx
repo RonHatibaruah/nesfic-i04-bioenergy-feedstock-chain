@@ -7,18 +7,18 @@ import { CitizenHealthPortal } from './components/CitizenHealthPortal';
 import { AdminDashboard } from './components/AdminDashboard';
 import { RecordDetailModal } from './components/RecordDetailModal';
 import { TutorialModal } from './components/TutorialModal';
-import { initialLandRecords, initialVerificationTasks } from './data/mockAssamLandData';
-import { LandRecord, VerificationTask } from './types/landRecords';
-import { RuleEngineConfig, DEFAULT_RULE_CONFIG, auditLandRecord } from './services/healthCheckEngine';
-import { Mail } from 'lucide-react';
+import { initialCropRecords, initialScoutingTasks } from './data/mockAssamCropData';
+import { CropHealthRecord, FieldScoutingTask } from './types/cropHealth';
+import { AgroRuleEngineConfig, DEFAULT_AGRO_CONFIG } from './services/cropIntelligenceEngine';
+import { Mail, Sprout } from 'lucide-react';
 
 export function App() {
-  const [records, setRecords] = useState<LandRecord[]>(initialLandRecords);
-  const [tasks, setTasks] = useState<VerificationTask[]>(initialVerificationTasks);
-  const [ruleConfig, setRuleConfig] = useState<RuleEngineConfig>(DEFAULT_RULE_CONFIG);
+  const [records, setRecords] = useState<CropHealthRecord[]>(initialCropRecords);
+  const [tasks, setTasks] = useState<FieldScoutingTask[]>(initialScoutingTasks);
+  const [ruleConfig, setRuleConfig] = useState<AgroRuleEngineConfig>(DEFAULT_AGRO_CONFIG);
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
-  const [selectedCircle, setSelectedCircle] = useState<string>('ALL');
-  const [inspectingRecord, setInspectingRecord] = useState<LandRecord | null>(null);
+  const [selectedDistrict, setSelectedDistrict] = useState<string>('ALL');
+  const [inspectingRecord, setInspectingRecord] = useState<CropHealthRecord | null>(null);
   const [isTutorialOpen, setIsTutorialOpen] = useState<boolean>(false);
 
   // Synchronize hash with activeTab for SEO, deep-linking and browser navigation
@@ -26,10 +26,10 @@ export function App() {
     const syncTabFromHash = () => {
       const hash = window.location.hash.replace('#', '');
       if (hash === 'dashboard') setActiveTab('dashboard');
-      else if (hash === 'gis-map' || hash === 'cadastral-map') setActiveTab('gis-map');
-      else if (hash === 'field-verification' || hash === 'lat-mandal') setActiveTab('field-verification');
-      else if (hash === 'citizen-portal' || hash === 'citizen-health') setActiveTab('citizen-portal');
-      else if (hash === 'admin' || hash === 'admin-console') setActiveTab('admin');
+      else if (hash === 'gis-viewer' || hash === 'gis-map') setActiveTab('gis-map');
+      else if (hash === 'field-scouting' || hash === 'field-verification') setActiveTab('field-verification');
+      else if (hash === 'farmer-advisory' || hash === 'citizen-portal') setActiveTab('citizen-portal');
+      else if (hash === 'admin-console' || hash === 'admin') setActiveTab('admin');
       else if (hash === 'tutorial') setIsTutorialOpen(true);
     };
 
@@ -40,127 +40,105 @@ export function App() {
 
   const handleTabSelect = (tab: ActiveTab) => {
     setActiveTab(tab);
-    if (window.location.hash !== `#${tab}`) {
-      window.history.pushState(null, '', `#${tab}`);
+    const hashTarget = tab === 'gis-map' ? 'gis-viewer' :
+                       tab === 'field-verification' ? 'field-scouting' :
+                       tab === 'citizen-portal' ? 'farmer-advisory' :
+                       tab === 'admin' ? 'admin-console' : 'dashboard';
+    if (window.location.hash !== `#${hashTarget}`) {
+      window.history.pushState(null, '', `#${hashTarget}`);
     }
   };
 
-  // Filter records by selected circle
+  // Filter records by selected district
   const filteredRecords = useMemo(() => {
-    if (selectedCircle === 'ALL') return records;
-    return records.filter(r => r.circle.toLowerCase() === selectedCircle.toLowerCase());
-  }, [records, selectedCircle]);
+    if (selectedDistrict === 'ALL') return records;
+    return records.filter(r => r.district.toLowerCase() === selectedDistrict.toLowerCase());
+  }, [records, selectedDistrict]);
 
   // Critical counts
   const criticalCount = useMemo(() => {
-    return records.filter(r => r.healthReport.grade === 'GRADE_D').length;
+    return records.filter(r => r.grade === 'GRADE_D').length;
   }, [records]);
 
-  // Dispatch a record to Lat Mandal for field inspection
-  const handleDispatchToMandal = (record: LandRecord) => {
-    const existingTask = tasks.find(t => t.dagId === record.id);
-    if (existingTask) {
-      alert(`Task already assigned to Lat Mandal for Dag ${record.dagNumber}.`);
-      setActiveTab('field-verification');
-      return;
-    }
-
-    const newTask: VerificationTask = {
-      id: `TASK-2026-${String(tasks.length + 1).padStart(3, '0')}`,
-      dagId: record.id,
-      dagNumber: record.dagNumber,
-      pattaNumber: record.pattaNumber,
+  // Dispatch a record to Agricultural Extension Officer for field ground scouting
+  const handleDispatchScouting = (record: CropHealthRecord) => {
+    const newTask: FieldScoutingTask = {
+      taskId: `TASK-2026-${Math.floor(100 + Math.random() * 900)}`,
+      plotId: record.plotId,
+      farmerName: record.farmerName,
+      district: record.district,
+      block: record.block,
       village: record.village,
-      circle: record.circle,
-      priority: record.healthReport.grade === 'GRADE_D' ? 'CRITICAL' : 'HIGH',
-      assignedMandal: record.circle === 'Sonapur' ? 'Hemen Saikia (LM-09)' : 'Biren Kalita (LM-04)',
-      anomaliesSummary: record.healthReport.anomalies.map(a => a.title),
-      status: 'ASSIGNED',
-      scheduledDate: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0]
+      assignedOfficer: 'Pranab Jyoti Sarma',
+      officerRole: 'ADO (Agri Dev Officer)',
+      targetPest: record.primaryPest,
+      priority: record.grade === 'GRADE_D' ? 'CRITICAL' : 'HIGH',
+      status: 'PENDING_VISIT',
+      scheduledDate: new Date().toISOString().split('T')[0],
+      trapCount: 0,
+      visualDefoliationPct: 0,
+      scoutingNotes: 'Urgent task dispatched from Executive Dashboard following satellite stress anomaly.',
+      gpsVerified: false
     };
 
-    setTasks(prev => [newTask, ...prev]);
-    setRecords(prev => prev.map(r => r.id === record.id ? { ...r, verificationStatus: 'ASSIGNED_TO_MANDAL' } : r));
-    alert(`Survey order generated! Dag ${record.dagNumber} dispatched to ${newTask.assignedMandal}.`);
-    setActiveTab('field-verification');
+    setTasks([newTask, ...tasks]);
+    handleTabSelect('field-verification');
   };
 
-  // Complete a verification task
-  const handleCompleteTask = (taskId: string, findings: any) => {
-    setTasks(prev => prev.map(t => {
-      if (t.id === taskId) {
-        return { ...t, status: 'COMPLETED', findings };
+  // Complete field task
+  const handleCompleteTask = (taskId: string, trapCount: number, notes: string, defoliationPct: number) => {
+    setTasks(tasks.map(t => {
+      if (t.taskId === taskId) {
+        return {
+          ...t,
+          status: 'COMPLETED',
+          trapCount,
+          scoutingNotes: notes,
+          visualDefoliationPct: defoliationPct,
+          gpsVerified: true
+        };
       }
       return t;
     }));
-
-    // Update corresponding record
-    const task = tasks.find(t => t.id === taskId);
-    if (task) {
-      setRecords(prev => prev.map(r => {
-        if (r.id === task.dagId || r.dagNumber === task.dagNumber) {
-          return {
-            ...r,
-            verificationStatus: 'FIELD_INSPECTION_COMPLETED',
-            fieldNotes: findings.remarks
-          };
-        }
-        return r;
-      }));
-    }
   };
 
-  // Recalibrate statutory rules and recalculate LHS across all parcels dynamically
-  const handleUpdateRuleConfig = (newConfig: RuleEngineConfig) => {
-    setRuleConfig(newConfig);
-    setRecords(prev => prev.map(rec => ({
-      ...rec,
-      healthReport: auditLandRecord(rec, newConfig)
-    })));
-  };
-
-  // Reassign task between Lat Mandals
-  const handleReassignTask = (taskId: string, newMandal: string) => {
-    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, assignedMandal: newMandal } : t));
-    const task = tasks.find(t => t.id === taskId);
-    if (task) {
-      setRecords(prev => prev.map(r => (r.id === task.dagId || r.dagNumber === task.dagNumber) ? { ...r, assignedMandal: newMandal } : r));
+  const handleSelectRecordByPlotId = (plotId: string) => {
+    const found = records.find(r => r.plotId === plotId);
+    if (found) {
+      setInspectingRecord(found);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 font-sans text-slate-900">
-      
-      {/* Top Navigation */}
+    <div className="min-h-screen bg-slate-900 text-slate-100 flex flex-col font-sans selection:bg-emerald-500 selection:text-white">
+      {/* Navigation */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={handleTabSelect}
-        selectedCircle={selectedCircle}
-        setSelectedCircle={setSelectedCircle}
+        selectedDistrict={selectedDistrict}
+        setSelectedDistrict={setSelectedDistrict}
         totalRecords={records.length}
         criticalCount={criticalCount}
-        onOpenTutorial={() => {
-          setIsTutorialOpen(true);
-          window.history.pushState(null, '', '#tutorial');
-        }}
+        onOpenTutorial={() => setIsTutorialOpen(true)}
       />
 
-      {/* Main Content Area */}
+      {/* Main Content Pane */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        
         {activeTab === 'dashboard' && (
           <ExecutiveDashboard
             records={filteredRecords}
             onSelectRecord={(r) => setInspectingRecord(r)}
-            onDispatchToMandal={handleDispatchToMandal}
+            onDispatchScouting={handleDispatchScouting}
+            selectedDistrict={selectedDistrict}
           />
         )}
 
         {activeTab === 'gis-map' && (
           <CadastralMapViewer
             records={filteredRecords}
+            selectedRecord={inspectingRecord}
             onSelectRecord={(r) => setInspectingRecord(r)}
-            selectedRecordId={inspectingRecord?.id}
+            onDispatchScouting={handleDispatchScouting}
           />
         )}
 
@@ -168,13 +146,13 @@ export function App() {
           <FieldVerificationPortal
             tasks={tasks}
             onCompleteTask={handleCompleteTask}
-            records={records}
+            onSelectRecordByPlotId={handleSelectRecordByPlotId}
           />
         )}
 
         {activeTab === 'citizen-portal' && (
           <CitizenHealthPortal
-            records={records}
+            records={filteredRecords}
             onSelectRecord={(r) => setInspectingRecord(r)}
           />
         )}
@@ -182,80 +160,52 @@ export function App() {
         {activeTab === 'admin' && (
           <AdminDashboard
             records={records}
-            tasks={tasks}
             ruleConfig={ruleConfig}
-            onUpdateRuleConfig={handleUpdateRuleConfig}
-            onReassignTask={handleReassignTask}
+            onUpdateRuleConfig={(cfg) => setRuleConfig(cfg)}
+            onResetRuleConfig={() => setRuleConfig(DEFAULT_AGRO_CONFIG)}
           />
         )}
-
       </main>
 
-      {/* Detail Inspection Modal */}
+      {/* Detailed Telemetry & Advisory Inspection Modal */}
       <RecordDetailModal
         record={inspectingRecord}
         onClose={() => setInspectingRecord(null)}
-        onDispatchToMandal={handleDispatchToMandal}
+        onDispatchScouting={handleDispatchScouting}
       />
 
-      {/* User Tutorial & Walkthrough Modal */}
+      {/* System Guide & Challenge Architecture Modal */}
       <TutorialModal
         isOpen={isTutorialOpen}
         onClose={() => setIsTutorialOpen(false)}
-        onNavigateTab={(tab) => {
-          setActiveTab(tab);
-          setIsTutorialOpen(false);
-        }}
       />
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 border-t border-slate-800 text-xs py-6 px-4 mt-auto">
-        <div className="max-w-7xl mx-auto space-y-4">
-          
-          {/* Main Top Row */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
-              <div className="font-semibold text-slate-200">
-                BhumiSwasthya (ভূমি স্বাস্থ্য) • Assam Land Records Health Check & Anomaly Detection System
-              </div>
-              <div className="text-[11px] text-slate-400 mt-0.5">
-                NESFIC 2026 Problem Statement NESFIC-D-50 | Revenue & Disaster Management Department, Assam
-              </div>
+      <footer className="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs py-6 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center space-x-2">
+            <div className="w-6 h-6 rounded bg-emerald-600 flex items-center justify-center text-white">
+              <Sprout className="w-4 h-4" />
             </div>
-            
-            <div className="text-left sm:text-right flex flex-col sm:items-end">
-              <div className="font-semibold text-slate-200">
-                Copyright © 2026 Ron Hatibaruah. All Rights Reserved.
-              </div>
-              <div className="text-[11px] text-slate-300 mt-1 flex items-center justify-start sm:justify-end gap-1.5">
-                <span className="text-slate-400">Visitor Contact & Feedback:</span>
-                <a
-                  href="mailto:ron.hatibaruah@gmail.com"
-                  className="text-emerald-400 hover:text-emerald-300 font-medium underline decoration-emerald-500/40 hover:decoration-emerald-400 transition-colors inline-flex items-center gap-1 font-mono"
-                  title="Send email to Ron Hatibaruah (ron.hatibaruah@gmail.com)"
-                >
-                  <Mail className="w-3.5 h-3.5 shrink-0" />
-                  <span>ron.hatibaruah@gmail.com</span>
-                </a>
-              </div>
-              <div className="text-[11px] text-slate-500 mt-0.5">
-                Assam Innovation & Startup Foundation (AISF) Initiative
-              </div>
-            </div>
+            <span className="font-bold text-slate-200">SasyaSwasthya (শস্য স্বাস্থ্য)</span>
+            <span>•</span>
+            <span>NESFIC-D-11 Official Government Track Solution</span>
           </div>
 
-          {/* Legal / Statutory Disclaimer */}
-          <div className="pt-3 border-t border-slate-800/80 text-[10px] text-slate-500 leading-relaxed text-justify sm:text-left">
-            <span className="font-semibold text-slate-400 uppercase tracking-wider">Statutory Disclaimer:</span>{' '}
-            BhumiSwasthya is an automated decision-support and proactive diagnostic prototype developed for the Revenue & Disaster Management Department, Government of Assam under NESFIC 2026 (Stream 1 • Problem Statement NESFIC-D-50). The Land Health Scores (LHS), risk grading, and anomaly alerts generated by this system are strictly advisory and non-invasive. They do not constitute a legal determination of land title, nor do they alter, replace, or supersede official certified Jamabandi extracts or cadastral maps issued by the competent Revenue Authority under the <em>Assam Land and Revenue Regulation, 1886</em>. All field boundary rectifications and mutation approvals require statutory proceedings before the designated Circle Officer.
+          <div className="flex flex-wrap items-center gap-4 text-slate-400">
+            <span>Department of Agriculture, Assam</span>
+            <span>•</span>
+            <span>Assam State Space Application Centre (ASSAC)</span>
+            <span>•</span>
+            <span>Assam Agricultural University (AAU)</span>
           </div>
 
+          <div className="text-slate-500 font-mono text-[11px]">
+            Lead Architect: Ron Hatibaruah
+          </div>
         </div>
       </footer>
-
     </div>
   );
 }
-
 export default App;
-

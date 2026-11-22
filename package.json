@@ -1,5 +1,6 @@
 {
-  "name": "bhumi-swasthya",
+  "name": "sasya-swasthya",
+  "description": "Assam Crop Health Monitoring, Pest & Disease Forecasting and Location-Specific Advisory System (NESFIC-D-11)",
   "private": true,
   "version": "1.0.0",
   "type": "module",

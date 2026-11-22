@@ -1,55 +1,56 @@
-# BhumiSwasthya (ভূমি স্বাস্থ্য)
-### Automated Land Records Health-Check & Cadastral Anomaly Detection System
+# SasyaSwasthya (শস্য স্বাস্থ্য)
+### Assam Crop Health Monitoring, Pest & Disease Forecasting and Location-Specific Advisory System
 
-[![Live Demo](https://img.shields.io/badge/Live_Prototype-bhumi--swasthya.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://bhumi-swasthya.pages.dev/)
-[![Government of Assam](https://img.shields.io/badge/Government_of_Assam-Revenue_%26_Disaster_Management-064e3b?style=for-the-badge)](https://landrecords.assam.gov.in/)
-[![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Stream_1_--_NESFIC--D--50-0284c7?style=for-the-badge)](https://startup.assam.gov.in/)
-[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://bhumi-swasthya.pages.dev/)
+[![Live Demo](https://img.shields.io/badge/Live_Prototype-sasya--swasthya.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://sasya-swasthya.pages.dev/)
+[![Government of Assam](https://img.shields.io/badge/Government_of_Assam-Dept_of_Agriculture_%26_ASSAC-064e3b?style=for-the-badge)](https://diragri.assam.gov.in/)
+[![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Govt_Track_--_NESFIC--D--11-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-d-11)
+[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://sasya-swasthya.pages.dev/)
 [![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
-> 🌐 **Live Interactive Prototype:** **[https://bhumi-swasthya.pages.dev/](https://bhumi-swasthya.pages.dev/)**  
-> Explore executive analytics, live cadastral map inspector with polygon overlays, Lat Mandal field verification queue, citizen land health certificate generator, and the **Super Admin Command Console (`#admin`)**.
+> 🌐 **Live Interactive Prototype:** **[https://sasya-swasthya.pages.dev/](https://sasya-swasthya.pages.dev/)**  
+> Explore the Executive Agro-Dashboard, Multi-Spectral Satellite & Drone WebGIS, Agricultural Extension PWA, Farmer Advisory Portal ("Sasya Seva"), and the **Super Admin Command Console (`#admin-console`)**.
 
 ---
 
 ## 🏛️ Executive Summary
 
-**BhumiSwasthya** is a proactive, automated land health-check and cadastral anomaly detection platform developed for the **Revenue & Disaster Management Department, Government of Assam** under **NESFIC-D-50 (Stream 1)**.
+**SasyaSwasthya (শস্য স্বাস্থ্য)** is an intelligent space-to-ground agricultural intelligence, epidemiological pest forecasting, and hyper-local agro-advisory platform developed for the **Department of Agriculture** and the **Assam State Space Application Centre (ASSAC)**, Department of Science & Technology, Government of Assam under **NESFIC-D-11 (Government Track)** in partnership with **Assam Agricultural University (AAU), Jorhat**.
 
-Traditional land administration is **reactive**: errors in textual Jamabandi records and cadastral maps remain unnoticed until a citizen applies for a Land Sale NOC, Bank Mortgage, or Inheritance Mutation, resulting in sudden transaction freezes, protracted litigation, and citizen distress.
+Traditional agricultural disease management is **reactive**: infestations of Rice Blast (*Magnaporthe oryzae*), Yellow Stem Borer (*Scirpophaga incertulas*), Sheath Blight (*Rhizoctonia solani*), and Mustard Aphids (*Lipaphis erysimi*) are noticed only after severe foliar damage or dead-hearts appear across whole village clusters—resulting in 25–35% yield losses, panic chemical spraying, and farmer debt.
 
-**BhumiSwasthya inverts this paradigm** into continuous, proactive assurance:
-1. **Automated Continuous Audit:** Continuously scans textual **Dharitree** Record of Rights (RoRs) against **Bhudakshya** cadastral GIS boundary vectors while records are at rest.
-2. **7 Statutory Consistency Dimensions:** Flags spatial overlaps, BKL area variances, unclosed boundaries, share deficits, zero-Touzi revenue dags, and Chapter X tribal belt violations.
-3. **Composite Land Health Score (LHS 0–100):** Triages parcels into 4 actionable risk tiers (Grade A Clean to Grade D Critical).
-4. **Targeted Lat Mandal PWA:** Auto-dispatches field survey work-orders with sub-meter RTK GNSS coordinate locking and offline SQLite synchronization.
-5. **Citizen Self-Check Portal:** Issues tamper-proof, verifiable digital Land Health Certificates with cryptographic SHA-256 QR tokens, enabling **pre-emptive 72-hour fast-track mutations** under **Mission Basundhara 3.0**.
-6. **Super Admin Command Console:** Real-time algorithmic calibration of statutory discrepancy tolerances, officer & Lat Mandal provisioning, dual-system ingestion telemetry, and immutable SHA-256 audit trails.
+**SasyaSwasthya inverts this paradigm** into continuous, space-to-ground precision assurance:
+1. **Continuous Multi-Spectral Satellite Surveillance:** Ingests ESA Sentinel-2 10m surface reflectance and Landsat 8/9 imagery every 5 days, calculating NDVI (canopy vigor), NDWI (water deficit/flood ponding), and SAVI with automated cloud masking.
+2. **High-Resolution Drone Telemetry:** Fuses ASSAC UAV drone flights at 5cm/pixel resolution over priority agricultural blocks.
+3. **Epidemiological Forecast Engine:** Coupes real-time telemetry from 35+ IMD Automated Weather Stations (AWS) with degree-day and humidity models to forecast Rice Blast and Stem Borer outbreaks **72 to 120 hours in advance**.
+4. **Composite Crop Health Index (CHI 0–100):** Triages every farm plot into 4 actionable risk grades (Grade A Optimal to Grade D Critical Outbreak).
+5. **Field Ground-Truthing PWA:** Equips Agricultural Development Officers (ADO) and Krishi Sakhis with an offline-first mobile app featuring sub-meter RTK GPS plot coordinate geofencing, pheromone trap logging, and an on-device MobileNet AI leaf disease diagnostic camera.
+6. **Farmer "Sasya Seva" Portal & Dispatcher:** Delivers targeted, hyper-local advisories in **Assamese (অসমীয়া)** and English with specific bio-control formulations (Trichoderma, NSKE 5%, Scirpo-lure) via SMS and WhatsApp Cloud API.
+7. **Agro-Command & Admin Console:** Real-time role-based control room for ASSAC analysts, DAOs, and AAU scientists to calibrate thresholds and dispatch geo-fenced emergency bulletins.
 
 ---
 
 ## 📸 Technological Architecture & Visual Evidence
 
-### 1. Paradigm Shift: Reactive Bottleneck vs. Proactive Assurance
+### 1. Paradigm Shift: Reactive Crop Loss vs. Proactive Space-to-Ground Early Warning
 ![Paradigm Shift](assets/proposal_images/diagram_1_before_after_workflow.jpg)
 
-### 2. Dual-System Cross-Reconciliation (Dharitree & Bhudakshya)
-![Dual-System Reconciliation](assets/proposal_images/diagram_2_dual_system_reconciliation.jpg)
+### 2. Multi-Tier Space-to-Ground Data Fusion Pipeline (Sentinel-2, Drone, Weather, Field)
+![Space to Ground Pipeline](assets/proposal_images/diagram_2_dual_system_reconciliation.jpg)
 
-### 3. 5-Vector Cadastral Anomaly Diagnostic Matrix
-![Cadastral Anomaly Catalog](assets/proposal_images/diagram_3_cadastral_anomaly_catalog.jpg)
+### 3. Assam Crop Pathogen & Biotic Stress Surveillance Catalog
+![Pathogen Catalog](assets/proposal_images/diagram_3_cadastral_anomaly_catalog.jpg)
 
-### 4. Composite Land Health Score (LHS) Architecture
-![LHS Architecture](assets/proposal_images/diagram_4_land_health_score_hierarchy.jpg)
+### 4. Composite Crop Health Index (CHI 0–100) Multi-Criteria Evaluation Hierarchy
+![CHI Hierarchy](assets/proposal_images/diagram_4_land_health_score_hierarchy.jpg)
 
-### 5. Lat Mandal Field Inspection PWA & Ground-Truthing
-![Lat Mandal PWA](assets/proposal_images/diagram_5_lat_mandal_mobile_app.jpg)
+### 5. Agricultural Extension Officer (ADO) Ground-Truthing & Edge AI PWA
+![Extension PWA](assets/proposal_images/diagram_5_lat_mandal_mobile_app.jpg)
 
-### 6. Citizen Land Record Health Certificate & Portal
-![Citizen Health Certificate](assets/proposal_images/diagram_6_citizen_land_health_certificate.jpg)
+### 6. Official Bilingual Agro-Advisory Bulletin (Assamese & English)
+![Bilingual Advisory Card](assets/proposal_images/diagram_6_citizen_land_health_certificate.jpg)
 
-### 7. State Data Centre (ASDC) Enterprise Production Architecture
+### 7. Assam State Data Centre (ASDC) Production Enterprise Cloud Architecture
 ![Enterprise System Architecture](assets/proposal_images/diagram_7_enterprise_system_architecture.jpg)
 
 ---
@@ -57,10 +58,11 @@ Traditional land administration is **reactive**: errors in textual Jamabandi rec
 ## 💻 Tech Stack & Infrastructure
 
 - **Web Frontend:** React 18, TypeScript, Tailwind CSS, Lucide Icons, Vite
-- **WebGIS Engine:** Leaflet 1.9.4, GeoJSON/TopoJSON vector renderers, Dual-Mode Leaflet & SVG Cadastral Sheet Viewer
-- **Geospatial & Anomaly Core:** Python 3.13, PostGIS 3.4, Shapely, GEOS, Assam BKL Engine ($1\text{ Bigha} = 5\text{ Katha} = 100\text{ Lesa} \approx 1337.8\text{ m}^2$)
+- **WebGIS Engine:** Leaflet 1.9.4, GeoJSON vector renderers, Carto Voyager & Satellite basemaps
+- **Remote Sensing Core:** Python 3.13, PostGIS 3.4, RasterFrames, Sentinel-2 Level-2A BOA bands, Assam BKL Engine ($1\text{ Bigha} = 5\text{ Katha} = 100\text{ Lesa} \approx 1337.8\text{ m}^2$)
+- **Edge AI & Computer Vision:** Quantized MobileNet-V3 running on-device for real-time leaf lesion classification
 - **Cloud & Edge Hosting:** Cloudflare Pages (SPA redirects, edge headers, asset optimization)
-- **State Data Centre Target:** Kubernetes, Kafka, Redis, PostgreSQL 16 + PostGIS, NIC e-Pramaan OAuth2
+- **State Data Centre Target:** Kubernetes, Kafka event queues, Redis, PostgreSQL 16 + PostGIS, NIC SMS Gateway & e-Pramaan OAuth2
 
 ---
 
@@ -68,64 +70,53 @@ Traditional land administration is **reactive**: errors in textual Jamabandi rec
 
 ### Prerequisites
 - Node.js 18+ or 20+
-- npm or pnpm
+- Python 3.10+ (for diagram and PDF generation)
 
-### Local Development
+### Installation & Local Development
 ```bash
-# 1. Clone repository
-git clone https://github.com/RonHatibaruah/bhumi-swasthya.git
-cd bhumi-swasthya
+# Clone the repository
+git clone https://github.com/RonHatibaruah/sasya-swasthya-assam.git
+cd sasya-swasthya-assam
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Start development server
+# Start local development server
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### Production Build
 ```bash
 npm run build
+npm run preview
 ```
-Production assets will be built to the `dist/` directory.
+
+### Regenerate Submission PDFs & Diagrams
+```bash
+# Generate high-resolution 16:9 architectural diagrams
+python3 generate_diagrams.py
+
+# Compile official submission PDFs
+python3 generate_pdfs.py
+
+# Generate copy-paste plain text versions
+python3 generate_text_versions.py
+```
 
 ---
 
-## ☁️ Cloudflare Pages Deployment
+## 📦 Submission Documents
 
-This project is pre-configured for instant deployment on **Cloudflare Pages**:
-- **Framework Preset:** Vite
-- **Build Command:** `npm run build`
-- **Build Output Directory:** `dist`
-- **Configuration Files:** `wrangler.toml`, `public/_redirects`, `public/_headers`
-
-See [CLOUDFLARE_DEPLOYMENT.md](CLOUDFLARE_DEPLOYMENT.md) for step-by-step dashboard and CLI deployment instructions.
+- [NESFIC_D11_Proposal_Ron_Hatibaruah.pdf](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/NESFIC_D11_Proposal_Ron_Hatibaruah.pdf)
+- [NESFIC_D11_Proof_of_Work_Ron_Hatibaruah.pdf](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/NESFIC_D11_Proof_of_Work_Ron_Hatibaruah.pdf)
+- [proposal_contents.md](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/proposal_contents.md)
+- [proof_of_work_dossier.md](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/proof_of_work_dossier.md)
 
 ---
 
-## 📄 Official Submission Documents & Text Versions
+## 👤 Author & Innovator
 
-- **Proposal Document (PDF):** [NESFIC_D50_Proposal_Ron_Hatibaruah.pdf](NESFIC_D50_Proposal_Ron_Hatibaruah.pdf) (12 Fields • 1.40 MB)
-- **Proof of Work & Solution Evidence Dossier (PDF):** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.pdf) (7 Pages • 2.75 MB)
-- **Proposal Plain Text (Copy-Paste Ready):** [NESFIC_D50_Proposal_Ron_Hatibaruah.txt](NESFIC_D50_Proposal_Ron_Hatibaruah.txt) (Clean text formatted for online portal form textareas)
-- **Proof of Work Plain Text (Copy-Paste Ready):** [NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.txt](NESFIC_D50_Proof_of_Work_Ron_Hatibaruah.txt) (Complete plain-text dossier with aligned ASCII tables)
-- **Proposal Markdown Contents:** [proposal_contents.md](proposal_contents.md)
-- **Proof of Work Markdown Dossier:** [proof_of_work_dossier.md](proof_of_work_dossier.md)
-
----
-
-## 👤 Applicant Attribution & Lead
-
-- **Lead Innovator & Solutions Architect:** **Ron Hatibaruah**
-- **Email / Inquiries:** [ron.hatibaruah@gmail.com](mailto:ron.hatibaruah@gmail.com)
-- **Challenge ID:** NESFIC-D-50 (Stream 1)
-- **Platform:** North East Startup Festival & Innovation Conclave (NESFIC 2026) / Assam Innovation & Startup Foundation (AISF)
-- **Challenge Owner:** Revenue & Disaster Management Department, Government of Assam
-
----
-
-## ⚖️ License & Disclaimers
-
-Copyright © 2026 Ron Hatibaruah. All rights reserved.  
-*BhumiSwasthya provides strictly non-invasive advisory health scores and diagnostic flags for government decision support. It does not perform automated mutation or alteration of legal land titles.*
+**Ron Hatibaruah**  
+Lead Solutions Architect & Innovator  
+North East Seva First Innovation Challenge (NESFIC 2026)  
+Assam Innovation & Startup Foundation (AISF), Government of Assam

@@ -3,8 +3,8 @@
         xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">
   <!-- Main Application Landing Page -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/</loc>
-    <lastmod>2026-11-21</lastmod>
+    <loc>https://sasya-swasthya.pages.dev/</loc>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <geo:geo>
@@ -12,51 +12,51 @@
     </geo:geo>
   </url>
 
-  <!-- Executive Analytics & Cadastral Health Register -->
+  <!-- Executive Agro-Climatic Intelligence Dashboard -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/#dashboard</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://sasya-swasthya.pages.dev/#dashboard</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Cadastral WebGIS Parcel Inspector -->
+  <!-- Satellite & Drone Multispectral WebGIS Viewer -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/#gis-map</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://sasya-swasthya.pages.dev/#gis-viewer</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Lat Mandal Field Ground-Truthing Roster -->
+  <!-- Agriculture Extension Field Scouting & Mobile PWA Portal -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/#field-verification</loc>
-    <lastmod>2026-11-21</lastmod>
+    <loc>https://sasya-swasthya.pages.dev/#field-scouting</loc>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Citizen Land Health Certificate & Pre-Emptive Portal -->
+  <!-- Farmer Hyper-Local Advisory & Outbreak Warning Portal (Sasya Seva) -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/#citizen-portal</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://sasya-swasthya.pages.dev/#farmer-advisory</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Interactive Tutorial & Mission Basundhara Integration Guide -->
+  <!-- Agro-Command Center & Administrative Console -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/#tutorial</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://sasya-swasthya.pages.dev/#admin-console</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Super Admin Control Console & Rule Calibration Engine -->
+  <!-- Interactive Walkthrough & Training Guide -->
   <url>
-    <loc>https://bhumi-swasthya.pages.dev/#admin</loc>
-    <lastmod>2026-11-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://sasya-swasthya.pages.dev/#tutorial</loc>
+    <lastmod>2026-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>

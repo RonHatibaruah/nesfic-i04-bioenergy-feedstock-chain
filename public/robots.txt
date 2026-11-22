@@ -1,6 +1,6 @@
-# Robots.txt for BhumiSwasthya (Government of Assam Land Health System)
+# SasyaSwasthya (শস্য স্বাস্থ্য) - Robots Configuration
 User-agent: *
 Allow: /
 
-# Canonical Sitemap
-Sitemap: https://bhumi-swasthya.pages.dev/sitemap.xml
+# Canonical Sitemaps
+Sitemap: https://sasya-swasthya.pages.dev/sitemap.xml

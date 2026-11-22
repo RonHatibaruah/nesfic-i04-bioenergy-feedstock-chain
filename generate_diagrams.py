@@ -6,12 +6,14 @@ import matplotlib.patches as patches
 from matplotlib.patches import FancyBboxPatch, Rectangle, Circle, Polygon
 import numpy as np
 
+# Set temporary cache dir
 os.environ['MPLCONFIGDIR'] = '/tmp/matplotlib-cache'
-out_dir = '/Users/kalyan/Downloads/2026/Nov2026/NESFIC2026-Demos/assets/proposal_images'
+workspace_dir = os.path.dirname(os.path.abspath(__file__))
+out_dir = os.path.join(workspace_dir, 'assets', 'proposal_images')
 os.makedirs(out_dir, exist_ok=True)
 
 # -------------------------------------------------------------
-# DIAGRAM 1: Before vs After Workflow Comparison
+# DIAGRAM 1: Current Reactive Loss vs Proactive Early Warning
 # -------------------------------------------------------------
 def create_diagram_1():
     fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
@@ -20,61 +22,67 @@ def create_diagram_1():
     ax.axis('off')
 
     # Title
-    ax.text(0.5, 0.95, "PARADIGM SHIFT: CURRENT REACTIVE VS. BHUMISWASTHYA PROACTIVE ASSURANCE", 
+    ax.text(0.5, 0.95, "PARADIGM SHIFT: CURRENT REACTIVE CROP LOSS VS. SASYASWASTHYA PROACTIVE ASSURANCE", 
             ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
-    ax.text(0.5, 0.90, "Government of Assam • Revenue & Disaster Management Department • NESFIC-D-50", 
+    ax.text(0.5, 0.90, "Government of Assam • Dept. of Agriculture & ASSAC (Science & Tech) • NESFIC-D-11", 
             ha='center', va='center', fontsize=9, color='#059669')
 
     # Left Box - Current Reactive Approach
     box_left = FancyBboxPatch((0.04, 0.08), 0.43, 0.76, boxstyle="round,pad=0.02,rounding_size=0.03", 
                               facecolor='#fff1f2', edgecolor='#fda4af', linewidth=2)
     ax.add_patch(box_left)
-    ax.text(0.255, 0.80, "CURRENT WORKFLOW (REACTIVE BOTTLENECK)", ha='center', va='center', 
+    ax.text(0.255, 0.80, "CURRENT WORKFLOW (REACTIVE FIREFIGHTING)", ha='center', va='center', 
             fontsize=11, fontweight='bold', color='#9f1239')
 
     left_steps = [
-        ("1. Record at Rest in Silo", "Dharitree & Bhudakshya hold un-audited historical records.\nErrors remain latent and unnoticed for years.", '#ffe4e6'),
-        ("2. Citizen Triggers Transaction", "Citizen applies for Land Sale NOC, Bank Mortgage,\nor Inheritance Mutation under urgent timeline.", '#ffe4e6'),
-        ("3. Sudden Discrepancy Discovery", "Sub-Registrar or CO discovers Dag overlap, missing BKL\narea, or share deficit. Transaction is abruptly halted.", '#fecdd3'),
-        ("4. Prolonged Disputes & Backlogs", "3 to 12 months delay. Contentious field summons,\nlegal notices, and high citizen dissatisfaction.", '#fda4af')
+        ("1. Pathogen Inoculum at Rest", "Fungal spores & insect eggs incubate silently.\nMicro-climatic risk triggers remain undetected.", '#ffe4e6'),
+        ("2. Widespread Visual Damage", "Foliar blast lesions & stem borer dead-hearts spread.\nETL breached before extension visit.", '#ffe4e6'),
+        ("3. Late Discovery & Panic Spray", "Farmer discovers destruction after 25-35% crop loss.\nIndiscriminate chemical pesticide drenching.", '#fecdd3'),
+        ("4. Severe Debt & Yield Loss", "High input costs, toxic runoff, damaged soil health,\nand devastating rural household economic loss.", '#fda4af')
     ]
-    for idx, (title, desc, bg) in enumerate(left_steps):
-        y = 0.67 - idx * 0.17
-        step_box = FancyBboxPatch((0.06, y - 0.05), 0.39, 0.13, boxstyle="round,pad=0.01,rounding_size=0.02",
-                                  facecolor=bg, edgecolor='#f43f5e', linewidth=1)
-        ax.add_patch(step_box)
-        ax.text(0.08, y + 0.035, title, fontsize=9, fontweight='bold', color='#881337')
-        ax.text(0.08, y - 0.015, desc, fontsize=7.5, color='#4c0519', linespacing=1.2)
 
-    # Right Box - BhumiSwasthya Proactive Solution
+    for i, (stitle, sdesc, scolor) in enumerate(left_steps):
+        y_pos = 0.65 - (i * 0.16)
+        patch = FancyBboxPatch((0.07, y_pos - 0.05), 0.37, 0.12, boxstyle="round,pad=0.01,rounding_size=0.02",
+                               facecolor=scolor, edgecolor='#f43f5e', linewidth=1)
+        ax.add_patch(patch)
+        ax.text(0.09, y_pos + 0.03, stitle, fontsize=9.5, fontweight='bold', color='#881337', va='center')
+        ax.text(0.09, y_pos - 0.02, sdesc, fontsize=8, color='#4c0519', va='center')
+
+    # Right Box - SasyaSwasthya Proactive Solution
     box_right = FancyBboxPatch((0.53, 0.08), 0.43, 0.76, boxstyle="round,pad=0.02,rounding_size=0.03", 
                                facecolor='#f0fdf4', edgecolor='#86efac', linewidth=2)
     ax.add_patch(box_right)
-    ax.text(0.745, 0.80, "BHUMISWASTHYA (PROACTIVE ASSURANCE)", ha='center', va='center', 
-            fontsize=11, fontweight='bold', color='#14532d')
+    ax.text(0.745, 0.80, "SASYASWASTHYA (PROACTIVE SPACE-TO-GROUND)", ha='center', va='center', 
+            fontsize=11, fontweight='bold', color='#166534')
 
     right_steps = [
-        ("1. Automated Continuous Audit", "7 statutory rules scan textual Jamabandi against Cadastral\nGIS geometry while records are at rest.", '#dcfce7'),
-        ("2. Early Anomaly Flagging", "Defects (overlaps, share deficits, zero Touzi revenue)\nflagged with composite Health Score (0-100).", '#dcfce7'),
-        ("3. Prioritized Lat Mandal Dispatch", "Risk-targeted field survey roster deployed with GPS\ncoordinate lock & ground-truthing tools.", '#bbf7d0'),
-        ("4. Pre-Emptive Fast-Track Settlement", "Reconciled BEFORE citizen applies. 70% faster mutations,\nzero unexpected disputes, and trusted title records.", '#86efac')
+        ("1. Continuous Space Surveillance", "Sentinel-2 10m NDVI & IMD weather telemetry.\nAlgorithms flag humidity >88% & thermal spikes.", '#dcfce7'),
+        ("2. 72-Hour Pre-Symptomatic Warning", "Epidemiological model forecasts blast & borer risk.\nAutomated Grade D Outbreak alerts generated.", '#dcfce7'),
+        ("3. Targeted Extension PWA Scouting", "AEO/ADO dispatched with RTK GPS coordinate lock.\nOn-device AI leaf symptom classification.", '#bbf7d0'),
+        ("4. Vernacular Agro-Advisory", "Instant SMS/WhatsApp bulletin in Assamese & English.\nBio-controls (Trichoderma, NSKE 5%) & 30% cost savings.", '#86efac')
     ]
-    for idx, (title, desc, bg) in enumerate(right_steps):
-        y = 0.67 - idx * 0.17
-        step_box = FancyBboxPatch((0.55, y - 0.05), 0.39, 0.13, boxstyle="round,pad=0.01,rounding_size=0.02",
-                                  facecolor=bg, edgecolor='#10b981', linewidth=1)
-        ax.add_patch(step_box)
-        ax.text(0.57, y + 0.035, title, fontsize=9, fontweight='bold', color='#064e3b')
-        ax.text(0.57, y - 0.015, desc, fontsize=7.5, color='#022c22', linespacing=1.2)
 
-    path = os.path.join(out_dir, "diagram_1_before_after_workflow.png")
+    for i, (stitle, sdesc, scolor) in enumerate(right_steps):
+        y_pos = 0.65 - (i * 0.16)
+        patch = FancyBboxPatch((0.56, y_pos - 0.05), 0.37, 0.12, boxstyle="round,pad=0.01,rounding_size=0.02",
+                               facecolor=scolor, edgecolor='#22c55e', linewidth=1)
+        ax.add_patch(patch)
+        ax.text(0.58, y_pos + 0.03, stitle, fontsize=9.5, fontweight='bold', color='#14532d', va='center')
+        ax.text(0.58, y_pos - 0.02, sdesc, fontsize=8, color='#052e16', va='center')
+
+    # Central Arrow
+    ax.annotate("", xy=(0.52, 0.45), xytext=(0.48, 0.45),
+                arrowprops=dict(arrowstyle="simple,tail_width=0.4,head_width=1.0,head_length=1.0",
+                                facecolor='#10b981', edgecolor='#059669'))
+
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_1_before_after_workflow.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 1")
 
 # -------------------------------------------------------------
-# DIAGRAM 2: Dual-System Reconciliation (Dharitree + Bhudakshya)
+# DIAGRAM 2: Multi-Tier Space-to-Ground Data Fusion Pipeline
 # -------------------------------------------------------------
 def create_diagram_2():
     fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
@@ -82,354 +90,317 @@ def create_diagram_2():
     fig.patch.set_facecolor('#f8fafc')
     ax.axis('off')
 
-    ax.text(0.5, 0.95, "DUAL-SYSTEM RECONCILIATION: DHARITREE (TEXT) & BHUDAKSHYA (GIS)", 
+    ax.text(0.5, 0.95, "SPACE-TO-GROUND DATA FUSION & EPIDEMIOLOGICAL FORECASTING PIPELINE", 
             ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
-    ax.text(0.5, 0.90, "Automated Cross-Verification Engine for Land Health Check (NESFIC-D-50)", 
-            ha='center', va='center', fontsize=9, color='#059669')
+    ax.text(0.5, 0.90, "Automated 4-Stream Ingestion Engine • Sentinel-2, UAV Drone, IMD AWS, Extension PWA", 
+            ha='center', va='center', fontsize=9, color='#0284c7')
 
-    # Left: Dharitree
-    box_dharitree = FancyBboxPatch((0.05, 0.15), 0.26, 0.68, boxstyle="round,pad=0.02,rounding_size=0.03", 
-                                   facecolor='#f0fdfa', edgecolor='#5eead4', linewidth=1.5)
-    ax.add_patch(box_dharitree)
-    ax.text(0.18, 0.78, "DHARITREE (TEXTUAL)", ha='center', va='center', fontsize=10.5, fontweight='bold', color='#134e4a')
-    ax.text(0.18, 0.74, "Record of Rights (Jamabandi)", ha='center', va='center', fontsize=8, color='#0f766e')
-
-    d_items = [
-        "• Dag & Patta Numbers",
-        "• Recorded Area (Bigha-Katha-Lesa)",
-        "• Pattadar Names & KYC",
-        "• Fractional Ownership Shares (%)",
-        "• Land Classification (Basti, Sali)",
-        "• Annual Touzi Revenue Demand",
-        "• Historical Encumbrance Notes"
+    # 4 Input Source Pillars
+    sources = [
+        ("ESA Sentinel-2 & Landsat", "10m Multi-spectral (Red, NIR, SWIR)\n5-day automated revisit ingestion", '#e0f2fe', '#0284c7', 0.14),
+        ("ASSAC UAV Drone Fleet", "5cm High-res orthomosaics\nMicro-canopy chlorosis & weed index", '#f0fdf4', '#16a34a', 0.38),
+        ("IMD Agromet AWS Grids", "35+ Automated weather stations\nTemp, morning RH >88%, 24h rain", '#fef3c7', '#d97706', 0.62),
+        ("Field Extension PWA", "ADO & Krishi Sakhi ground scouting\nPheromone trap counts & leaf photos", '#f3e8ff', '#9333ea', 0.86)
     ]
-    for i, item in enumerate(d_items):
-        ax.text(0.07, 0.67 - i*0.065, item, fontsize=8, color='#0f172a')
 
-    # Center: BhumiSwasthya Engine
-    box_engine = FancyBboxPatch((0.36, 0.10), 0.28, 0.75, boxstyle="round,pad=0.02,rounding_size=0.03", 
-                                facecolor='#064e3b', edgecolor='#047857', linewidth=2)
-    ax.add_patch(box_engine)
-    ax.text(0.50, 0.81, "BHUMISWASTHYA CORE", ha='center', va='center', fontsize=11, fontweight='bold', color='#ffffff')
-    ax.text(0.50, 0.77, "Reconciliation & Scoring Pipeline", ha='center', va='center', fontsize=8, color='#a7f3d0')
+    for title, desc, fcol, ecol, xpos in sources:
+        box = FancyBboxPatch((xpos - 0.10, 0.60), 0.20, 0.22, boxstyle="round,pad=0.01,rounding_size=0.02",
+                             facecolor=fcol, edgecolor=ecol, linewidth=2)
+        ax.add_patch(box)
+        ax.text(xpos, 0.77, title, ha='center', va='center', fontsize=9, fontweight='bold', color=ecol)
+        ax.text(xpos, 0.68, desc, ha='center', va='center', fontsize=7.5, color='#334155')
 
-    engine_blocks = [
-        ("Assam Unit Standardizer", "1B = 5K = 100L ≈ 1337.8 sq.m"),
-        ("PostGIS Spatial Topology", "ST_Overlaps • ST_Area • GiST"),
-        ("7 Deterministic Rules", "Legal & Mathematical Checks"),
-        ("Health Score Derivation", "0-100 Composite Index (Grades A-D)"),
-        ("Targeted Dispatch Engine", "Field Rosters for Lat Mandals")
+        # Downward arrows
+        ax.annotate("", xy=(0.50, 0.44), xytext=(xpos, 0.59),
+                    arrowprops=dict(arrowstyle="->", color=ecol, lw=2))
+
+    # Central Ingestion & Analytics Box
+    center_box = FancyBboxPatch((0.15, 0.25), 0.70, 0.18, boxstyle="round,pad=0.02,rounding_size=0.03",
+                                facecolor='#064e3b', edgecolor='#10b981', linewidth=2)
+    ax.add_patch(center_box)
+    ax.text(0.50, 0.37, "SASYASWASTHYA EPIDEMIOLOGICAL ANALYTICS & ML CORE", ha='center', va='center',
+            fontsize=11, fontweight='bold', color='#ffffff')
+    ax.text(0.50, 0.30, "Spectral Index Engine (NDVI, NDWI, SAVI) • Blast Germination Index (BGI) • Stem Borer Degree-Day Model\n"
+                        "Composite Crop Health Index (CHI 0-100) • On-Device MobileNet Leaf Diagnostic Classifier",
+            ha='center', va='center', fontsize=8.5, color='#a7f3d0')
+
+    # Output Pillars
+    outputs = [
+        ("Executive Agro-Dashboard", "State CHI & Hotspot Analytics", 0.25),
+        ("Field Extension Mobile PWA", "GPS Work Orders & Trap Audits", 0.50),
+        ("Farmer Sasya Seva Portal", "Assamese/English Advisories", 0.75)
     ]
-    for i, (b_title, b_sub) in enumerate(engine_blocks):
-        y = 0.67 - i*0.11
-        eb = FancyBboxPatch((0.38, y - 0.035), 0.24, 0.08, boxstyle="round,pad=0.01,rounding_size=0.015",
-                            facecolor='#022c22', edgecolor='#10b981', linewidth=1)
-        ax.add_patch(eb)
-        ax.text(0.50, y + 0.015, b_title, ha='center', va='center', fontsize=8.5, fontweight='bold', color='#6ee7b7')
-        ax.text(0.50, y - 0.015, b_sub, ha='center', va='center', fontsize=7, color='#d1fae5')
 
-    # Right: Bhudakshya
-    box_bhudakshya = FancyBboxPatch((0.69, 0.15), 0.26, 0.68, boxstyle="round,pad=0.02,rounding_size=0.03", 
-                                    facecolor='#eff6ff', edgecolor='#93c5fd', linewidth=1.5)
-    ax.add_patch(box_bhudakshya)
-    ax.text(0.82, 0.78, "BHUDAKSHYA (GIS)", ha='center', va='center', fontsize=10.5, fontweight='bold', color='#1e3a8a')
-    ax.text(0.82, 0.74, "Cadastral Map Overlay (Bhu-Naksha)", ha='center', va='center', fontsize=8, color='#2563eb')
+    for otitle, odesc, oxpos in outputs:
+        ax.annotate("", xy=(oxpos, 0.16), xytext=(0.50, 0.24),
+                    arrowprops=dict(arrowstyle="->", color='#059669', lw=2))
+        obox = FancyBboxPatch((oxpos - 0.11, 0.05), 0.22, 0.10, boxstyle="round,pad=0.01,rounding_size=0.02",
+                              facecolor='#ffffff', edgecolor='#059669', linewidth=1.5)
+        ax.add_patch(obox)
+        ax.text(oxpos, 0.11, otitle, ha='center', va='center', fontsize=8.5, fontweight='bold', color='#065f46')
+        ax.text(oxpos, 0.07, odesc, ha='center', va='center', fontsize=7.5, color='#475569')
 
-    b_items = [
-        "• Digitized Dag Polygon Geometry",
-        "• Geo-Referenced Coordinates (CRS)",
-        "• Planar Metric Area (sq. meters)",
-        "• Adjacent Parcel Boundary Vectors",
-        "• Village Cadastral Outer Limits",
-        "• Notified Tribal Belt Boundaries",
-        "• Ecological Reserves (VGR/PGR)"
-    ]
-    for i, item in enumerate(b_items):
-        ax.text(0.71, 0.67 - i*0.065, item, fontsize=8, color='#0f172a')
-
-    # Flow arrows
-    ax.annotate('', xy=(0.35, 0.50), xytext=(0.32, 0.50), arrowprops=dict(arrowstyle="->", color='#059669', lw=2.5))
-    ax.annotate('', xy=(0.65, 0.50), xytext=(0.68, 0.50), arrowprops=dict(arrowstyle="<-", color='#2563eb', lw=2.5))
-
-    path = os.path.join(out_dir, "diagram_2_dual_system_reconciliation.png")
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_2_dual_system_reconciliation.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 2")
 
 # -------------------------------------------------------------
-# DIAGRAM 3: Cadastral Anomaly Catalog (5 Real Defects)
+# DIAGRAM 3: Assam Crop Pathogen & Biotic Stress Catalog
 # -------------------------------------------------------------
 def create_diagram_3():
-    fig, axes = plt.subplots(1, 5, figsize=(15, 4.5), dpi=200)
+    fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
+    ax.set_facecolor('#f8fafc')
     fig.patch.set_facecolor('#f8fafc')
+    ax.axis('off')
 
-    fig.suptitle("CATALOG OF DETECTED CADASTRAL DEFECTS (ASSAM REVENUE FRAMEWORK)", 
-                 fontsize=13, fontweight='bold', color='#0f172a', y=0.98)
+    ax.text(0.5, 0.95, "ASSAM CROP BIOTIC STRESS & PATHOGEN FORECASTING CATALOG", 
+            ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
+    ax.text(0.5, 0.90, "Targeted Pests & Pathogens Under NESFIC-D-11 Multi-Criteria Surveillance", 
+            ha='center', va='center', fontsize=9, color='#e11d48')
 
-    titles = [
-        ("1. Boundary Overlap", "Dag 103 overlaps Dag 104\n(Red Hatched Conflict)"),
-        ("2. Spatial Area Drift", "Jamabandi: 1B-1K-0L\nGIS Polygon: -19.6% deficit"),
-        ("3. Tenure Share Deficit", "Total Shares = 70%\n(Missing 30% Heir Share)"),
-        ("4. Chapter X Tribal Belt", "Non-Tribal Holding in\nNotified Dimoria Belt"),
-        ("5. Common Land (VGR)", "Private Patta on Village\nGrazing Reserve (VGR)")
+    cards = [
+        ("1. Rice Blast (Magnaporthe oryzae)", 
+         "Target Crop: Sali & Boro Paddy\nConditions: Morning RH > 88%, Min Temp 20-25°C, prolonged leaf wetness.\nSpectral Signature: Sudden NDVI drop <0.52 due to foliar spindle necrosis.\nAdvisory Action: Immediate field drainage; Tricyclazole 75% WP @ 15g/Bigha.", 
+         '#ffe4e6', '#e11d48', 0.05, 0.50),
+        ("2. Yellow Stem Borer (Scirpophaga)", 
+         "Target Crop: Active Tillering Paddy\nConditions: Cumulative GDD > 620°C-days + monsoon precipitation.\nSymptoms: Vegetative 'dead-hearts' & panicle 'white-heads'.\nAdvisory Action: Scirpo-lure pheromone traps (3/Bigha); Chlorantraniliprole 18.5% SC.", 
+         '#fef3c7', '#d97706', 0.52, 0.50),
+        ("3. Sheath Blight (Rhizoctonia solani)", 
+         "Target Crop: Sali Paddy (Dense Canopy)\nConditions: Prolonged flood ponding, high nitrogen application, RH > 90%.\nSymptoms: Snake-skin lesions starting at waterline moving upward.\nAdvisory Action: Intermittent drying; Validamycin 3% L or Trichoderma spray.", 
+         '#e0e7ff', '#4f46e5', 0.05, 0.08),
+        ("4. Mustard Aphid (Lipaphis erysimi)", 
+         "Target Crop: Rapeseed & Mustard (Rabi Season)\nConditions: Cloudy, overcast, rainless spells during flowering.\nSymptoms: Foliar curling, floral bud desiccation, sooty mold.\nAdvisory Action: 5% Neem Seed Kernel Extract (NSKE) or Azadirachtin 1500ppm.", 
+         '#f0fdf4', '#16a34a', 0.52, 0.08)
     ]
 
-    for idx, ax in enumerate(axes):
-        ax.set_facecolor('#ffffff')
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
-        ax.set_xticks([])
-        ax.set_yticks([])
-        for spine in ax.spines.values():
-            spine.set_color('#cbd5e1')
-            spine.set_linewidth(1)
+    for title, desc, fcol, ecol, xpos, ypos in cards:
+        box = FancyBboxPatch((xpos, ypos), 0.43, 0.36, boxstyle="round,pad=0.015,rounding_size=0.02",
+                             facecolor=fcol, edgecolor=ecol, linewidth=2)
+        ax.add_patch(box)
+        ax.text(xpos + 0.02, ypos + 0.31, title, fontsize=10, fontweight='bold', color=ecol)
+        
+        lines = desc.split('\n')
+        for idx, line in enumerate(lines):
+            ax.text(xpos + 0.02, ypos + 0.24 - (idx * 0.06), line, fontsize=8, color='#1e293b')
 
-        t_main, t_sub = titles[idx]
-        ax.set_title(t_main, fontsize=9.5, fontweight='bold', color='#0f172a', pad=8)
-        ax.text(5, -1.2, t_sub, ha='center', va='top', fontsize=7.5, color='#475569', linespacing=1.2)
-
-        if idx == 0:
-            # Overlap
-            p1 = Polygon([(1,2), (6,2), (5,8), (1,7)], closed=True, facecolor='#f97316', alpha=0.5, edgecolor='#ea580c', lw=2)
-            p2 = Polygon([(4,1), (9,2), (8,7), (3,7)], closed=True, facecolor='#ef4444', alpha=0.5, edgecolor='#dc2626', lw=2, linestyle='--')
-            ax.add_patch(p1)
-            ax.add_patch(p2)
-            ax.text(2.5, 4.5, "Dag 103", fontsize=8, fontweight='bold', color='#7c2d12')
-            ax.text(7.0, 4.5, "Dag 104", fontsize=8, fontweight='bold', color='#7f1d1d')
-            ax.text(4.5, 4.5, "⚠️", fontsize=10, ha='center', va='center')
-        elif idx == 1:
-            # Area Drift
-            outer = Polygon([(1,1), (9,1), (8,9), (1,8)], closed=True, facecolor='none', edgecolor='#94a3b8', lw=2, linestyle=':')
-            inner = Polygon([(2,2), (7,2), (6.5,7), (2,6.5)], closed=True, facecolor='#f59e0b', alpha=0.6, edgecolor='#d97706', lw=2)
-            ax.add_patch(outer)
-            ax.add_patch(inner)
-            ax.text(4.5, 4.5, "Actual GIS Area\n(0B-4K-16L)", ha='center', va='center', fontsize=7.5, fontweight='bold', color='#78350f')
-            ax.text(5, 8.2, "Recorded Jamabandi", ha='center', fontsize=7, color='#64748b')
-        elif idx == 2:
-            # Share Deficit
-            sizes = [40, 30, 30]
-            colors_list = ['#10b981', '#3b82f6', '#f43f5e']
-            labels = ['P1: 40%', 'P2: 30%', 'Deficit:\n30%']
-            wedges, _ = ax.pie(sizes, colors=colors_list, startangle=90, radius=3.2, center=(5,5),
-                               wedgeprops=dict(width=1.5, edgecolor='#ffffff', linewidth=1.5))
-            ax.text(5, 5, "Total:\n70%", ha='center', va='center', fontsize=8.5, fontweight='bold', color='#0f172a')
-        elif idx == 3:
-            # Tribal Belt
-            tb = Polygon([(0.5,0.5), (9.5,0.5), (9.5,9.5), (0.5,9.5)], closed=True, facecolor='#f3e8ff', edgecolor='#c084fc', lw=2)
-            parcel = Polygon([(2.5,2.5), (7.5,3.0), (7.0,7.5), (2.0,7.0)], closed=True, facecolor='#ef4444', alpha=0.6, edgecolor='#b91c1c', lw=2)
-            ax.add_patch(tb)
-            ax.add_patch(parcel)
-            ax.text(5, 8.8, "Notified Tribal Belt (Dimoria)", ha='center', fontsize=7, color='#7e22ce', fontweight='bold')
-            ax.text(4.7, 5.0, "Dag 310\nNon-Protected\nTransferee", ha='center', va='center', fontsize=7.5, fontweight='bold', color='#ffffff')
-        elif idx == 4:
-            # VGR Encroachment
-            vgr = Polygon([(0.5,0.5), (9.5,0.5), (9.5,9.5), (0.5,9.5)], closed=True, facecolor='#dcfce7', edgecolor='#86efac', lw=2)
-            enc = Polygon([(3,3), (8,3.5), (7.5,8), (2.5,7.5)], closed=True, facecolor='#f43f5e', alpha=0.65, edgecolor='#dc2626', lw=2)
-            ax.add_patch(vgr)
-            ax.add_patch(enc)
-            ax.text(5, 8.8, "Village Grazing Reserve (VGR)", ha='center', fontsize=7, color='#15803d', fontweight='bold')
-            ax.text(5, 5.2, "Dag 402\nPrivate Myadi Patta\n(Commercial)", ha='center', va='center', fontsize=7.5, fontweight='bold', color='#ffffff')
-
-    path = os.path.join(out_dir, "diagram_3_cadastral_anomaly_catalog.png")
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_3_cadastral_anomaly_catalog.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 3")
 
 # -------------------------------------------------------------
-# DIAGRAM 4: Land Health Score Hierarchy (Grade A - D)
+# DIAGRAM 4: Composite Crop Health Index (CHI) Hierarchy
 # -------------------------------------------------------------
 def create_diagram_4():
-    fig, ax = plt.subplots(figsize=(10, 6), dpi=200)
+    fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
     ax.set_facecolor('#f8fafc')
     fig.patch.set_facecolor('#f8fafc')
     ax.axis('off')
 
-    ax.text(0.5, 0.94, "LAND HEALTH SCORING MODEL & RISK TIER HIERARCHY", 
+    ax.text(0.5, 0.95, "COMPOSITE CROP HEALTH INDEX (CHI 0–100) EVALUATION HIERARCHY", 
             ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
-    ax.text(0.5, 0.89, "Multi-Factor Penalty Model: Score = Max(0, 100 - Σ Penalties)", 
-            ha='center', va='center', fontsize=8.5, color='#059669')
+    ax.text(0.5, 0.90, "Multi-Criteria Weighted Aggregation Core For Plot-Level Agro-Climatic Triage", 
+            ha='center', va='center', fontsize=9, color='#059669')
 
-    tiers = [
-        ("GRADE A (85 - 100) • CLEAN & HEALTHY", 
-         "Straight-Through Transaction Ready. 0 boundary overlap, 0 share deficit, spatial drift <5%, verified Touzi tax.", 
-         '#f0fdf4', '#10b981', '#064e3b', 'FAST-TRACK MUTATION READY'),
-        ("GRADE B (65 - 84) • MINOR INCONSISTENCY", 
-         "Minor clerical or metadata gaps (Aadhaar KYC pending, spatial drift 5-10%). Reconcilable via desk review.", 
-         '#fefce8', '#f59e0b', '#78350f', 'DESK RECONCILIATION'),
-        ("GRADE C (40 - 64) • MODERATE RISK", 
-         "Share allocation deficit (unallocated heirs), unassessed Touzi revenue, or unredeemed legacy bank mortgage.", 
-         '#fff7ed', '#f97316', '#7c2d12', 'KANUNGO AUDIT & NOTICE'),
-        ("GRADE D (< 40) • CRITICAL / HIGH RISK", 
-         "Cadastral boundary overlap, Chapter X Tribal Belt non-tribal holding, or private settlement on VGR grazing land.", 
-         '#fff1f2', '#ef4444', '#881337', 'MANDATORY FIELD SURVEY')
+    # Top Central Metric Box
+    top_box = FancyBboxPatch((0.25, 0.68), 0.50, 0.16, boxstyle="round,pad=0.02,rounding_size=0.03",
+                             facecolor='#064e3b', edgecolor='#10b981', linewidth=2)
+    ax.add_patch(top_box)
+    ax.text(0.50, 0.79, "COMPOSITE CROP HEALTH INDEX (CHI 0–100)", ha='center', va='center',
+            fontsize=12, fontweight='bold', color='#ffffff')
+    ax.text(0.50, 0.72, "CHI = 0.40(NDVI) + 0.25(NDWI) + 0.20(Weather Risk) + 0.15(Ground Scouting)", ha='center', va='center',
+            fontsize=8.5, color='#a7f3d0')
+
+    # 4 Branch Weights
+    weights = [
+        ("Satellite NDVI (40%)", "Canopy vigor & chlorophyll absorption\nSentinel-2 10m Bands", 0.15),
+        ("Canopy NDWI (25%)", "Water stress & flood inundation\nShort-wave infrared bands", 0.38),
+        ("Weather Pathogen (20%)", "IMD AWS morning RH >88%, temp,\nand rainfall degree-days", 0.62),
+        ("In-Situ Scouting (15%)", "AEO pheromone trap counts &\nMobileNet leaf diagnosis", 0.85)
     ]
 
-    for idx, (title, desc, bg, border, text_color, badge) in enumerate(tiers):
-        y = 0.70 - idx * 0.18
-        box = FancyBboxPatch((0.08, y - 0.06), 0.84, 0.14, boxstyle="round,pad=0.015,rounding_size=0.02",
-                             facecolor=bg, edgecolor=border, linewidth=1.8)
-        ax.add_patch(box)
+    for wtitle, wdesc, wxpos in weights:
+        ax.annotate("", xy=(wxpos, 0.54), xytext=(0.50, 0.67),
+                    arrowprops=dict(arrowstyle="->", color='#059669', lw=1.5))
+        wbox = FancyBboxPatch((wxpos - 0.10, 0.40), 0.20, 0.14, boxstyle="round,pad=0.01,rounding_size=0.02",
+                              facecolor='#ffffff', edgecolor='#059669', linewidth=1.5)
+        ax.add_patch(wbox)
+        ax.text(wxpos, 0.49, wtitle, ha='center', va='center', fontsize=8.5, fontweight='bold', color='#065f46')
+        ax.text(wxpos, 0.43, wdesc, ha='center', va='center', fontsize=7, color='#475569')
 
-        # Title & Badge
-        ax.text(0.11, y + 0.045, title, fontsize=9.5, fontweight='bold', color=text_color)
-        badge_box = FancyBboxPatch((0.71, y + 0.03), 0.19, 0.035, boxstyle="round,pad=0.008,rounding_size=0.01",
-                                   facecolor=border, edgecolor='none')
-        ax.add_patch(badge_box)
-        ax.text(0.805, y + 0.047, badge, ha='center', va='center', fontsize=6.5, fontweight='bold', color='#ffffff')
+    # 4 Output Tiers
+    tiers = [
+        ("GRADE A (80-100)", "Optimal Crop Vigor", "Routine agronomic practice", '#dcfce7', '#166534', 0.15),
+        ("GRADE B (65-79)", "Mild Vegetative Stress", "Nutrient top-dressing", '#dbeafe', '#1e40af', 0.38),
+        ("GRADE C (45-64)", "High-Risk Watchlist", "Pheromone trap scouting", '#fef3c7', '#92400e', 0.62),
+        ("GRADE D (<45)", "Critical Outbreak", "Immediate broadcast & spray", '#fee2e2', '#991b1b', 0.85)
+    ]
 
-        # Description
-        ax.text(0.11, y - 0.015, desc, fontsize=8, color='#334155', linespacing=1.2)
+    for ttitle, tsub, tact, tfcol, tecol, txpos in tiers:
+        ax.annotate("", xy=(txpos, 0.26), xytext=(txpos, 0.39),
+                    arrowprops=dict(arrowstyle="->", color=tecol, lw=1.5))
+        tbox = FancyBboxPatch((txpos - 0.10, 0.08), 0.20, 0.17, boxstyle="round,pad=0.01,rounding_size=0.02",
+                              facecolor=tfcol, edgecolor=tecol, linewidth=2)
+        ax.add_patch(tbox)
+        ax.text(txpos, 0.20, ttitle, ha='center', va='center', fontsize=8.5, fontweight='bold', color=tecol)
+        ax.text(txpos, 0.15, tsub, ha='center', va='center', fontsize=7.5, color='#334155')
+        ax.text(txpos, 0.11, tact, ha='center', va='center', fontsize=7, fontweight='semibold', color=tecol)
 
-    path = os.path.join(out_dir, "diagram_4_land_health_score_hierarchy.png")
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_4_land_health_score_hierarchy.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 4")
 
 # -------------------------------------------------------------
-# DIAGRAM 5: Lat Mandal Mobile Field App Mockup
+# DIAGRAM 5: AEO Field Ground-Truthing & Edge AI PWA
 # -------------------------------------------------------------
 def create_diagram_5():
-    fig, ax = plt.subplots(figsize=(8, 7), dpi=200)
+    fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
     ax.set_facecolor('#f8fafc')
     fig.patch.set_facecolor('#f8fafc')
     ax.axis('off')
 
-    ax.text(0.5, 0.96, "LAT MANDAL FIELD VERIFICATION INTERFACE (PWA)", 
-            ha='center', va='center', fontsize=12, fontweight='bold', color='#0f172a')
-    ax.text(0.5, 0.92, "GPS-Locked Ground Verification Sheet for Circle Officer Roster", 
-            ha='center', va='center', fontsize=8, color='#059669')
+    ax.text(0.5, 0.95, "AGRICULTURAL EXTENSION OFFICER (ADO) GROUND-TRUTHING & EDGE AI PWA", 
+            ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
+    ax.text(0.5, 0.90, "Mobile Progressive Web App with Sub-Meter RTK GPS Geofencing & Offline SQLite Sync", 
+            ha='center', va='center', fontsize=9, color='#0284c7')
 
-    # Phone Frame
-    phone = FancyBboxPatch((0.22, 0.04), 0.56, 0.84, boxstyle="round,pad=0.02,rounding_size=0.04",
+    # Phone Frame representation
+    phone = FancyBboxPatch((0.08, 0.08), 0.36, 0.76, boxstyle="round,pad=0.02,rounding_size=0.04",
                            facecolor='#0f172a', edgecolor='#334155', linewidth=4)
     ax.add_patch(phone)
 
-    # Phone Screen
-    screen = FancyBboxPatch((0.24, 0.06), 0.52, 0.80, boxstyle="round,pad=0.01,rounding_size=0.02",
-                            facecolor='#ffffff', edgecolor='#cbd5e1', linewidth=1)
+    # Screen
+    screen = FancyBboxPatch((0.10, 0.11), 0.32, 0.70, boxstyle="round,pad=0.01,rounding_size=0.02",
+                            facecolor='#1e293b', edgecolor='#475569', linewidth=1)
     ax.add_patch(screen)
 
-    # App Header inside screen
-    app_header = FancyBboxPatch((0.24, 0.77), 0.52, 0.09, boxstyle="round,pad=0.005,rounding_size=0.01",
-                                facecolor='#064e3b', edgecolor='none')
-    ax.add_patch(app_header)
-    ax.text(0.26, 0.825, "BhumiSwasthya Field Mandal", fontsize=8.5, fontweight='bold', color='#ffffff')
-    ax.text(0.26, 0.795, "Officer: Biren Kalita (LM-04, Dispur)", fontsize=7, color='#a7f3d0')
+    # App Header in Phone
+    ax.text(0.26, 0.77, "SasyaSwasthya PWA", ha='center', va='center', fontsize=10, fontweight='bold', color='#38bdf8')
+    ax.text(0.26, 0.73, "ADO Officer: Pranab Sarma", ha='center', va='center', fontsize=7.5, color='#94a3b8')
 
-    # Task Card
-    task_card = FancyBboxPatch((0.26, 0.64), 0.48, 0.11, boxstyle="round,pad=0.008,rounding_size=0.01",
-                               facecolor='#fef2f2', edgecolor='#fecaca', linewidth=1)
-    ax.add_patch(task_card)
-    ax.text(0.28, 0.72, "TASK: Dag 103 & 104 Boundary Overlap", fontsize=8, fontweight='bold', color='#991b1b')
-    ax.text(0.28, 0.69, "Village: Jatia, Beltola • Priority: CRITICAL", fontsize=7, color='#b91c1c')
-    ax.text(0.28, 0.66, "Conflict: 28.4 sq.m overlap along western border", fontsize=6.5, color='#7f1d1d')
+    # Phone Cards
+    pcard1 = FancyBboxPatch((0.12, 0.58), 0.28, 0.12, boxstyle="round,pad=0.01,rounding_size=0.01", facecolor='#064e3b', edgecolor='#10b981', linewidth=1)
+    ax.add_patch(pcard1)
+    ax.text(0.14, 0.66, "GPS RTK Geofence Locked", fontsize=8, fontweight='bold', color='#a7f3d0')
+    ax.text(0.14, 0.61, "Plot: ASM-KAM-AZR-101 (±0.8m)", fontsize=7, color='#dcfce7')
 
-    # Inputs Section
-    inputs_box = FancyBboxPatch((0.26, 0.23), 0.48, 0.39, boxstyle="round,pad=0.008,rounding_size=0.01",
-                                facecolor='#f8fafc', edgecolor='#e2e8f0', linewidth=1)
-    ax.add_patch(inputs_box)
-    
-    ax.text(0.28, 0.59, "1. Ground-Measured Area (Assam BKL):", fontsize=7.5, fontweight='bold', color='#0f172a')
-    ax.text(0.28, 0.555, "[ 0 Bigha ]  [ 3 Katha ]  [ 15.2 Lesa ]", fontsize=7.5, color='#0f766e', fontweight='bold')
+    pcard2 = FancyBboxPatch((0.12, 0.42), 0.28, 0.13, boxstyle="round,pad=0.01,rounding_size=0.01", facecolor='#451a03', edgecolor='#d97706', linewidth=1)
+    ax.add_patch(pcard2)
+    ax.text(0.14, 0.51, "Pheromone Trap Counter", fontsize=8, fontweight='bold', color='#fde68a')
+    ax.text(0.14, 0.45, "Scirpo-Lure: 14 Moths (ETL Exceeded)", fontsize=7, color='#fed7aa')
 
-    ax.text(0.28, 0.515, "2. Cadastral Boundary Stones:", fontsize=7.5, fontweight='bold', color='#0f172a')
-    ax.text(0.28, 0.485, "• Displaced / Disputed on Ground", fontsize=7, color='#c2410c')
+    pcard3 = FancyBboxPatch((0.12, 0.26), 0.28, 0.13, boxstyle="round,pad=0.01,rounding_size=0.01", facecolor='#4c0519', edgecolor='#f43f5e', linewidth=1)
+    ax.add_patch(pcard3)
+    ax.text(0.14, 0.35, "Leaf Symptom AI Camera", fontsize=8, fontweight='bold', color='#fecdd3')
+    ax.text(0.14, 0.29, "Rice Blast Classified: 95.8% Conf.", fontsize=7, color='#fda4af')
 
-    ax.text(0.28, 0.445, "3. GPS Coordinates Lock:", fontsize=7.5, fontweight='bold', color='#0f172a')
-    ax.text(0.28, 0.415, "[GPS] 26.1384 N, 91.7925 E (Accuracy: +/-1.2m)", fontsize=7, color='#1e40af')
+    pbutton = FancyBboxPatch((0.14, 0.14), 0.24, 0.08, boxstyle="round,pad=0.01,rounding_size=0.02", facecolor='#10b981', edgecolor='#059669', linewidth=1)
+    ax.add_patch(pbutton)
+    ax.text(0.26, 0.18, "Submit In-Situ Audit", ha='center', va='center', fontsize=8.5, fontweight='bold', color='#022c22')
 
-    ax.text(0.28, 0.375, "4. Geo-Tagged Photographic Evidence:", fontsize=7.5, fontweight='bold', color='#0f172a')
-    ax.text(0.28, 0.345, "[PHOTO] stone_demarcation_dag103.jpg (Locked)", fontsize=7, color='#15803d')
+    # Right Explanatory Feature Cards
+    rfeatures = [
+        ("Sub-Meter RTK Geofencing", "Prevents fraudulent off-site data entry. Officers must stand within\nthe cadastral boundary coordinates before inspection forms unlock.", '#f0fdf4', '#16a34a', 0.65),
+        ("Pheromone Trap Calibration", "Direct entry of adult moth flight counts against Economic Threshold Levels\n(ETL) calibrated by Assam Agricultural University (AAU) Jorhat.", '#fef3c7', '#d97706', 0.45),
+        ("MobileNet V3 Edge AI Diagnosis", "Runs on-device deep learning computer vision directly inside browser cache.\nInstant leaf lesion classification without needing mobile network.", '#fdf2f8', '#db2777', 0.25),
+        ("Offline SQLite Synchronization", "Complete inspection data and field photos persist locally when in remote\nBrahmaputra riverine chars, auto-syncing when network restores.", '#e0f2fe', '#0284c7', 0.05)
+    ]
 
-    ax.text(0.28, 0.305, "5. Statutory Recommendation:", fontsize=7.5, fontweight='bold', color='#0f172a')
-    ax.text(0.28, 0.275, "Notice to Neighbor for Joint Boundary Hearing", fontsize=7, color='#065f46')
+    for rtitle, rdesc, rfcol, recol, rypos in rfeatures:
+        rbox = FancyBboxPatch((0.50, rypos), 0.45, 0.16, boxstyle="round,pad=0.015,rounding_size=0.02",
+                              facecolor=rfcol, edgecolor=recol, linewidth=1.5)
+        ax.add_patch(rbox)
+        ax.text(0.52, rypos + 0.11, rtitle, fontsize=9.5, fontweight='bold', color=recol)
+        ax.text(0.52, rypos + 0.05, rdesc, fontsize=7.5, color='#334155')
 
-    # Submit Button
-    btn = FancyBboxPatch((0.28, 0.10), 0.44, 0.08, boxstyle="round,pad=0.008,rounding_size=0.015",
-                         facecolor='#059669', edgecolor='none')
-    ax.add_patch(btn)
-    ax.text(0.50, 0.14, "SUBMIT FIELD SURVEY REPORT", ha='center', va='center', fontsize=8, fontweight='bold', color='#ffffff')
-
-    path = os.path.join(out_dir, "diagram_5_lat_mandal_mobile_app.png")
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_5_lat_mandal_mobile_app.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 5")
 
 # -------------------------------------------------------------
-# DIAGRAM 6: Citizen Land Health Certificate
+# DIAGRAM 6: Verified Bilingual Agro-Advisory Bulletin Card
 # -------------------------------------------------------------
 def create_diagram_6():
-    fig, ax = plt.subplots(figsize=(10, 6.5), dpi=200)
-    ax.set_facecolor('#ffffff')
-    fig.patch.set_facecolor('#ffffff')
+    fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
+    ax.set_facecolor('#f8fafc')
+    fig.patch.set_facecolor('#f8fafc')
     ax.axis('off')
 
-    # Outer ornate certificate border
-    border_outer = FancyBboxPatch((0.03, 0.03), 0.94, 0.94, boxstyle="round,pad=0.01,rounding_size=0.02",
-                                  facecolor='#fefce8', edgecolor='#ca8a04', linewidth=2.5)
-    ax.add_patch(border_outer)
+    ax.text(0.5, 0.95, "VERIFIED BILINGUAL AGRO-ADVISORY BULLETIN (SASYASWASTHYA)", 
+            ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
+    ax.text(0.5, 0.90, "Official Public Farmer Advisory Card in Assamese (অসমীয়া) and English", 
+            ha='center', va='center', fontsize=9, color='#059669')
 
-    border_inner = FancyBboxPatch((0.05, 0.05), 0.90, 0.90, boxstyle="round,pad=0.01,rounding_size=0.015",
-                                  facecolor='#ffffff', edgecolor='#eab308', linewidth=1)
-    ax.add_patch(border_inner)
+    # Main Certificate Card
+    cbox = FancyBboxPatch((0.08, 0.08), 0.84, 0.78, boxstyle="round,pad=0.02,rounding_size=0.03",
+                          facecolor='#ffffff', edgecolor='#059669', linewidth=3)
+    ax.add_patch(cbox)
 
-    # Header
-    ax.text(0.5, 0.88, "GOVERNMENT OF ASSAM", ha='center', va='center', fontsize=11, fontweight='bold', color='#78350f')
-    ax.text(0.5, 0.84, "REVENUE & DISASTER MANAGEMENT DEPARTMENT", ha='center', va='center', fontsize=9, color='#0f172a')
-    ax.text(0.5, 0.79, "LAND RECORD HEALTH CERTIFICATE (BHUMI SWASTHYA PRAMAN PATRA)", 
-            ha='center', va='center', fontsize=12, fontweight='bold', color='#064e3b')
-    ax.text(0.5, 0.75, "Issued under Automated Cadastral Health Monitoring Protocol (NESFIC-D-50)", 
-            ha='center', va='center', fontsize=7.5, color='#059669')
+    # Seal & Header
+    ax.text(0.50, 0.80, "GOVERNMENT OF ASSAM • DIRECTORATE OF AGRICULTURE & ASSAC", 
+            ha='center', va='center', fontsize=10, fontweight='bold', color='#064e3b')
+    ax.text(0.50, 0.75, "OFFICIAL LOCATION-SPECIFIC CROP HEALTH & PEST ADVISORY BULLETIN", 
+            ha='center', va='center', fontsize=12, fontweight='bold', color='#0f172a')
+    ax.text(0.50, 0.71, "Advisory ID: ADV-ASSAM-KAM-2026-901 • Valid Until: 2026-11-27", 
+            ha='center', va='center', fontsize=8.5, color='#64748b')
 
-    # Parcel Details Grid
-    details_box = FancyBboxPatch((0.08, 0.36), 0.84, 0.35, boxstyle="round,pad=0.01,rounding_size=0.015",
-                                 facecolor='#f8fafc', edgecolor='#cbd5e1', linewidth=1)
-    ax.add_patch(details_box)
+    # Left Section: Farm & Weather Metadata
+    lmeta = FancyBboxPatch((0.12, 0.32), 0.36, 0.34, boxstyle="round,pad=0.015,rounding_size=0.02",
+                           facecolor='#f8fafc', edgecolor='#cbd5e1', linewidth=1)
+    ax.add_patch(lmeta)
+    ax.text(0.14, 0.61, "FARM CLUSTER TELEMETRY", fontsize=8.5, fontweight='bold', color='#0f172a')
+    
+    mdetails = [
+        "Farmer: Biren Kalita (Dag 248, Patta KP 42)",
+        "Location: Mikirpara Chakardo, Azara, Kamrup",
+        "Crop: Sali Paddy (Panicle Initiation Stage)",
+        "Area: 3 Bigha 2 Katha 10 Lesa (0.46 Ha)",
+        "Sentinel-2 NDVI: 0.48 (Chlorosis Anomaly)",
+        "IMD AWS: 92% Morning RH, 42.5mm Rainfall",
+        "Health Grade: GRADE D (CHI: 42/100)"
+    ]
+    for idx, md in enumerate(mdetails):
+        ax.text(0.14, 0.56 - (idx * 0.038), md, fontsize=7.5, color='#334155')
 
-    ax.text(0.12, 0.67, "Dag Number: 101", fontsize=9, fontweight='bold', color='#0f172a')
-    ax.text(0.40, 0.67, "Patta Number: KP-452 (Kheraj Myadi)", fontsize=9, color='#0f172a')
-    ax.text(0.70, 0.67, "Village: Jatia (Beltola Mouza)", fontsize=9, color='#0f172a')
+    # Right Section: Bilingual Action Instructions
+    rmeta = FancyBboxPatch((0.51, 0.32), 0.38, 0.34, boxstyle="round,pad=0.015,rounding_size=0.02",
+                           facecolor='#f0fdf4', edgecolor='#86efac', linewidth=1)
+    ax.add_patch(rmeta)
+    ax.text(0.53, 0.61, "ADVISORY DIRECTIVES (পৰামৰ্শ নিৰ্দেশনা)", fontsize=8.5, fontweight='bold', color='#166534')
 
-    ax.text(0.12, 0.60, "Recorded Jamabandi: 0B - 2K - 10L (668.9 sq.m)", fontsize=8, color='#334155')
-    ax.text(0.55, 0.60, "Cadastral GIS Area: 0B - 2K - 10.2L (671.2 sq.m)", fontsize=8, color='#334155')
+    rdetails = [
+        "1. Field Drainage (পানী নিকাশ):",
+        "   Drain standing water for 48h to reduce canopy micro-humidity.",
+        "   আক্ৰান্ত পথাৰৰ পৰা ৪৮ ঘণ্টাৰ বাবে পানী উলিয়াই দিয়ক।",
+        "2. Biological IPM (জৈৱিক নিবাৰণ):",
+        "   Spray Pseudomonas fluorescens @ 5g/Litre in morning.",
+        "3. Therapeutic Chemical Spray (ৰাসায়নিক প্ৰয়োগ):",
+        "   Apply Tricyclazole 75% WP @ 15g in 30L water per Bigha."
+    ]
+    for idx, rd in enumerate(rdetails):
+        is_header = rd.startswith("1.") or rd.startswith("2.") or rd.startswith("3.")
+        ax.text(0.53, 0.56 - (idx * 0.038), rd, fontsize=7.5, 
+                fontweight='bold' if is_header else 'normal',
+                color='#14532d' if is_header else '#334155')
 
-    ax.text(0.12, 0.53, "Pattadar: Pranab Kumar Goswami", fontsize=8.5, fontweight='bold', color='#0f172a')
-    ax.text(0.55, 0.53, "Tenure Share: 100% (Aadhaar Verified)", fontsize=8.5, color='#059669')
+    # Footer verification token
+    ax.text(0.14, 0.20, "QR Verification Token: SHA256: 8f4e2b9c7a1d... (Tamper-Proof Digital Seal)", 
+            fontsize=7.5, fontfamily='monospace', color='#475569')
+    ax.text(0.14, 0.16, "Authorized By: District Agricultural Officer (DAO) Kamrup & Director, ASSAC", 
+            fontsize=7.5, color='#64748b')
+    ax.text(0.14, 0.12, "Dispatched via: NIC National SMS Gateway & WhatsApp Cloud API to 1,420 Azara Farmers", 
+            fontsize=7.5, fontweight='bold', color='#059669')
 
-    ax.text(0.12, 0.46, "Annual Touzi Revenue: ₹245.00 (Fully Paid)", fontsize=8, color='#334155')
-    ax.text(0.55, 0.46, "Encumbrance / Court Stay: NONE DETECTED", fontsize=8, color='#15803d')
-
-    ax.text(0.12, 0.39, "Spatial Variance: 0.3% (Clean Cadastral Match)", fontsize=8, color='#059669')
-    ax.text(0.55, 0.39, "Tribal Belt Status: Non-Restricted / Regular", fontsize=8, color='#334155')
-
-    # Health Badge & Stamp
-    badge = FancyBboxPatch((0.10, 0.12), 0.42, 0.20, boxstyle="round,pad=0.01,rounding_size=0.02",
-                           facecolor='#f0fdf4', edgecolor='#86efac', linewidth=1.5)
-    ax.add_patch(badge)
-    ax.text(0.31, 0.26, "GRADE A • 100 / 100", ha='center', va='center', fontsize=13, fontweight='bold', color='#15803d')
-    ax.text(0.31, 0.19, "CLEAN TITLE • ZERO SPATIAL DEFECTS", ha='center', va='center', fontsize=7.5, color='#166534', fontweight='bold')
-    ax.text(0.31, 0.15, "Fast-Track Digital Mutation Eligible", ha='center', va='center', fontsize=7, color='#15803d')
-
-    # Official Seal / QR Representation
-    qr_box = FancyBboxPatch((0.65, 0.11), 0.22, 0.21, boxstyle="round,pad=0.005,rounding_size=0.01",
-                            facecolor='#0f172a', edgecolor='none')
-    ax.add_patch(qr_box)
-    ax.text(0.76, 0.24, "[ DIGITAL SEAL ]", ha='center', va='center', fontsize=8, color='#a7f3d0', fontweight='bold')
-    ax.text(0.76, 0.18, "QR Token: #MB-2026-9812", ha='center', va='center', fontsize=6.5, color='#ffffff')
-    ax.text(0.76, 0.14, "Verified by Circle Officer", ha='center', va='center', fontsize=6, color='#94a3b8')
-
-    path = os.path.join(out_dir, "diagram_6_citizen_land_health_certificate.png")
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_6_citizen_land_health_certificate.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 6")
 
 # -------------------------------------------------------------
-# DIAGRAM 7: Enterprise System Architecture & Cloud Hosting
+# DIAGRAM 7: Enterprise System Architecture at ASDC
 # -------------------------------------------------------------
 def create_diagram_7():
     fig, ax = plt.subplots(figsize=(12, 6.5), dpi=200)
@@ -437,75 +408,30 @@ def create_diagram_7():
     fig.patch.set_facecolor('#f8fafc')
     ax.axis('off')
 
-    ax.text(0.5, 0.95, "ENTERPRISE CLOUD ARCHITECTURE & SYSTEM INTEGRATION", 
+    ax.text(0.5, 0.95, "ASSAM STATE DATA CENTRE (ASDC) ENTERPRISE SYSTEM ARCHITECTURE", 
             ha='center', va='center', fontsize=13, fontweight='bold', color='#0f172a')
-    ax.text(0.5, 0.90, "Compliant with MeghRaj Cloud & Assam State Data Centre (SDC) Security Directives", 
-            ha='center', va='center', fontsize=8.5, color='#059669')
+    ax.text(0.5, 0.90, "Kubernetes Microservices, PostGIS Raster/Vector Store, Kafka Event Dispatcher", 
+            ha='center', va='center', fontsize=9, color='#4338ca')
 
-    # Layer 1: Ingestion
-    l1 = FancyBboxPatch((0.05, 0.68), 0.90, 0.18, boxstyle="round,pad=0.015,rounding_size=0.02",
-                        facecolor='#ffffff', edgecolor='#cbd5e1', linewidth=1.5)
-    ax.add_patch(l1)
-    ax.text(0.08, 0.81, "1. READ-ONLY DATA INGESTION GATEWAY (SDC SECURE ZONE)", fontsize=9, fontweight='bold', color='#0f172a')
-    
-    ingest_boxes = [
-        ("Dharitree API / Extracts", "RoR, Patta, BKL, Touzi Demand"),
-        ("Bhudakshya WFS / GIS", "Cadastral Dag Polygon Vectors"),
-        ("Mouzadar Touzi Rolls", "Annual Collection, Arrears"),
-        ("Chapter X Spatial Layer", "Notified Tribal Belts, VGR/PGR")
+    layers = [
+        ("Layer 1: External Data Ingestion", "Copernicus Sentinel-2 API • USGS Landsat • ASSAC UAV Fleet • IMD AWS Agromet Feeds", '#e0e7ff', '#4338ca', 0.72),
+        ("Layer 2: Event Streaming & Pipeline", "Apache Kafka Message Brokers • Celery Distributed Tasks • Airflow Ingestion DAGs", '#ede9fe', '#6d28d9', 0.54),
+        ("Layer 3: Core Analytics & ML Engine", "Spectral Engine (NDVI/NDWI) • Blast BGI Simulator • GDD Stem Borer Model • CHI Calculator", '#dcfce7', '#15803d', 0.36),
+        ("Layer 4: Storage & Geoportal Edge", "PostgreSQL 16 + PostGIS 3.4 • GeoServer WMS/WFS • Cloudflare CDN • Redis Cache", '#fef3c7', '#b45309', 0.18),
+        ("Layer 5: Presentation & Gateways", "Executive Agro-Dashboard • WebGIS Leaflet • Extension PWA • NIC SMS & WhatsApp Gateway", '#fce7f3', '#be185d', 0.00)
     ]
-    for i, (head, sub) in enumerate(ingest_boxes):
-        x = 0.08 + i * 0.22
-        b = FancyBboxPatch((x, 0.70), 0.20, 0.08, boxstyle="round,pad=0.01,rounding_size=0.01",
-                           facecolor='#f0fdf4', edgecolor='#86efac')
-        ax.add_patch(b)
-        ax.text(x + 0.10, 0.75, head, ha='center', va='center', fontsize=7.5, fontweight='bold', color='#065f46')
-        ax.text(x + 0.10, 0.72, sub, ha='center', va='center', fontsize=6.5, color='#047857')
 
-    # Layer 2: Core Processing
-    l2 = FancyBboxPatch((0.05, 0.36), 0.90, 0.27, boxstyle="round,pad=0.015,rounding_size=0.02",
-                        facecolor='#064e3b', edgecolor='#047857', linewidth=2)
-    ax.add_patch(l2)
-    ax.text(0.08, 0.58, "2. CORE ANOMALY DETECTION & SCORING PIPELINE (PYTHON 3.13 + POSTGIS 16)", fontsize=9.5, fontweight='bold', color='#ffffff')
+    for ltitle, ldesc, lfcol, lecol, lypos in layers:
+        box = FancyBboxPatch((0.08, lypos + 0.02), 0.84, 0.13, boxstyle="round,pad=0.015,rounding_size=0.02",
+                             facecolor=lfcol, edgecolor=lecol, linewidth=2)
+        ax.add_patch(box)
+        ax.text(0.12, lypos + 0.10, ltitle, fontsize=10, fontweight='bold', color=lecol)
+        ax.text(0.12, lypos + 0.05, ldesc, fontsize=8, color='#334155')
 
-    core_boxes = [
-        ("Assam BKL Conversion Core", "1B = 5K = 100L ≈ 1337.8 sq.m\nPlanar Coordinate Reprojection"),
-        ("PostGIS Spatial Topology", "ST_Overlaps • ST_Area • GiST\nBoundary sliver detection"),
-        ("7 Statutory Audit Rules", "ALRR 1886 • Chapter X Filter\nTenure share parity audit"),
-        ("Composite Scoring Engine", "Score = Max(0, 100 - Σ Penalties)\nRisk Grading (Grades A to D)")
-    ]
-    for i, (head, sub) in enumerate(core_boxes):
-        x = 0.08 + i * 0.22
-        b = FancyBboxPatch((x, 0.39), 0.20, 0.15, boxstyle="round,pad=0.01,rounding_size=0.01",
-                           facecolor='#022c22', edgecolor='#10b981')
-        ax.add_patch(b)
-        ax.text(x + 0.10, 0.49, head, ha='center', va='center', fontsize=8, fontweight='bold', color='#6ee7b7')
-        ax.text(x + 0.10, 0.43, sub, ha='center', va='center', fontsize=6.5, color='#d1fae5', linespacing=1.2)
-
-    # Layer 3: Presentation Portals
-    l3 = FancyBboxPatch((0.05, 0.06), 0.90, 0.25, boxstyle="round,pad=0.015,rounding_size=0.02",
-                        facecolor='#ffffff', edgecolor='#cbd5e1', linewidth=1.5)
-    ax.add_patch(l3)
-    ax.text(0.08, 0.26, "3. MULTI-STAKEHOLDER APPLICATION LAYER (ROLE-BASED ACCESS CONTROL)", fontsize=9, fontweight='bold', color='#0f172a')
-
-    portal_boxes = [
-        ("Executive Command Center", "Circle Heatmaps • Anomaly Filter\nRevenue Risk • CSV Exports", '#eff6ff', '#3b82f6'),
-        ("Lat Mandal Field Portal", "Mobile PWA • GPS Coordinate Lock\nBoundary Photo & Evidence Audit", '#f0fdf4', '#10b981'),
-        ("Citizen Self-Check Portal", "Public Dag/Patta Search • Health Card\nMission Basundhara Correction Link", '#fffbeb', '#f59e0b')
-    ]
-    for i, (head, sub, bg, bc) in enumerate(portal_boxes):
-        x = 0.08 + i * 0.30
-        b = FancyBboxPatch((x, 0.09), 0.27, 0.13, boxstyle="round,pad=0.01,rounding_size=0.01",
-                           facecolor=bg, edgecolor=bc, linewidth=1.2)
-        ax.add_patch(b)
-        ax.text(x + 0.135, 0.18, head, ha='center', va='center', fontsize=8.5, fontweight='bold', color='#0f172a')
-        ax.text(x + 0.135, 0.13, sub, ha='center', va='center', fontsize=7, color='#475569', linespacing=1.2)
-
-    path = os.path.join(out_dir, "diagram_7_enterprise_system_architecture.png")
     plt.tight_layout()
-    plt.savefig(path, dpi=200, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, "diagram_7_enterprise_system_architecture.jpg"), dpi=200, bbox_inches='tight')
     plt.close()
-    print(f"Created {path}")
+    print("Created Diagram 7")
 
 if __name__ == '__main__':
     create_diagram_1()
@@ -515,3 +441,4 @@ if __name__ == '__main__':
     create_diagram_5()
     create_diagram_6()
     create_diagram_7()
+    print("All 7 architectural diagrams created successfully!")
