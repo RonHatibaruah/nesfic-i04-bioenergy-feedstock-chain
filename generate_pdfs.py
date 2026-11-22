@@ -55,6 +55,9 @@ def clean_inline_markdown(text):
     # Clean Unicode characters not supported by standard PDF Helvetica
     t = t.replace('₹', 'Rs. ')
     t = t.replace('শস্য স্বাস্থ্য', 'SasyaSwasthya')
+    t = t.replace('অসমীয়া', 'Assamese')
+    t = t.replace('বড়ো', 'Bodo').replace('बड़ो', 'Bodo')
+    t = t.replace('বাংলা', 'Bengali')
     t = t.replace('–', '-').replace('—', ' - ')
     t = t.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"')
     
@@ -90,13 +93,16 @@ def clean_inline_markdown(text):
     parts = re.split(r'(\*\*[^*]+\*\*|`[^`]+`)', t)
     cleaned = []
     for p in parts:
+        if not p:
+            continue
         if p.startswith('**') and p.endswith('**'):
-            cleaned.append(f"<b>{escape(p[2:-2])}</b>")
+            inner = escape(p[2:-2])
+            cleaned.append(f"<b>{inner}</b>")
         elif p.startswith('`') and p.endswith('`'):
-            cleaned.append(f"<font fontName='Courier' color='#0f766e'>{escape(p[1:-1])}</font>")
+            inner = escape(p[1:-1])
+            cleaned.append(f'<font face="Courier" color="#0369a1">{inner}</font>')
         else:
-            p_sub = re.sub(r'\*([^*]+)\*', r'<i>\1</i>', p)
-            cleaned.append(p_sub)
+            cleaned.append(escape(p))
     return ''.join(cleaned)
 
 def safe_paragraph(text, style):
@@ -221,14 +227,17 @@ def parse_markdown_content(raw_lines, available_width=490):
 
     return flowables
 
+# -----------------------------------------------------------------------------
+# 1. BUILD FULL PROPOSAL PDF (ALL 12 SECTIONS)
+# -----------------------------------------------------------------------------
 def build_proposal_pdf(output_path, workspace_dir):
     doc = SimpleDocTemplate(output_path, pagesize=letter, leftMargin=54, rightMargin=54, topMargin=54, bottomMargin=54)
     styles = getSampleStyleSheet()
 
     title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=18, leading=22, textColor=colors.HexColor('#064e3b'), spaceAfter=4)
-    subtitle_style = ParagraphStyle('DocSubTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=colors.HexColor('#0f766e'), spaceAfter=10)
-    meta_style = ParagraphStyle('MetaStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=8.5, leading=12, textColor=colors.HexColor('#334155'))
-    field_title_style = ParagraphStyle('FieldTitle', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=11, leading=15, textColor=colors.HexColor('#064e3b'), spaceBefore=10, spaceAfter=4, keepWithNext=True)
+    subtitle_style = ParagraphStyle('DocSubTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=10, leading=14, textColor=colors.HexColor('#0f766e'), spaceAfter=8)
+    meta_style = ParagraphStyle('MetaStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=11, textColor=colors.HexColor('#334155'))
+    field_title_style = ParagraphStyle('FieldTitle', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=colors.HexColor('#064e3b'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
 
     story = []
     story.append(safe_paragraph("SASYASWASTHYA (Crop Health Assurance)", title_style))
@@ -259,32 +268,45 @@ def build_proposal_pdf(output_path, workspace_dir):
     for sec in sections[1:]:
         lines = sec.strip().split('\n')
         sec_header = lines[0].strip()
-        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#059669'), spaceBefore=8, spaceAfter=6))
+        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#059669'), spaceBefore=8, spaceAfter=5))
         story.append(safe_paragraph(f"Field {sec_header}", field_title_style))
 
+        # Embed matching 16:9 widescreen diagrams
         if '1: Problem understanding' in sec_header:
-            img1 = os.path.join(img_dir, 'diagram_1_before_after_workflow.jpg')
-            if os.path.exists(img1):
+            img = os.path.join(img_dir, 'diagram_1_before_after_workflow.jpg')
+            if os.path.exists(img):
                 story.append(Spacer(1, 4))
-                story.append(Image(img1, width=490, height=265))
+                story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
         elif '2: Proposed solution' in sec_header:
-            img2 = os.path.join(img_dir, 'diagram_2_dual_system_reconciliation.jpg')
-            if os.path.exists(img2):
+            img = os.path.join(img_dir, 'diagram_2_dual_system_reconciliation.jpg')
+            if os.path.exists(img):
                 story.append(Spacer(1, 4))
-                story.append(Image(img2, width=490, height=265))
+                story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
-        elif '3: Expected impact' in sec_header:
-            img4 = os.path.join(img_dir, 'diagram_4_land_health_score_hierarchy.jpg')
-            if os.path.exists(img4):
+        elif '3: Describe User Journey' in sec_header:
+            img = os.path.join(img_dir, 'wireframe_1_executive_dashboard.jpg')
+            if os.path.exists(img):
                 story.append(Spacer(1, 4))
-                story.append(Image(img4, width=490, height=265))
+                story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
-        elif '4: Technical architecture' in sec_header:
-            img7 = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
-            if os.path.exists(img7):
+        elif '4: Technology & solution' in sec_header:
+            img = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
+            if os.path.exists(img):
                 story.append(Spacer(1, 4))
-                story.append(Image(img7, width=490, height=265))
+                story.append(Image(img, width=490, height=275))
+                story.append(Spacer(1, 6))
+        elif '9: Testing, validation' in sec_header:
+            img = os.path.join(img_dir, 'diagram_4_land_health_score_hierarchy.jpg')
+            if os.path.exists(img):
+                story.append(Spacer(1, 4))
+                story.append(Image(img, width=490, height=275))
+                story.append(Spacer(1, 6))
+        elif '11: Innovation & differentiation' in sec_header:
+            img = os.path.join(img_dir, 'diagram_3_cadastral_anomaly_catalog.jpg')
+            if os.path.exists(img):
+                story.append(Spacer(1, 4))
+                story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
 
         body_flowables = parse_markdown_content(lines[1:], available_width=490)
@@ -293,6 +315,9 @@ def build_proposal_pdf(output_path, workspace_dir):
     doc.build(story, canvasmaker=NumberedCanvas)
     print(f"Generated Proposal PDF: {output_path}")
 
+# -----------------------------------------------------------------------------
+# 2. BUILD PROOF OF WORK PDF (ALL 11 INFOGRAPHICS EMBEDDED)
+# -----------------------------------------------------------------------------
 def build_proof_of_work_pdf(output_path, workspace_dir):
     doc = SimpleDocTemplate(output_path, pagesize=letter, leftMargin=54, rightMargin=54, topMargin=54, bottomMargin=54)
     styles = getSampleStyleSheet()
@@ -300,7 +325,7 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=16, leading=20, textColor=colors.HexColor('#064e3b'), spaceAfter=4)
     subtitle_style = ParagraphStyle('DocSubTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=9.5, leading=13, textColor=colors.HexColor('#0284c7'), spaceAfter=8)
     meta_style = ParagraphStyle('MetaStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=11, textColor=colors.HexColor('#334155'))
-    h2_style = ParagraphStyle('H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=11, leading=15, textColor=colors.HexColor('#064e3b'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
+    h2_style = ParagraphStyle('H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=colors.HexColor('#064e3b'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
 
     story = []
     story.append(safe_paragraph("PROOF OF WORK & TECHNICAL DOSSIER", title_style))
@@ -337,24 +362,40 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
         story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#0284c7'), spaceBefore=8, spaceAfter=5))
         story.append(safe_paragraph(sec_title, h2_style))
 
-        if 'Mathematical Formulations' in sec_title or 'Spectral Physics' in sec_title:
-            img3 = os.path.join(img_dir, 'diagram_3_cadastral_anomaly_catalog.jpg')
-            if os.path.exists(img3):
+        if '1. Executive Summary' in sec_title:
+            for img_name in ['diagram_1_before_after_workflow.jpg', 'diagram_2_dual_system_reconciliation.jpg']:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=275))
+                    story.append(Spacer(1, 6))
+        elif '2. Empirical Performance' in sec_title:
+            for img_name in ['diagram_4_land_health_score_hierarchy.jpg', 'diagram_5_lat_mandal_mobile_app.jpg']:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=275))
+                    story.append(Spacer(1, 6))
+        elif '3. Operational Time-to-Treatment' in sec_title:
+            for img_name in ['diagram_3_cadastral_anomaly_catalog.jpg', 'diagram_6_citizen_land_health_certificate.jpg']:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=275))
+                    story.append(Spacer(1, 6))
+        elif '4. Drone Hardware' in sec_title:
+            img_path = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
+            if os.path.exists(img_path):
                 story.append(Spacer(1, 4))
-                story.append(Image(img3, width=490, height=265))
+                story.append(Image(img_path, width=490, height=275))
                 story.append(Spacer(1, 6))
-        elif 'System Architecture' in sec_title:
-            img2 = os.path.join(img_dir, 'diagram_2_dual_system_reconciliation.jpg')
-            if os.path.exists(img2):
-                story.append(Spacer(1, 4))
-                story.append(Image(img2, width=490, height=265))
-                story.append(Spacer(1, 6))
-        elif 'Field Validation' in sec_title:
-            img5 = os.path.join(img_dir, 'diagram_5_lat_mandal_mobile_app.jpg')
-            if os.path.exists(img5):
-                story.append(Spacer(1, 4))
-                story.append(Image(img5, width=490, height=265))
-                story.append(Spacer(1, 6))
+        elif '5. Security' in sec_title:
+            for img_name in ['wireframe_1_executive_dashboard.jpg', 'wireframe_2_cadastral_webgis.jpg', 'wireframe_3_lat_mandal_mobile.jpg', 'wireframe_4_citizen_certificate.jpg']:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=275))
+                    story.append(Spacer(1, 6))
 
         body_flowables = parse_markdown_content(lines[1:], available_width=490)
         story.extend(body_flowables)
@@ -362,10 +403,78 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     doc.build(story, canvasmaker=NumberedCanvas)
     print(f"Generated Proof of Work PDF: {output_path}")
 
+# -----------------------------------------------------------------------------
+# 3. BUILD ADDITIONAL SUPPORTING MATERIAL PDF
+# -----------------------------------------------------------------------------
+def build_additional_material_pdf(output_path, workspace_dir):
+    doc = SimpleDocTemplate(output_path, pagesize=letter, leftMargin=54, rightMargin=54, topMargin=54, bottomMargin=54)
+    styles = getSampleStyleSheet()
+
+    title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=16, leading=20, textColor=colors.HexColor('#0f766e'), spaceAfter=4)
+    subtitle_style = ParagraphStyle('DocSubTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=9.5, leading=13, textColor=colors.HexColor('#064e3b'), spaceAfter=8)
+    meta_style = ParagraphStyle('MetaStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=11, textColor=colors.HexColor('#334155'))
+    h2_style = ParagraphStyle('H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=colors.HexColor('#0f766e'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
+
+    story = []
+    story.append(safe_paragraph("ADDITIONAL SUPPORTING MATERIAL & FEASIBILITY STUDY", title_style))
+    story.append(safe_paragraph("SasyaSwasthya — Agro-Ecological Calibration & Institutional Integration", subtitle_style))
+    story.append(safe_paragraph("<b>NESFIC 2026 Technical Pitch Deck & Sustainability Framework</b>", subtitle_style))
+    
+    meta_data = [
+        [safe_paragraph("<b>Challenge ID:</b> NESFIC-D-11 (Govt Track)", meta_style), safe_paragraph("<b>Target Dept:</b> Agriculture & ASSAC, Assam", meta_style)],
+        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Deployment Target:</b> Assam State Data Centre (ASDC)", meta_style)],
+        [safe_paragraph("<b>Live Prototype:</b> https://sasya-swasthya.pages.dev/", meta_style), safe_paragraph("<b>Document Scope:</b> Institutional Scalability & PMFBY", meta_style)]
+    ]
+    t_meta = Table(meta_data, colWidths=[240, 264])
+    t_meta.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f0fdf4')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#6ee7b7')),
+        ('PADDING', (0,0), (-1,-1), 5),
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+    ]))
+    story.append(t_meta)
+    story.append(Spacer(1, 10))
+
+    img_dir = os.path.join(workspace_dir, 'assets', 'proposal_images')
+    add_path = os.path.join(workspace_dir, 'additional_supporting_material.md')
+    with open(add_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    sections = content.split('\n## ')
+    if sections[0].strip():
+        story.extend(parse_markdown_content(sections[0].strip().split('\n'), available_width=490))
+
+    for sec in sections[1:]:
+        lines = sec.strip().split('\n')
+        sec_title = lines[0].strip()
+        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#0f766e'), spaceBefore=8, spaceAfter=5))
+        story.append(safe_paragraph(sec_title, h2_style))
+
+        if '1. Agro-Ecological Zone' in sec_title:
+            img_path = os.path.join(img_dir, 'diagram_3_cadastral_anomaly_catalog.jpg')
+            if os.path.exists(img_path):
+                story.append(Spacer(1, 4))
+                story.append(Image(img_path, width=490, height=275))
+                story.append(Spacer(1, 6))
+        elif '2. Institutional Integration' in sec_title:
+            img_path = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
+            if os.path.exists(img_path):
+                story.append(Spacer(1, 4))
+                story.append(Image(img_path, width=490, height=275))
+                story.append(Spacer(1, 6))
+
+        body_flowables = parse_markdown_content(lines[1:], available_width=490)
+        story.extend(body_flowables)
+
+    doc.build(story, canvasmaker=NumberedCanvas)
+    print(f"Generated Additional Supporting Material PDF: {output_path}")
+
 if __name__ == '__main__':
     workspace_dir = os.path.dirname(os.path.abspath(__file__))
     proposal_pdf = os.path.join(workspace_dir, 'NESFIC_D11_Proposal_Ron_Hatibaruah.pdf')
     pow_pdf = os.path.join(workspace_dir, 'NESFIC_D11_Proof_of_Work_Ron_Hatibaruah.pdf')
+    add_pdf = os.path.join(workspace_dir, 'NESFIC_D11_Additional_Supporting_Material_Ron_Hatibaruah.pdf')
     
     build_proposal_pdf(proposal_pdf, workspace_dir)
     build_proof_of_work_pdf(pow_pdf, workspace_dir)
+    build_additional_material_pdf(add_pdf, workspace_dir)
