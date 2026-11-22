@@ -340,36 +340,30 @@ Every advisory broadcast, rule alteration, and scouting log is hashed into an im
 ---
 
 ## Field 12: Resources, risks & pilot validation
-*(Word Count: 448 words / Max: 500 words)*
+*(Word Count: 395 words / Max: 500 words)*
 
-### Indicative Development & Validation Cost Drivers
-The project budget is distributed across 4 primary operational drivers over the 9-month lifecycle:
-- **Software Engineering & Cloud Infrastructure (42%):** Full-stack development, PostGIS database architecture, edge AI model training, Cloudflare edge hosting, and high-throughput SMS/WhatsApp gateway integration.
-- **Field Pilot Equipment & Drone Operations (26%):** Procurement of two customized multi-rotor survey drones equipped with 5-band multispectral and thermal sensors, dual-frequency NavIC RTK base stations, and battery charging infrastructure.
-- **Agronomic Ground-Truth & Laboratory Validation (18%):** Collaborative field trials with Assam Agricultural University (AAU) entomologists, reference disease sample collection, and laboratory biochemical assays.
-- **Grassroots Training & Community Onboarding (14%):** Capacity-building workshops for 100+ ADOs, Krishi Sakhis, and village panchayat representatives across 3 pilot districts.
+### Indicative Resource & Budget Allocation (₹20 Lakh Problem Statement Grant / MVP Pilot)
+The project budget is calibrated to the ₹20.0 Lakhs problem statement grant for 9-month development and 3-district MVP validation:
+1. **Geospatial & Sentinel Radar Pipeline (₹4.5 Lakhs / 22.5%):** Automated Copernicus Sentinel-1 SAR cloud-penetrating and Sentinel-2 ingestion, radiometric calibration, and Cloudflare PostGIS spatial data storage.
+2. **Epidemiological AI Models & AAU Calibration (₹5.0 Lakhs / 25.0%):** Microclimate disease forecasting algorithms, thermal degree-day models, and AAU Jorhat field correlation trials.
+3. **Offline PWA & Edge AI Diagnostics (₹3.5 Lakhs / 17.5%):** SQLite local caching, sub-meter GPS parcel locking, and MobileNetV3 INT8 on-device leaf pathology classification.
+4. **Multilingual Advisory & Telecom Gateway (₹3.0 Lakhs / 15.0%):** Automated Assamese, Bodo, Bengali, and English bulletin generators and high-throughput SMS/WhatsApp API integration.
+5. **Field Ground-Truthing, Training & Validation (₹4.0 Lakhs / 20.0%):** Capacity-building workshops for 100+ ADOs and Krishi Sakhis, drone survey bench-testing, and pilot oversight across 15,000 farmers.
+**Total Budget:** ₹20.0 Lakhs (100%).
 
 ### Key Operational Risks & Mitigation Strategies
-1. **Severe Monsoon Cloud Cover & Flood Inundation:**
-   - *Risk:* Inability to capture optical satellite imagery during peak disease outbreaks.
-   - *Mitigation:* Automated fallback to Sentinel-1 Synthetic Aperture Radar (SAR) C-band microwave penetration, complemented by low-altitude drone survey flights beneath the cloud base (50–100m AGL).
-2. **Intermittent Cellular Connectivity in Remote Char/Riverine Areas:**
-   - *Risk:* Extension officers unable to upload field scouting data or access online diagnostics.
-   - *Mitigation:* The PWA incorporates an offline-first architecture using client-side IndexedDB/SQLite storage and on-device WebAssembly edge AI. Inspections synchronize seamlessly upon reaching mobile reception.
-3. **Farmer Digital Literacy & Resistance to Advisory Directives:**
-   - *Risk:* Smallholders ignoring technical digital alerts.
-   - *Mitigation:* Advisory delivery through multi-channel plain SMS, WhatsApp cards, and automated voice IVR calls in regional dialects (Assamese, Bodo, Bengali); coordination with local Krishi Sakhis for community-level dissemination.
-4. **Airframe Loss or Signal Jamming in Dense Foliage:**
-   - *Risk:* Drone collisions with betel-nut trees or signal dropout in flood plains.
-   - *Mitigation:* 360-degree millimeter-wave radar obstacle avoidance, automated failsafe Return-to-Home (RTH) protocols, and DGCA-certified pilot supervision.
+1. **Monsoon Cloud Cover:** Optical imagery blinded during kharif rains. Mitigated by Sentinel-1 C-band SAR radar microwave penetration, supplemented by low-altitude drone flights beneath cloud base (50–100m AGL).
+2. **Rural Connectivity Gaps:** Remote char areas lacking cellular reception. Mitigated by offline-first PWA with client-side IndexedDB/SQLite storage and on-device WebAssembly edge AI.
+3. **Farmer Advisory Adoption:** Reluctance to heed digital directives. Mitigated by automated Assamese/Bodo SMS and voice IVR calls with dosage calibrated to local bigha units, partnered with local Krishi Sakhis.
+4. **Drone Foliage Obstacles:** Collisions with betel-nut trees. Mitigated by 360-degree obstacle detection radar and DGCA-certified remote pilots.
 
 ### Pilot Validation Protocol in Stated Context
-The developed platform will undergo a 12-week structured pilot validation during the upcoming kharif crop season across 3 diverse agro-climatic zones of Assam:
-- **Zone 1 (Kamrup Rural):** Riverine alluvial plain with intensive Sali paddy and vegetable cultivation (Rani & Chaygaon blocks).
-- **Zone 2 (Nagaon):** Flood-prone central Brahmaputra valley with high historical incidence of Rice Blast and Stem Borer (Kaliabor & Raha blocks).
-- **Zone 3 (Jorhat / Golaghat):** Upper Brahmaputra valley adjoining AAU research stations for controlled scientific benchmarking (Titabor block).
+The platform will undergo a 12-week structured pilot validation during the upcoming kharif season across 3 diverse agro-climatic zones of Assam:
+- **Zone 1 (Kamrup Rural):** Riverine alluvial plain with intensive Sali paddy and vegetable clusters (Rani and Chaygaon blocks).
+- **Zone 2 (Nagaon):** Flood-prone central Brahmaputra valley with high historical blast incidence (Kaliabor and Raha blocks).
+- **Zone 3 (Jorhat / Golaghat):** Upper valley adjoining AAU research stations for controlled scientific benchmarking (Titabor block).
 
 **Evaluation Metrics for Pilot Success:**
 - Onboarding of **15,000 active farmers** and 50 extension officers across 10,000 hectares.
-- Validation of $\ge 85\%$ early warning forecast accuracy against ground disease occurrence.
-- Documented $\ge 50\%$ reduction in advisory dispatch turnaround time.
+- Validation of Greater than or equal to 85% early warning forecast accuracy against ground disease occurrence.
+- Documented Greater than or equal to 50% reduction in advisory dispatch turnaround time.

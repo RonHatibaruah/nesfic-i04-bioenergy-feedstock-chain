@@ -333,6 +333,28 @@ def build_proposal_pdf(output_path, workspace_dir):
                 story.append(Spacer(1, 4))
                 story.append(Image(img, width=490, height=275))
                 story.append(Spacer(1, 6))
+        elif '12: Resources, risks' in sec_header:
+            budget_data = [
+                [safe_paragraph("<b>Budget Head / Component</b>", meta_style), safe_paragraph("<b>Allocation</b>", meta_style), safe_paragraph("<b>Share</b>", meta_style), safe_paragraph("<b>Scope & Deliverable Description</b>", meta_style)],
+                [safe_paragraph("Geospatial & Radar Pipeline", meta_style), safe_paragraph("₹4.50 Lakh", meta_style), safe_paragraph("22.5%", meta_style), safe_paragraph("Automated Sentinel-1 SAR & Sentinel-2 ingestion, PostGIS database", meta_style)],
+                [safe_paragraph("Epidemiological AI Models (AAU)", meta_style), safe_paragraph("₹5.00 Lakh", meta_style), safe_paragraph("25.0%", meta_style), safe_paragraph("Microclimate pathogen rules, thermal GDD, AAU field correlation", meta_style)],
+                [safe_paragraph("Offline PWA & Edge Diagnostics", meta_style), safe_paragraph("₹3.50 Lakh", meta_style), safe_paragraph("17.5%", meta_style), safe_paragraph("MobileNetV3 INT8 edge AI, SQLite offline caching, RTK GPS lock", meta_style)],
+                [safe_paragraph("Multilingual Advisory Gateway", meta_style), safe_paragraph("₹3.00 Lakh", meta_style), safe_paragraph("15.0%", meta_style), safe_paragraph("Assamese, Bodo, Bengali, English automated SMS & WhatsApp APIs", meta_style)],
+                [safe_paragraph("Field Ground-Truthing & Training", meta_style), safe_paragraph("₹4.00 Lakh", meta_style), safe_paragraph("20.0%", meta_style), safe_paragraph("15,000 farmers, 100+ ADOs/Krishi Sakhis trained, 3 pilot districts", meta_style)],
+                [safe_paragraph("<b>Total Problem Statement Budget</b>", meta_style), safe_paragraph("<b>₹20.00 Lakh</b>", meta_style), safe_paragraph("<b>100.0%</b>", meta_style), safe_paragraph("<b>Full 9-Month MVP Delivery & 3-District Validation</b>", meta_style)],
+            ]
+            t_budget = Table(budget_data, colWidths=[140, 75, 50, 225])
+            t_budget.setStyle(TableStyle([
+                ('BACKGROUND', (0,0), (-1,0), colors.HexColor('#f0fdf4')),
+                ('BACKGROUND', (0,-1), (-1,-1), colors.HexColor('#e0f2fe')),
+                ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#059669')),
+                ('INNERGRID', (0,0), (-1,-1), 0.5, colors.HexColor('#cbd5e1')),
+                ('PADDING', (0,0), (-1,-1), 4),
+                ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+            ]))
+            story.append(Spacer(1, 4))
+            story.append(t_budget)
+            story.append(Spacer(1, 6))
 
         body_flowables = parse_markdown_content(lines[1:], available_width=490)
         story.extend(body_flowables)
@@ -429,78 +451,10 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     doc.build(story, canvasmaker=NumberedCanvas)
     print(f"Generated Proof of Work PDF: {output_path}")
 
-# -----------------------------------------------------------------------------
-# 3. BUILD ADDITIONAL SUPPORTING MATERIAL PDF
-# -----------------------------------------------------------------------------
-def build_additional_material_pdf(output_path, workspace_dir):
-    doc = SimpleDocTemplate(output_path, pagesize=letter, leftMargin=54, rightMargin=54, topMargin=54, bottomMargin=54)
-    styles = getSampleStyleSheet()
-
-    title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=16, leading=20, textColor=colors.HexColor('#0f766e'), spaceAfter=4)
-    subtitle_style = ParagraphStyle('DocSubTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=9.5, leading=13, textColor=colors.HexColor('#064e3b'), spaceAfter=8)
-    meta_style = ParagraphStyle('MetaStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=11, textColor=colors.HexColor('#334155'))
-    h2_style = ParagraphStyle('H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=10.5, leading=14, textColor=colors.HexColor('#0f766e'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
-
-    story = []
-    story.append(safe_paragraph("ADDITIONAL SUPPORTING MATERIAL & FEASIBILITY STUDY", title_style))
-    story.append(safe_paragraph("SasyaSwasthya — Agro-Ecological Calibration & Institutional Integration", subtitle_style))
-    story.append(safe_paragraph("<b>NESFIC 2026 Technical Pitch Deck & Sustainability Framework</b>", subtitle_style))
-    
-    meta_data = [
-        [safe_paragraph("<b>Challenge ID:</b> NESFIC-D-11 (Govt Track)", meta_style), safe_paragraph("<b>Target Dept:</b> Agriculture & ASSAC, Assam", meta_style)],
-        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Deployment Target:</b> Assam State Data Centre (ASDC)", meta_style)],
-        [safe_paragraph("<b>Live Prototype:</b> https://sasya-swasthya.pages.dev/", meta_style), safe_paragraph("<b>Document Scope:</b> Institutional Scalability & PMFBY", meta_style)]
-    ]
-    t_meta = Table(meta_data, colWidths=[240, 264])
-    t_meta.setStyle(TableStyle([
-        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f0fdf4')),
-        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#6ee7b7')),
-        ('PADDING', (0,0), (-1,-1), 5),
-        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
-    ]))
-    story.append(t_meta)
-    story.append(Spacer(1, 10))
-
-    img_dir = os.path.join(workspace_dir, 'assets', 'proposal_images')
-    add_path = os.path.join(workspace_dir, 'additional_supporting_material.md')
-    with open(add_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    sections = content.split('\n## ')
-    if sections[0].strip():
-        story.extend(parse_markdown_content(sections[0].strip().split('\n'), available_width=490))
-
-    for sec in sections[1:]:
-        lines = sec.strip().split('\n')
-        sec_title = lines[0].strip()
-        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#0f766e'), spaceBefore=8, spaceAfter=5))
-        story.append(safe_paragraph(sec_title, h2_style))
-
-        if '1. Agro-Ecological Zone' in sec_title:
-            img_path = os.path.join(img_dir, 'diagram_3_cadastral_anomaly_catalog.jpg')
-            if os.path.exists(img_path):
-                story.append(Spacer(1, 4))
-                story.append(Image(img_path, width=490, height=275))
-                story.append(Spacer(1, 6))
-        elif '2. Institutional Integration' in sec_title:
-            img_path = os.path.join(img_dir, 'diagram_7_enterprise_system_architecture.jpg')
-            if os.path.exists(img_path):
-                story.append(Spacer(1, 4))
-                story.append(Image(img_path, width=490, height=275))
-                story.append(Spacer(1, 6))
-
-        body_flowables = parse_markdown_content(lines[1:], available_width=490)
-        story.extend(body_flowables)
-
-    doc.build(story, canvasmaker=NumberedCanvas)
-    print(f"Generated Additional Supporting Material PDF: {output_path}")
-
 if __name__ == '__main__':
     workspace_dir = os.path.dirname(os.path.abspath(__file__))
     proposal_pdf = os.path.join(workspace_dir, 'NESFIC_D11_Proposal_Ron_Hatibaruah.pdf')
     pow_pdf = os.path.join(workspace_dir, 'NESFIC_D11_Proof_of_Work_Ron_Hatibaruah.pdf')
-    add_pdf = os.path.join(workspace_dir, 'NESFIC_D11_Additional_Supporting_Material_Ron_Hatibaruah.pdf')
     
     build_proposal_pdf(proposal_pdf, workspace_dir)
     build_proof_of_work_pdf(pow_pdf, workspace_dir)
-    build_additional_material_pdf(add_pdf, workspace_dir)
