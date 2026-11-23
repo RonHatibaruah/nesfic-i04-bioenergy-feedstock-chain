@@ -5,8 +5,8 @@
 **Applicant / Innovator:** Ron Hatibaruah  
 **Application Platform:** Assam Startup Portal (NESFIC 2026)  
 **Proposed Solution Name:** JaivikSuraksha (জৈৱিক সুৰক্ষা) — Climate-Resilient Biomass Preservation, Decentralized Feedstock Logistics & Circular Waste Valorisation Grid  
-**Product / Website URL:** https://jaivik-suraksha.pages.dev  
-**Demo / Product Video URL:** https://jaivik-suraksha.pages.dev/#tutorial  
+**Product / Website URL:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev  
+**Demo / Product Video URL:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial  
 **Code Repository:** https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain  
 
 ---

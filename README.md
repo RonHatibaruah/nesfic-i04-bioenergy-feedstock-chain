@@ -1,15 +1,15 @@
 # JaivikSuraksha (জৈৱিক সুৰক্ষা)
 ### Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon & Valorisation of Bio-Refinery Waste Streams
 
-[![Live Prototype](https://img.shields.io/badge/Live_Prototype-jaivik--suraksha.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://jaivik-suraksha.pages.dev/)
+[![Live Prototype](https://img.shields.io/badge/Live_Prototype-nesfic--i04--bioenergy--feedstock--chain.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/)
 [![Industry Track](https://img.shields.io/badge/NESFIC_2026-Industry_Track_--_NESFIC--I--04-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-i-04)
 [![Sponsor](https://img.shields.io/badge/Challenge_Partner-MC%C2%B2_Foundation-064e3b?style=for-the-badge)](https://startup.assam.gov.in/)
 [![Refinery Target](https://img.shields.io/badge/Target_Refinery-Assam_Bio--Refinery_(NRL)-d97706?style=for-the-badge)](https://www.nrl.co.in/)
-[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://jaivik-suraksha.pages.dev/)
+[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/)
 [![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
-> 🌐 **Live Interactive Control Room:** **[https://jaivik-suraksha.pages.dev/](https://jaivik-suraksha.pages.dev/)**  
+> 🌐 **Live Interactive Control Room:** **[https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/)**  
 > Explore the Executive Feedstock Dashboard, Supply Shed WebGIS, Decentralized Depot QA Portal, Bilingual Farmer Off-Take Hub ("Jaivik Seva"), and the Biorefinery Waste Stream Valorisation Suite.
 
 ---

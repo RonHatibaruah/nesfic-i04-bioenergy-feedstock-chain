@@ -6,9 +6,9 @@ Title: Securing the North-East Bioenergy Feedstock Chain — Biomass Preservatio
 Challenge Partner / Owner: MC² Foundation (in alignment with Assam Bio-Refinery / NRL & SATAT CBG Ecosystem)
 Applicant Name: Ron Hatibaruah
 Proposed Solution Name: JaivikSuraksha (জৈৱিক সুৰক্ষা) — Climate-Resilient Biomass Preservation, Decentralized Feedstock Logistics & Circular Waste Valorisation Grid
-Live Functional Web App: https://jaivik-suraksha.pages.dev
+Live Functional Web App: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
 Open-Source Repository: https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
-Demo / Tutorial Walkthrough: https://jaivik-suraksha.pages.dev/#tutorial
+Demo / Tutorial Walkthrough: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial
 
 ================================================================================
 FIELD 1: Problem understanding & user workflow
