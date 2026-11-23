@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout, Map, ClipboardCheck, Radio, Activity, BookOpen, Sliders, AlertTriangle, Recycle, Flame } from 'lucide-react';
+import { Sprout, Map, ClipboardCheck, Radio, Activity, BookOpen, Sliders, AlertTriangle, Recycle, Flame, HelpCircle } from 'lucide-react';
 
 export type ActiveTab = 'dashboard' | 'gis-map' | 'field-verification' | 'citizen-portal' | 'drone-tech' | 'admin';
 
@@ -37,6 +37,13 @@ export const Navbar: React.FC<NavbarProps> = ({
           <span className="text-slate-400 hidden sm:inline">Assam Bio-Refinery (NRL) Ecosystem</span>
         </div>
         <div className="flex items-center space-x-4">
+          <button 
+            onClick={onOpenTutorial}
+            className="text-emerald-300 hover:text-white underline text-[11px] font-semibold flex items-center gap-1 transition-colors"
+          >
+            <span>Tutorial: What It Does & How to Use</span>
+          </button>
+          <span className="text-slate-500 hidden sm:inline">•</span>
           <span className="text-slate-400 hidden sm:inline">IoT LoRaWAN Sensor Spears & Biorefinery Grid</span>
           <span className="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
             {totalRecords} Depots & Silos Active
@@ -94,11 +101,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={onOpenTutorial}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-semibold transition-all shadow-xs"
-              title="Open System Architecture Guide"
+              className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs"
+              title="Open Application Tutorial: What It Does & How to Use"
             >
-              <BookOpen className="w-3.5 h-3.5 text-emerald-700" />
-              <span>I-04 Guide</span>
+              <HelpCircle className="w-4 h-4 text-emerald-200" />
+              <span>Tutorial: How to Use</span>
             </button>
           </div>
         </div>

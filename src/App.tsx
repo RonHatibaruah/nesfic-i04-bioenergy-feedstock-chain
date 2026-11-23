@@ -185,6 +185,7 @@ export function App() {
       <TutorialModal
         isOpen={isTutorialOpen}
         onClose={() => setIsTutorialOpen(false)}
+        onNavigateTab={handleTabSelect}
       />
 
       {/* Footer */}
@@ -194,21 +195,21 @@ export function App() {
             <div className="w-6 h-6 rounded bg-emerald-600 flex items-center justify-center text-white">
               <Sprout className="w-4 h-4" />
             </div>
-            <span className="font-bold text-slate-900">SasyaSwasthya (শস্য স্বাস্থ্য)</span>
+            <span className="font-bold text-slate-900">JaivikSuraksha (জৈৱিক সুৰক্ষা)</span>
             <span>•</span>
-            <span>NESFIC-D-11 Official Government Track Solution</span>
+            <span className="text-emerald-700 font-semibold">NESFIC-I-04 Industry Track Solution</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-slate-600">
-            <span>Department of Agriculture, Assam</span>
+            <span>MC² Foundation</span>
             <span>•</span>
-            <span>Assam State Space Application Centre (ASSAC)</span>
+            <span>Assam Bio-Refinery Pvt. Ltd. (Numaligarh / NRL)</span>
             <span>•</span>
-            <span>Assam Agricultural University (AAU)</span>
+            <span>Assam Energy Development Agency (AEDA)</span>
           </div>
 
           <div className="text-slate-500 font-mono text-[11px]">
-            Lead Architect: Ron Hatibaruah
+            Lead Systems Architect: Ron Hatibaruah
           </div>
         </div>
       </footer>
