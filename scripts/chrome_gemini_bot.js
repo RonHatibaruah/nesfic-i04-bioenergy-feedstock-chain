@@ -1,24 +1,33 @@
 #!/usr/bin/env node
 
 /**
- * Autonomous Gemini Pro Image Generation Bot for Sasya Drishti Assam (NESFIC-D-11)
- * Using Chrome DevTools Protocol & Puppeteer to automate Google Gemini Pro (kalyanjit@gmail.com)
+ * Autonomous Gemini Pro Image Generation Bot for JaivikSuraksha (NESFIC-I-04)
+ * High-Impact 16:9 Widescreen Technological Framework Infographics
+ *
+ * Automates Google Gemini Pro using Chrome DevTools Protocol & Puppeteer
+ * Authenticated via Google Pro account: sumanzfilms@gmail.com
  *
  * Requirements:
- *   Start Google Chrome with remote debugging:
+ *   Google Chrome running with remote debugging:
  *   /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="$HOME/Library/Application Support/Google/Chrome-Gemini-Pro" --remote-debugging-port=9222 &
  *
  * Usage:
  *   node scripts/chrome_gemini_bot.js
  *   node scripts/chrome_gemini_bot.js --force
+ *   node scripts/chrome_gemini_bot.js --id=diagram_1_before_after_workflow
  *   node scripts/chrome_gemini_bot.js --port=9222
- *   node scripts/chrome_gemini_bot.js --id=diagram_1_paradigm_shift
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
-// Auto-resolve puppeteer-core from local or sibling Data Centers node_modules
+const require = createRequire(import.meta.url);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Auto-resolve puppeteer-core
 let puppeteer;
 try {
   puppeteer = require('puppeteer-core');
@@ -27,7 +36,7 @@ try {
   if (fs.existsSync(fallbackPath)) {
     puppeteer = require(fallbackPath);
   } else {
-    console.error('❌ Error: puppeteer-core not found. Run npm install puppeteer-core');
+    console.error('❌ Error: puppeteer-core not found.');
     process.exit(1);
   }
 }
@@ -73,7 +82,7 @@ const queue = allPrompts.filter(item => {
 });
 
 console.log('\n=============================================================');
-console.log('🌾 SASYA DRISHTI ASSAM - GEMINI PRO AUTOMATION BOT (CDP)');
+console.log('🤖 JAIVIKSURAKSHA (NESFIC-I-04) - GEMINI PRO INFOGRAPHIC BOT');
 console.log('=============================================================');
 console.log(`🔌 Target Chrome Port      : ${port}`);
 console.log(`📁 Target Assets Directory : ${ASSETS_DIR}`);
@@ -82,7 +91,7 @@ if (filterId) console.log(`🔍 Filter Prompt ID        : ${filterId}`);
 console.log('=============================================================\n');
 
 if (queue.length === 0) {
-  console.log('✨ All images in queue already exist in assets/proposal_images/! Use --force to regenerate.\n');
+  console.log('✨ All images in queue already exist! Use --force to regenerate.\n');
   process.exit(0);
 }
 
@@ -106,20 +115,25 @@ async function main() {
     process.exit(1);
   }
 
+  // Find or create Gemini page
   const pages = await browser.pages();
   let geminiPage = pages.find(p => p.url().includes('gemini.google.com'));
 
   if (!geminiPage) {
     console.log(`🌐 Opening a new tab navigating to https://gemini.google.com/app...`);
     geminiPage = await browser.newPage();
-    await geminiPage.goto('https://gemini.google.com/app', { waitUntil: 'networkidle2' });
+    await geminiPage.goto('https://gemini.google.com/app', { waitUntil: 'domcontentloaded', timeout: 20000 });
   } else {
     console.log(`🌐 Found active Gemini tab: ${geminiPage.url()}`);
     await geminiPage.bringToFront();
   }
 
-  await geminiPage.waitForSelector('rich-textarea, div[contenteditable="true"], textarea', { timeout: 30000 })
-    .catch(() => console.log('⚠️ Notice: Make sure you are logged into your Gemini Pro account on the opened browser window.'));
+  // Verify signed-in Google account
+  const accountInfo = await geminiPage.evaluate(() => {
+    const accBtn = document.querySelector('a[aria-label*="Google Account"], button[aria-label*="Google Account"], [data-identifier]');
+    return accBtn ? (accBtn.getAttribute('aria-label') || accBtn.getAttribute('data-identifier') || accBtn.innerText) : 'Unknown Account';
+  });
+  console.log(`👤 Active Google Account   : ${accountInfo.replace(/\n/g, ' ')}`);
 
   let successCount = 0;
   let failureCount = 0;
@@ -141,17 +155,45 @@ async function main() {
     while (attempts < 2 && !promptSent) {
       attempts++;
       try {
-        await geminiPage.goto('https://gemini.google.com/app', { waitUntil: 'networkidle2' });
-        await sleep(2500);
-        await geminiPage.waitForSelector('rich-textarea, div[contenteditable="true"], textarea', { timeout: 20000 }).catch(() => {});
+        // Re-acquire fresh page handle to avoid detached frame errors
+        const allPages = await browser.pages();
+        let activePage = allPages.find(p => p.url().includes('gemini.google.com'));
+        if (!activePage) {
+          activePage = await browser.newPage();
+          await activePage.goto('https://gemini.google.com/app', { waitUntil: 'domcontentloaded', timeout: 15000 });
+        } else {
+          await activePage.bringToFront();
+        }
 
-        const existingImageUrls = await geminiPage.evaluate(() => {
+        // Start fresh chat session: try clicking "New chat" button first (instant SPA action)
+        const newChatClicked = await activePage.evaluate(() => {
+          const btn = document.querySelector('a[aria-label*="New chat" i], button[aria-label*="New chat" i], [data-test-id*="new-chat" i]');
+          if (btn) {
+            btn.click();
+            return true;
+          }
+          return false;
+        });
+
+        if (newChatClicked) {
+          await sleep(1500);
+        } else {
+          await activePage.goto('https://gemini.google.com/app', { waitUntil: 'domcontentloaded', timeout: 15000 }).catch(() => {});
+          await sleep(1500);
+        }
+
+        // Wait for input textarea
+        await activePage.waitForSelector('rich-textarea, div[contenteditable="true"], textarea', { timeout: 20000 }).catch(() => {});
+
+        // Snapshot existing image URLs
+        const existingImageUrls = await activePage.evaluate(() => {
           return Array.from(document.querySelectorAll('img')).map(img => img.src).filter(Boolean);
         });
 
         const promptFull = `Generate a high-quality 16:9 widescreen infographic image: ${item.prompt}`;
-        
-        await geminiPage.evaluate((text) => {
+
+        // Input prompt
+        await activePage.evaluate((text) => {
           const input = document.querySelector('rich-textarea p, rich-textarea div[contenteditable="true"], div[contenteditable="true"] p, div[contenteditable="true"], textarea');
           if (input) {
             input.focus();
@@ -162,8 +204,9 @@ async function main() {
 
         await sleep(1000);
 
-        const clicked = await geminiPage.evaluate(() => {
-          const sendBtn = document.querySelector('button[aria-label="Send message"], button.send-button, mat-icon[data-mat-icon-name="send"]')?.closest('button');
+        // Click Send button or fallback to Enter key
+        const clicked = await activePage.evaluate(() => {
+          const sendBtn = document.querySelector('button[aria-label*="Send" i], button.send-button, mat-icon[data-mat-icon-name="send"], [data-test-id*="send"]')?.closest('button');
           if (sendBtn && !sendBtn.disabled) {
             sendBtn.click();
             return true;
@@ -172,26 +215,27 @@ async function main() {
         });
 
         if (!clicked) {
-          await geminiPage.keyboard.press('Enter');
+          await activePage.keyboard.press('Enter');
         }
 
         console.log(`   📤 Prompt submitted. Waiting for Imagen 3 generation...`);
         promptSent = true;
 
+        // Poll for newly generated image
         let imageBuffer = null;
         let waitAttempts = 0;
 
-        while (!imageBuffer && waitAttempts < 35) {
+        while (!imageBuffer && waitAttempts < 45) {
           await sleep(3000);
           waitAttempts++;
 
-          const newImageData = await geminiPage.evaluate((existingUrls) => {
+          const candidateInfo = await activePage.evaluate((existingUrls) => {
             const allImages = Array.from(document.querySelectorAll('img'));
             const candidates = allImages.filter(img => 
               img.src && 
               !existingUrls.includes(img.src) &&
               (img.src.includes('googleusercontent.com') || img.src.startsWith('blob:') || img.src.startsWith('data:image')) &&
-              img.naturalWidth > 350
+              img.naturalWidth > 300
             );
 
             if (candidates.length > 0) {
@@ -201,27 +245,57 @@ async function main() {
             return null;
           }, existingImageUrls);
 
-          if (newImageData) {
-            console.log(`   🖼️ Image detected in chat (${newImageData.width}x${newImageData.height})! Fetching raw bytes...`);
-            
-            const base64Data = await geminiPage.evaluate((imgSrc) => {
-              const img = Array.from(document.querySelectorAll('img')).find(i => i.src === imgSrc);
-              if (!img || !img.complete || img.naturalWidth === 0) return null;
+          if (candidateInfo) {
+            console.log(`   🖼️ Image detected (${candidateInfo.width}x${candidateInfo.height})! Extracting full bytes...`);
+
+            // Method 1: Page context fetch -> base64 (Raw image blob)
+            const fetchedBase64 = await activePage.evaluate(async (src) => {
               try {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.98);
-                return dataUrl.split(',')[1];
+                const resp = await fetch(src);
+                const blob = await resp.blob();
+                return new Promise((resolve) => {
+                  const reader = new FileReader();
+                  reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                  reader.onerror = () => resolve(null);
+                  reader.readAsDataURL(blob);
+                });
               } catch (e) {
                 return null;
               }
-            }, newImageData.src);
+            }, candidateInfo.src);
 
-            if (base64Data) {
-              imageBuffer = Buffer.from(base64Data, 'base64');
+            if (fetchedBase64) {
+              imageBuffer = Buffer.from(fetchedBase64, 'base64');
+            } else {
+              // Method 2: Canvas extraction fallback
+              const canvasBase64 = await activePage.evaluate((src) => {
+                const img = Array.from(document.querySelectorAll('img')).find(i => i.src === src);
+                if (!img || !img.complete || img.naturalWidth === 0) return null;
+                try {
+                  const canvas = document.createElement('canvas');
+                  canvas.width = img.naturalWidth;
+                  canvas.height = img.naturalHeight;
+                  const ctx = canvas.getContext('2d');
+                  ctx.drawImage(img, 0, 0);
+                  return canvas.toDataURL('image/jpeg', 0.98).split(',')[1];
+                } catch (e) {
+                  return null;
+                }
+              }, candidateInfo.src);
+
+              if (canvasBase64) {
+                imageBuffer = Buffer.from(canvasBase64, 'base64');
+              } else {
+                // Method 3: Puppeteer element screenshot fallback
+                try {
+                  const imgHandle = await activePage.$(`img[src="${candidateInfo.src}"]`);
+                  if (imgHandle) {
+                    imageBuffer = await imgHandle.screenshot({ type: 'jpeg', quality: 98 });
+                  }
+                } catch (e) {
+                  console.error('Screenshot fallback error:', e.message);
+                }
+              }
             }
           }
         }
@@ -230,10 +304,10 @@ async function main() {
           fs.writeFileSync(targetFile, imageBuffer);
           fs.writeFileSync(publicTargetFile, imageBuffer);
           const stats = fs.statSync(targetFile);
-          console.log(`   ✅ Successfully saved: assets/proposal_images/${item.filename} (${(stats.size / 1024).toFixed(1)} KB)`);
+          console.log(`   ✅ Successfully saved: assets/proposal_images/${item.filename} (${(stats.size / 1024 / 1024).toFixed(2)} MB)`);
           successCount++;
         } else {
-          console.error(`   ⚠️ Timed out waiting for ${item.filename} (75s). Skipping to next...`);
+          console.error(`   ⚠️ Timed out waiting for ${item.filename} (135s). Skipping to next...`);
           failureCount++;
         }
 
@@ -244,8 +318,8 @@ async function main() {
     }
 
     if (i < queue.length - 1) {
-      console.log(`   ⏳ Cooling down for 6 seconds before next prompt...`);
-      await sleep(6000);
+      console.log(`   ⏳ Cooling down for 5 seconds before next prompt...`);
+      await sleep(5000);
     }
   }
 
