@@ -1,0 +1,156 @@
+================================================================================
+NESFIC 2026 OFFICIAL SUBMISSION - PLAIN TEXT FORM-READY COPY PASTE
+================================================================================
+Problem Statement ID: NESFIC-I-04 (Industry Track)
+Title: Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon and Valorisation of Bio-Refinery Waste Streams
+Challenge Partner / Owner: MC² Foundation (in alignment with Assam Bio-Refinery / NRL & SATAT CBG Ecosystem)
+Applicant Name: Ron Hatibaruah
+Proposed Solution Name: JaivikSuraksha (জৈৱিক সুৰক্ষা) — Climate-Resilient Biomass Preservation, Decentralized Feedstock Logistics & Circular Waste Valorisation Grid
+Live Functional Web App: https://jaivik-suraksha.pages.dev
+Open-Source Repository: https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
+Demo / Tutorial Walkthrough: https://jaivik-suraksha.pages.dev/#tutorial
+
+================================================================================
+FIELD 1: Problem understanding & user workflow
+Word Count: 442 words (Max limit: 500 words)
+================================================================================
+Problem Context & Scale:
+Northeast India generates over 12 million metric tonnes of lignocellulosic biomass annually—predominantly paddy straw, bamboo processing offcuts, mustard stover, tea factory trimmings, and sugarcane bagasse. As home to India’s pioneering 2G Bioethanol refinery (Assam Bio-Refinery Pvt. Ltd., Numaligarh) and expanding Compressed Biogas (CBG) infrastructure under the SATAT mission, Assam represents a critical bio-economy frontier. However, regional commercial bio-refineries face existential operational bottlenecks rooted in the extreme agro-climatic conditions of the Northeast.
+
+Current Workflow Bottlenecks & Structural Gaps:
+1. Monsoon Moisture Catastrophe & Storage Rot: Assam experiences prolonged, torrential monsoons spanning May to October (2,000–4,000 mm annual rainfall, persistent relative humidity >85–95%). Agricultural biomass harvested in dry windows (e.g., post-kharif Sali straw in Dec–Jan, spring bamboo harvests) must be stored for up to 9 months to sustain continuous year-round plant operations. Under traditional open-stack or unsealed tin sheds, ambient moisture rapidly infiltrates biomass stacks, driving moisture content above 25–40%.
+2. Biological Decay & Exothermic Spontaneous Fire Hazards: Wet stored biomass rapidly undergoes fungal rotting, cellulose depolymerization, and dry-matter loss of 30% to 45%. Furthermore, microbial respiration in damp, densely packed bales triggers dangerous exothermic self-heating (65°C–80°C), resulting in catastrophic spontaneous combustion fires that destroy entire depot reserves.
+3. Severe Plant Under-Utilization & Feedstock Starvation: Feedstock supply collapses during the 5-month monsoon window due to submerged rural roads, rotting stockpiles, and uncoordinated smallholder aggregation. Consequently, bio-refinery Plant Load Factor (PLF) plummets below 45–55%, inflicting crippling capital amortization losses.
+4. Unvalorised Secondary Waste Liabilities: Conversion processes yield massive problematic secondary residues: solid enzymatic hydrolysis lignin-rich cake (over 35,000 tonnes/year per 2G facility) and anaerobic digestion spent digestate (Fermented Organic Manure - FOM), alongside high-COD/BOD process condensates and thin stillage. Dumping or burning these streams causes severe environmental compliance violations, clogs effluent treatment plants (ETP), and wastes high-value chemical and energy potential.
+
+Target Users & Beneficiaries:
+- Bio-Refinery & CBG Plant Operators (e.g., ABRPL Numaligarh, SATAT Developers): Securing guaranteed 365-day feedstock delivery at controlled moisture (<15% dry basis or standardized ensilage).
+- Rural Biomass Aggregators & FPOs (50,000+ Farmers): Monetizing crop residues with fair, transparent, moisture-calibrated digital off-take pricing.
+- Biomass Depot QA Engineers: Standardizing moisture, bale density, and biological stabilization metrics.
+
+Intended Outcome:
+JaivikSuraksha bridges raw agricultural realities and continuous industrial processing by deploying biological ensiling (anaerobic lactic acid preservation), hermetic IoT-monitored storage pods, parasitic waste-heat drying, and a circular waste-stream upcycling pipeline. Measurable targets include:
+- Zero monsoon supply-chain shutdown (maintaining 90%+ biorefinery operational utilization).
+- Reduction in biomass storage dry-matter loss from >35% to under 4.5%.
+- 100% valorisation of lignin cake and digestate into high-value bio-bitumen and certified bio-fertilizers.
+
+================================================================================
+FIELD 2: Proposed solution & key features
+Word Count: 456 words (Max limit: 500 words)
+================================================================================
+Proposed Solution Overview:
+JaivikSuraksha (জৈৱিক সুৰক্ষা) is an industrial-grade, closed-loop bioenergy supply-chain platform engineering end-to-end resilience for the North-Eastern bio-economy. It integrates biological wet preservation, IoT-instrumented decentralized storage, parasitic heat recovery, and high-value secondary waste stream valorisation into a unified operational grid.
+
+Main Modules & Key Features:
+1. Climate-Resilient Monsoon Biomass Preservation Suite:
+- Engineered Anaerobic Ensiling for High-Moisture Feedstock: For wet-harvested paddy straw and green bamboo offcuts (moisture 45–65%), the system utilizes controlled lactic acid bacteria (Lactobacillus plantarum & Pediococcus acidilactici) ensiling inside oxygen-barrier hermetic bunker silos. Rapid anaerobic acidification drops internal pH to 3.8–4.2 within 72 hours, permanently suppressing fungal mold (Aspergillus, Trichoderma), preventing dry-matter loss, and preserving structural glucan/xylan polymers for 12+ months.
+- Parasitic Waste-Heat Drying & Hydrophobic Densification: Harnesses low-grade waste flue gas (120–160°C) and distillation flash steam from the bio-refinery to drive rotary pre-dryers, bringing seasonal straw to <12% moisture. The dry feedstock is pelletized/briquetted with a thin bio-derived hydrophobic botanical coating to resist monsoonal humidity regain.
+- Decentralized Pods with Hermetic IoT Telemetry: Network of raised-plinth, flood-resilient cluster depots equipped with multi-depth wireless IoT sensor spears tracking moisture, temperature differentials, and relative CO2/CH4 headspace concentrations to trigger automated ventilation before spontaneous combustion thresholds are reached.
+
+2. High-Value Biorefinery Secondary Waste Valorisation Engine:
+- Lignin-to-Bio-Bitumen & Green Polymer Upcycling: Thermochemically purifies and micronizes sulfur-free enzymatic hydrolysis lignin cake into a green polymer-modified asphalt extender (replacing 20–30% of fossil bitumen in Northeast road construction) and thermoset bio-phenolic resins.
+- Enriched Fermented Organic Manure (FOM/LFOM) Formulator: Converts anaerobic digestate slurry into certified, pathogen-free solid and liquid bio-fertilizers enriched with regional nitrogen-fixing bio-inoculants (Azotobacter and phosphate solubilizers) for tea gardens and organic farming.
+- Parasitic Biomethane Closed Loop: Anaerobic biomethanation of high-COD process effluents to recover supplemental biogas, routed internally to power biomass drying units and reduce refinery parasitic grid power.
+
+3. Decentralized Supply Chain & Agro-Hub WebGIS:
+Spatio-temporal GIS platform mapping biomass availability across Assam’s 35 districts, optimizing village aggregation radii (15–35 km economic haulage limits), scheduling all-weather road logistics, and tracking real-time depot inventory runways (target >60 days buffer).
+
+4. Bilingual Farmer Aggregator Portal ("Jaivik Seva"):
+Assamese and English progressive web portal connecting smallholders, self-help groups, and FPOs. Features transparent, moisture-calibrated off-take settlements, automated weighbridge integration, and direct bank account payouts via DBT.
+
+5. Industrial SCADA & Compliance Command Console:
+Centralized control room for plant feedstock officers and environmental regulators featuring tamper-evident SHA-256 cryptographic audit logs tracking feedstock chain-of-custody, life-cycle greenhouse gas (GHG) carbon offsets, and zero-liquid-discharge (ZLD) parameters.
+
+What Changes Versus Current Approach:
+Replaces uncoordinated open-air rotting and seasonal refinery shutdowns with a scientifically stabilized, all-weather feedstock reserve and converts expensive waste disposal liabilities into lucrative secondary revenue streams.
+
+================================================================================
+FIELD 3: Describe User Journey, Wireframes, Prototype & Proof of Work
+Word Count: 452 words (Max limit: 500 words)
+================================================================================
+Proposed User Journey Across Key Personas:
+1. Farmer / Aggregator Harvest Off-Take & Sale:
+A farmer or FPO aggregator in Bokakhat (Golaghat District) harvests 15 Bighas of Sali paddy. Through the Jaivik Seva vernacular mobile interface (Assamese), the farmer enters estimated straw yield (18 metric tonnes). The GIS routing algorithm assigns the nearest decentralized aggregation hub (Hub-Bokakhat East, 8.4 km away) and schedules an off-peak collection vehicle.
+
+2. Depot In-Situ Quality Assurance & Rapid Inoculation:
+At the cluster depot, the QA Officer measures incoming bale moisture using an calibrated RF probe (reading: 52% moisture due to unseasonal rain). The system immediately routes the consignment to the Anaerobic Ensiling Silo Pod rather than dry sheds. The bales are shredded, treated with automated micro-dosing of Lactobacillus inoculant, compacted into airtight polymer silos, and hermetically sealed. The farmer receives an instant weighbridge receipt and digital payment confirmation via SMS.
+
+3. Continuous IoT Silo Telemetry & Combustion Guard:
+Over the 4-month peak monsoon period, multi-point IoT sensor spears embedded within the silo stream real-time data to the cloud. When Sensor Pod-04 in Nagaon detects a sudden temperature rise from 38°C to 54°C combined with elevated CO2 levels (early microbial heating signature), the system triggers an emergency alert to the depot supervisor's dashboard, activating targeted inert N2 purging and automated exhaust vents, averting bale combustion.
+
+4. Biorefinery Feedstock Dispatch & Continuous Plant Load:
+The Central Supply Command at Numaligarh monitors depot buffer runways. During July monsoon floods when road transit from remote districts is interrupted, the refinery draws steadily from stabilized ensiled reserves and hydrophobic briquette silos at the 15-day on-site buffer hub, sustaining continuous 92% plant utilization without feedstock interruption.
+
+5. Waste Stream Upcycling & Circular Revenue:
+As enzymatic hydrolysis generates 120 daily tonnes of solid lignin cake and 450 m³ of spent wash, the Waste Valorisation Facility diverts lignin through acid precipitation and mechanical dewatering to produce bio-bitumen extender batches (BATCH-LIGNIN-2026-04). Simultaneously, digestate slurry is separated into certified bio-manure (FOM), packaged for regional tea estates, and logged into an immutable SHA-256 audit ledger.
+
+Wireframes & System UI Architecture:
+Designed with high-contrast, clean industrial control room styling (bg-slate-50, dark slate typography, emerald indicators, and amber alert badges):
+- Executive Bioenergy Dashboard (#dashboard): Real-time KPIs (Daily Feedstock Tonnage, Average Moisture Index, Refinery Storage Buffer Days, Waste Valorisation Rate, Overall Plant Load Factor).
+- Supply Shed GIS & Depot Map (#gis-viewer): Interactive Leaflet WebGIS displaying biomass density heatmaps across 35 Assam districts, depot buffer gauges, and road haulage corridors.
+- Depot QA & Moisture In-Situ Portal (#depot-qa): Testing console for bale moisture, ensilage pH curve, dry-matter retention, and automated off-take weighbridge tickets.
+- Jaivik Seva Citizen & Farmer Portal (#farmer-portal): Bilingual citizen portal (Assamese/English) for residue registration, collection tracking, and fair pricing calculator.
+- Biorefinery Waste Valorisation Suite (#waste-valorisation): Mass-balance tracking for lignin-to-biobitumen refining, FOM organic manure production, and parasitic heat generation.
+- Industrial Admin Console (#admin-console): Fleet dispatch, IoT alert rule builder, environmental ZLD compliance monitors, and SHA-256 audit ledger.
+
+Prototype & Proof of Work References:
+- Live Functional System: https://jaivik-suraksha.pages.dev
+- Open-Source Codebase: https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
+Full technical specifications, ensiling lab kinetics, and pilot metrics are documented in the uploaded Proof of Work PDF.
+
+================================================================================
+FIELD 4: Technology & solution architecture
+Word Count: 449 words (Max limit: 500 words)
+================================================================================
+Full-Stack Software Stack & Cloud Infrastructure:
+- Frontend Presentation Layer: React 18, TypeScript, Tailwind CSS, Vite, Lucide Icons. Designed for ultra-responsive desktop command consoles and offline-capable mobile field devices adhering to GIGW standards.
+- Geospatial & Supply Chain Mapping: Leaflet 1.9.4 GIS engine, GeoJSON vector pipelines, Carto Light / OpenStreetMap basemaps, and OGC-compliant spatial queries mapping Assam biomass clusters within 35 km economic transport buffers.
+- Backend Infrastructure & APIs: Python 3.11 FastAPI asynchronous framework, GeoPandas spatial vector analysis, NetworkX logistics routing, and Celery task workers for distributed IoT telemetry processing.
+- Database & Telemetry Storage: PostgreSQL 16 with PostGIS spatial extension for depot geofencing; TimescaleDB for time-series IoT moisture and temperature logging; Redis 7 for high-throughput stream caching.
+- Edge Deployment & Hosting: Cloudflare Pages and Edge Workers delivering sub-50ms latency across Northeast India with automated SSL, HTTP/2, edge caching, and DDoS defense.
+
+IoT Sensor Telemetry & Hardware Specifications:
+- IoT Smart Probe Spears: 1.8m stainless steel (SS316) probe shafts containing multi-level digital temperature sensors (DS18B20, ±0.1°C accuracy) and capacitive soil/biomass moisture sensors (capacitive frequency domain reflectometry, 5%–80% range).
+- Headspace Gas Safety Sensors: Electrochemical CO, CO2 (NDIR), and semiconductor CH4 gas sensors mounted inside silo plenums to detect microbial fermentation spikes and exothermic fire precursors.
+- Wireless Edge Gateways: Solar-powered low-power wireless nodes utilizing LoRaWAN (865–867 MHz India band) transmitting telemetry up to 12 km to depot base stations, equipped with dual 4G-LTE/NavIC fallback.
+- Automated Weather Station (AWS) Integration: Real-time ingestion of IMD and state meteorological feeds tracking ambient humidity, rainfall rate, and dew-point oscillations to dynamically adjust depot ventilation schedules.
+
+Biomass Preservation & Chemical Process Engineering:
+- Microbial Inoculant Formulation: Lyophilized bacterial consortium comprising Lactobacillus plantarum (ATCC 8014) and Pediococcus acidilactici applied at 10^6 CFU/g fresh biomass with 1.5% molasses carrier to initiate rapid homofermentative lactic conversion (C6H12O6 -> 2 C3H6O3).
+- Parasitic Thermal Drying Loop: Direct-indirect rotary triple-pass drum dryer utilizing refinery stack flue gas (140°C) to reduce paddy straw moisture from 28% to <12% at an energy consumption of <2.8 MJ/kg water evaporated.
+- Lignin Depolymerization & Compounding: High-shear mechanical homogenization of enzymatic hydrolysis lignin (Klason lignin content >82%, ash <2.5%) with heavy vacuum residue asphalt (VG-30) at 160°C to generate high-performance bio-bitumen meeting IS 73:2018 specifications.
+
+Data Flow & Cryptographic Interoperability:
+Data flows cyclically: Farmer harvest booking -> Depot QA moisture/ensilage verification -> IoT sensor telemetry monitoring -> Automated aeration/purging control -> Biorefinery supply dispatch -> Waste stream mass-balance tracking -> Cryptographic SHA-256 audit ledger logging for carbon credits and environmental compliance.
+
+================================================================================
+FIELD 5: Development methodology & intermediate steps
+Word Count: 446 words (Max limit: 500 words)
+================================================================================
+Methodology Overview:
+The execution of JaivikSuraksha follows an Agile, Stage-Gate Systems Engineering framework tailored to heavy industrial bioenergy supply chains and public infrastructure. The project is structured across 6 phased stages over a 9-month execution roadmap:
+
+Six-Stage Execution Lifecycle:
+1. Feedstock Characterization, Stakeholder Co-Design & Agro-Climatic Mapping (Months 1–2):
+- Key Activities: Field surveys across 5 priority bioenergy districts (Golaghat/Numaligarh, Nagaon, Kamrup Rural, Barpeta, Tinsukia). Laboratory biochemical characterization of dominant regional feedstocks (paddy straw, Bambusa tulda residues, mustard stover, tea waste) measuring structural carbohydrates (glucan, xylan), lignin, moisture absorption isotherms, and seasonal harvest curves. Stakeholder workshops with MC² Foundation, Assam Bio-Refinery Pvt. Ltd. (ABRPL), and local farmer producer organizations (FPOs).
+- Key Outputs: Formal System Requirements Specification (SRS); regional feedstock supply-shed GIS atlas; baseline biomass degradation kinetic models under monsoonal humidity.
+
+2. Biological Ensiling & Parasitic Drying Bench Optimization (Months 2–3):
+- Key Activities: Bench and pilot-scale trials of anaerobic lactic ensiling using micro-inoculants on high-moisture straw (50–60% RH). Testing carbohydrate retention, lactic/acetic acid ratios, and fungal mold inhibition across 90-day storage simulations. Prototype design of parasitic flue-gas flash-drying integration.
+- Key Outputs: Standardized ensiling operational manual; validated dry-matter loss <5%; drying energy-balance model.
+
+3. IoT Sensor Spear Engineering & Cloud WebGIS Development (Months 3–4):
+- Key Activities: Fabrication and calibration of LoRaWAN-enabled IoT sensor spears for moisture, temperature, and CO2 monitoring. Development of the full-stack React/TypeScript WebGIS dashboard, decentralized depot management interface, and bilingual farmer PWA.
+- Key Outputs: 10 fully tested IoT sensor probe units; operational WebGIS platform on Cloudflare Pages (jaivik-suraksha.pages.dev); integration with IMD weather APIs.
+
+4. Waste Stream Valorisation Pilot Trials (Months 4–6):
+- Key Activities: Sourcing raw enzymatic hydrolysis lignin cake from 2G bio-refinery pilot facilities. Formulating bio-bitumen binders (15%, 20%, 25% lignin substitution in VG-30 bitumen) and conducting Marshall stability, rutting resistance, and ductility testing per IRC/IS standards. Formulating enriched bio-fertilizers from anaerobic digestate (FOM).
+- Key Outputs: Certified bio-bitumen performance test report; enriched organic bio-fertilizer formulation for tea garden trials.
+
+5. Integrated Depot Field Pilot & Biorefinery Stress Testing (Months 6–8):
+- Key Activities: Commissioning a 500-metric-tonne decentralized pilot biomass depot in Golaghat near Numaligarh. Operating two 250-tonne hermetic ensiling bunker pods and dry IoT-monitored briquette stacks during peak active monsoon rains (June–August). Real-time off-take coordination with refinery boilers.
+- Key Outputs: Zero-loss monsoon preservation demonstration (dry-matter loss verified <4.5%); continuous off-take supply verified under torrential rainfall conditions; complete environmental safety compliance audit.
+
+6. Commercial Scale-Up, Policy Handover & Industrial Rollout (Month 9):
+- Key Activities: Finalizing commercial supply agreements with bio-refinery off-takers and regional FPOs. Handover of the operational SCADA control room and citizen platform to project partners; publication of open-access deployment blueprints.
+- Key Outputs: Production-ready platform deployment; signed off-take framework agreements; complete technical and commercial sustainability dossier.

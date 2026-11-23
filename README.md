@@ -1,68 +1,75 @@
-# SasyaSwasthya (শস্য স্বাস্থ্য)
-### Assam Crop Health Monitoring, Pest & Disease Forecasting and Location-Specific Advisory System
+# JaivikSuraksha (জৈৱিক সুৰক্ষা)
+### Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon & Valorisation of Bio-Refinery Waste Streams
 
-[![Live Demo](https://img.shields.io/badge/Live_Prototype-sasya--swasthya.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://sasya-swasthya.pages.dev/)
-[![Government of Assam](https://img.shields.io/badge/Government_of_Assam-Dept_of_Agriculture_%26_ASSAC-064e3b?style=for-the-badge)](https://diragri.assam.gov.in/)
-[![Challenge ID](https://img.shields.io/badge/NESFIC_2026-Govt_Track_--_NESFIC--D--11-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-d-11)
-[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://sasya-swasthya.pages.dev/)
+[![Live Prototype](https://img.shields.io/badge/Live_Prototype-jaivik--suraksha.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://jaivik-suraksha.pages.dev/)
+[![Industry Track](https://img.shields.io/badge/NESFIC_2026-Industry_Track_--_NESFIC--I--04-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-i-04)
+[![Sponsor](https://img.shields.io/badge/Challenge_Partner-MC%C2%B2_Foundation-064e3b?style=for-the-badge)](https://startup.assam.gov.in/)
+[![Refinery Target](https://img.shields.io/badge/Target_Refinery-Assam_Bio--Refinery_(NRL)-d97706?style=for-the-badge)](https://www.nrl.co.in/)
+[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://jaivik-suraksha.pages.dev/)
 [![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
-> 🌐 **Live Interactive Prototype:** **[https://sasya-swasthya.pages.dev/](https://sasya-swasthya.pages.dev/)**  
-> Explore the Executive Agro-Dashboard, Multi-Spectral Satellite & Drone WebGIS, Agricultural Extension PWA, Farmer Advisory Portal ("Sasya Seva"), and the **Super Admin Command Console (`#admin-console`)**.
+> 🌐 **Live Interactive Control Room:** **[https://jaivik-suraksha.pages.dev/](https://jaivik-suraksha.pages.dev/)**  
+> Explore the Executive Feedstock Dashboard, Supply Shed WebGIS, Decentralized Depot QA Portal, Bilingual Farmer Off-Take Hub ("Jaivik Seva"), and the Biorefinery Waste Stream Valorisation Suite.
 
 ---
 
 ## 🏛️ Executive Summary
 
-**SasyaSwasthya (শস্য স্বাস্থ্য)** is an intelligent space-to-ground agricultural intelligence, epidemiological pest forecasting, and hyper-local agro-advisory platform developed for the **Department of Agriculture** and the **Assam State Space Application Centre (ASSAC)**, Department of Science & Technology, Government of Assam under **NESFIC-D-11 (Government Track)** in partnership with **Assam Agricultural University (AAU), Jorhat**.
+**JaivikSuraksha (জৈৱিক সুৰক্ষা)** is an industrial-grade, closed-loop bioenergy supply-chain platform engineered for **NESFIC-I-04 (Industry Track)** sponsored by the **MC² Foundation** in strategic alignment with **Assam Bio-Refinery Pvt. Ltd. (ABRPL, Numaligarh)**, **Assam Energy Development Agency (AEDA)**, and regional **SATAT Compressed Biogas (CBG)** stakeholders.
 
-Traditional agricultural disease management is **reactive**: infestations of Rice Blast (*Magnaporthe oryzae*), Yellow Stem Borer (*Scirpophaga incertulas*), Sheath Blight (*Rhizoctonia solani*), and Mustard Aphids (*Lipaphis erysimi*) are noticed only after severe foliar damage or dead-hearts appear across whole village clusters—resulting in 25–35% yield losses, panic chemical spraying, and farmer debt.
+### The Problem: Monsoon Starvation & Secondary Waste Liabilities
+Northeast India generates over 12 million metric tonnes of lignocellulosic biomass annually (paddy straw, bamboo residues, mustard stover, tea factory wastes, bagasse). However, commercial bio-refineries face existential operational vulnerabilities:
+1. **Severe Monsoon Degradation:** Extreme rainfall (2,000–4,000 mm/year) and prolonged high relative humidity (>85–95%) cause unsealed stored biomass to absorb ambient moisture (>40%), triggering rapid fungal rotting, mold (*Aspergillus*, *Trichoderma*), and 30%–45% dry-matter loss.
+2. **Spontaneous Combustion Fire Hazards:** Damp biomass bales undergo exothermic microbial self-heating (65°C–80°C), triggering catastrophic depot and warehouse fires.
+3. **Seasonal Refinery Starvation:** Feedstock supply collapses during the 5-month monsoon window, causing biorefinery Plant Load Factor (PLF) to plummet below 50%.
+4. **Unvalorised Secondary Waste Streams:** 2G facilities generate over 35,000 tonnes/year of solid enzymatic hydrolysis lignin cake and massive volumes of anaerobic digestion spent slurry (FOM/LFOM), which become expensive environmental liabilities.
 
-**SasyaSwasthya inverts this paradigm** into continuous, space-to-ground precision assurance:
-1. **Continuous Multi-Spectral Satellite Surveillance:** Ingests ESA Sentinel-2 10m surface reflectance and Landsat 8/9 imagery every 5 days, calculating NDVI (canopy vigor), NDWI (water deficit/flood ponding), and SAVI with automated cloud masking.
-2. **High-Resolution Drone Telemetry:** Fuses ASSAC UAV drone flights at 5cm/pixel resolution over priority agricultural blocks.
-3. **Epidemiological Forecast Engine:** Coupes real-time telemetry from 35+ IMD Automated Weather Stations (AWS) with degree-day and humidity models to forecast Rice Blast and Stem Borer outbreaks **72 to 120 hours in advance**.
-4. **Composite Crop Health Index (CHI 0–100):** Triages every farm plot into 4 actionable risk grades (Grade A Optimal to Grade D Critical Outbreak).
-5. **Field Ground-Truthing PWA:** Equips Agricultural Development Officers (ADO) and Krishi Sakhis with an offline-first mobile app featuring sub-meter RTK GPS plot coordinate geofencing, pheromone trap logging, and an on-device MobileNet AI leaf disease diagnostic camera.
-6. **Farmer "Sasya Seva" Portal & Dispatcher:** Delivers targeted, hyper-local advisories in **Assamese (অসমীয়া)** and English with specific bio-control formulations (Trichoderma, NSKE 5%, Scirpo-lure) via SMS and WhatsApp Cloud API.
-7. **Agro-Command & Admin Console:** Real-time role-based control room for ASSAC analysts, DAOs, and AAU scientists to calibrate thresholds and dispatch geo-fenced emergency bulletins.
+### The JaivikSuraksha Dual-Pillar Solution
+**JaivikSuraksha bridges raw agricultural realities and continuous industrial processing:**
+1. **Biological Anaerobic Ensiling:** Controlled lactic acid inoculation (*Lactobacillus plantarum* & *Pediococcus acidilactici*) in hermetic bunker silos drops pH to <4.0 within 72 hours, permanently suppressing mold and locking 95%+ of structural glucan and xylan polymers for 12+ months without drying.
+2. **Parasitic Flue-Gas Pre-Drying & Densification:** Harnesses 140°C waste boiler flue gas to pre-dry seasonal straw to <12% moisture with a botanical hydrophobic coating to resist monsoonal humidity regain.
+3. **Decentralized LoRaWAN Smart Probe Telemetry:** Network of raised-plinth cluster depots equipped with multi-depth SS316 smart probe spears tracking moisture, core temperature, and CO2/CH4 headspace concentrations with automated N2 fire prevention.
+4. **High-Value Lignin-to-Bio-Bitumen Upcycling:** Thermochemically purifies and micronizes sulfur-free enzymatic hydrolysis lignin into a 20% VG-30 asphalt extender meeting IRC:SP:53 standards for heavy-rainfall Northeast highway pavements.
+5. **Fortified Organic Manure (FOM/LFOM):** Centrifuges anaerobic digestate slurry into certified organic bio-fertilizer enriched with regional *Azotobacter* and phosphate solubilizers for Assam tea estates.
+6. **Parasitic Biomethane Closed Loop:** Anaerobic biomethanation of high-COD process effluents to produce green biomethane, offsetting parasitic drying thermal loads.
+7. **Bilingual Farmer Off-Take Portal ("Jaivik Seva"):** Vernacular Assamese (`অসমীয়া`) and English PWA providing transparent, moisture-calibrated DBT off-take settlements (base ₹2,200/MT).
 
 ---
 
-## 📸 Technological Architecture & Visual Evidence
+## 📸 Architectural Systems & Visual Evidence
 
-### 1. Paradigm Shift: Reactive Crop Loss vs. Proactive Space-to-Ground Early Warning
+### 1. Paradigm Shift: Conventional Monsoonal Failure vs. JaivikSuraksha Assurance
 ![Paradigm Shift](assets/proposal_images/diagram_1_before_after_workflow.jpg)
 
-### 2. Multi-Tier Space-to-Ground Data Fusion Pipeline (Sentinel-2, Drone, Weather, Field)
-![Space to Ground Pipeline](assets/proposal_images/diagram_2_dual_system_reconciliation.jpg)
+### 2. Dual-Pillar Architecture: Feedstock Preservation Chain & Biorefinery Waste Upcycling
+![Dual Pillar Architecture](assets/proposal_images/diagram_2_dual_system_reconciliation.jpg)
 
-### 3. Assam Crop Pathogen & Biotic Stress Surveillance Catalog
-![Pathogen Catalog](assets/proposal_images/diagram_3_cadastral_anomaly_catalog.jpg)
+### 3. Assam Regional Biomass Feedstock & Biorefinery Waste Stream Catalog
+![Feedstock Catalog](assets/proposal_images/diagram_3_cadastral_anomaly_catalog.jpg)
 
-### 4. Composite Crop Health Index (CHI 0–100) Multi-Criteria Evaluation Hierarchy
-![CHI Hierarchy](assets/proposal_images/diagram_4_land_health_score_hierarchy.jpg)
+### 4. Multi-Criteria Biomass Quality & Rot Vulnerability Index (BQVI 0–100) Hierarchy
+![BQVI Hierarchy](assets/proposal_images/diagram_4_land_health_score_hierarchy.jpg)
 
-### 5. Agricultural Extension Officer (ADO) Ground-Truthing & Edge AI PWA
-![Extension PWA](assets/proposal_images/diagram_5_lat_mandal_mobile_app.jpg)
+### 5. Decentralized Aggregation Depot QA & LoRaWAN Smart Probe Telemetry Console
+![Depot QA Console](assets/proposal_images/diagram_5_lat_mandal_mobile_app.jpg)
 
-### 6. Official Bilingual Agro-Advisory Bulletin (Assamese & English)
-![Bilingual Advisory Card](assets/proposal_images/diagram_6_citizen_land_health_certificate.jpg)
+### 6. Bilingual Farmer Off-Take Settlement Certificate (Assamese & English)
+![Bilingual Settlement Certificate](assets/proposal_images/diagram_6_citizen_land_health_certificate.jpg)
 
-### 7. Assam State Data Centre (ASDC) Production Enterprise Cloud Architecture
-![Enterprise System Architecture](assets/proposal_images/diagram_7_enterprise_system_architecture.jpg)
+### 7. Industrial Enterprise SCADA & Cloud Telemetry Architecture
+![Enterprise SCADA Architecture](assets/proposal_images/diagram_7_enterprise_system_architecture.jpg)
 
 ---
 
-## 💻 Tech Stack & Infrastructure
+## 💻 Tech Stack & Cloud Infrastructure
 
 - **Web Frontend:** React 18, TypeScript, Tailwind CSS, Lucide Icons, Vite
-- **WebGIS Engine:** Leaflet 1.9.4, GeoJSON vector renderers, Carto Voyager & Satellite basemaps
-- **Remote Sensing Core:** Python 3.13, PostGIS 3.4, RasterFrames, Sentinel-2 Level-2A BOA bands, Assam BKL Engine ($1\text{ Bigha} = 5\text{ Katha} = 100\text{ Lesa} \approx 1337.8\text{ m}^2$)
-- **Edge AI & Computer Vision:** Quantized MobileNet-V3 running on-device for real-time leaf lesion classification
-- **Cloud & Edge Hosting:** Cloudflare Pages (SPA redirects, edge headers, asset optimization)
-- **State Data Centre Target:** Kubernetes, Kafka event queues, Redis, PostgreSQL 16 + PostGIS, NIC SMS Gateway & e-Pramaan OAuth2
+- **Geospatial WebGIS:** Leaflet 1.9.4, GeoJSON vector pipelines, Carto Voyager & Satellite basemaps
+- **Process & Analytics Core:** Python 3.11, TimescaleDB time-series IoT storage, PostgreSQL 16 + PostGIS, NetworkX logistics routing
+- **Field Telemetry:** LoRaWAN 865–867 MHz transceivers, SS316 multi-depth FDR moisture probes, DS18B20 digital thermal sensors, NDIR CO2 headspace heads
+- **Hosting & Edge Delivery:** Cloudflare Pages & Edge Workers (sub-50ms latency across Northeast India)
+- **Security & Audit:** SHA-256 cryptographic proof-of-custody ledger for carbon offset compliance
 
 ---
 
@@ -75,8 +82,8 @@ Traditional agricultural disease management is **reactive**: infestations of Ric
 ### Installation & Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/RonHatibaruah/sasya-swasthya-assam.git
-cd sasya-swasthya-assam
+git clone https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain.git
+cd nesfic-i04-bioenergy-feedstock-chain
 
 # Install dependencies
 npm install
@@ -91,32 +98,20 @@ npm run build
 npm run preview
 ```
 
-### Regenerate Submission PDFs & Diagrams
+### Regenerate Submission PDFs & Architectural Diagrams
 ```bash
 # Generate high-resolution 16:9 architectural diagrams
 python3 generate_diagrams.py
 
-# Compile official submission PDFs
+# Compile official submission PDFs (Proposal & Proof of Work)
 python3 generate_pdfs.py
-
-# Generate copy-paste plain text versions
-python3 generate_text_versions.py
 ```
 
 ---
 
-## 📦 Submission Documents
+## 📄 Official Submission Deliverables
 
-- [NESFIC_D11_Proposal_Ron_Hatibaruah.pdf](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/NESFIC_D11_Proposal_Ron_Hatibaruah.pdf)
-- [NESFIC_D11_Proof_of_Work_Ron_Hatibaruah.pdf](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/NESFIC_D11_Proof_of_Work_Ron_Hatibaruah.pdf)
-- [proposal_contents.md](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/proposal_contents.md)
-- [proof_of_work_dossier.md](file:///Users/kalyan/Downloads/2026/Nov2026/Crop-Health-NESFIC-D-11/proof_of_work_dossier.md)
-
----
-
-## 👤 Author & Innovator
-
-**Ron Hatibaruah**  
-Lead Solutions Architect & Innovator  
-North East Seva First Innovation Challenge (NESFIC 2026)  
-Assam Innovation & Startup Foundation (AISF), Government of Assam
+- **Official Proposal Submission PDF:** [`NESFIC_I04_Proposal_Ron_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proposal_Ron_Hatibaruah.pdf) (1.8 MB)
+- **Proof of Work & Technical Dossier PDF:** [`NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf) (1.8 MB)
+- **Form-Ready Copy-Paste Text File:** [`proposal_plain_text_form_ready.txt`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/proposal_plain_text_form_ready.txt)
+- **Supporting Technical Material:** [`additional_supporting_material.md`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/additional_supporting_material.md)

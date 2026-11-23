@@ -6,18 +6,20 @@ import {
   Eye, 
   Sliders, 
   Compass, 
-  Send
+  Send,
+  Flame,
+  Factory
 } from 'lucide-react';
-import { CropHealthRecord } from '../types/cropHealth';
+import { FeedstockDepotRecord } from '../types/cropHealth';
 
 interface CadastralMapViewerProps {
-  records: CropHealthRecord[];
-  selectedRecord: CropHealthRecord | null;
-  onSelectRecord: (record: CropHealthRecord) => void;
-  onDispatchScouting: (record: CropHealthRecord) => void;
+  records: FeedstockDepotRecord[];
+  selectedRecord: FeedstockDepotRecord | null;
+  onSelectRecord: (record: FeedstockDepotRecord) => void;
+  onDispatchScouting: (record: FeedstockDepotRecord) => void;
 }
 
-type SpectralLayer = 'NDVI' | 'NDWI' | 'TRUE_COLOR' | 'DRONE_ORTHO' | 'PEST_HEATMAP';
+type FeedstockLayer = 'BQVI' | 'MOISTURE_HEATMAP' | 'CORE_TEMP' | 'TRUE_COLOR';
 
 export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
   records,
@@ -28,7 +30,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const polygonsGroupRef = useRef<L.FeatureGroup | null>(null);
-  const [activeLayer, setActiveLayer] = useState<SpectralLayer>('NDVI');
+  const [activeLayer, setActiveLayer] = useState<FeedstockLayer>('BQVI');
   const [opacity, setOpacity] = useState<number>(0.85);
   const [filterDistrict, setFilterDistrict] = useState<string>('ALL');
 
@@ -38,7 +40,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
 
     if (!mapInstanceRef.current) {
       const map = L.map(mapContainerRef.current, {
-        center: [26.25, 92.65],
+        center: [26.40, 93.10], // Centered between Numaligarh and Nagaon
         zoom: 8,
         zoomControl: false
       });
@@ -47,7 +49,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
 
       // Clean Light Carto Voyager Basemap
       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OpenStreetMap contributors | ASSAC GIS',
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OpenStreetMap contributors | Assam Bioenergy Grid',
         maxZoom: 19
       }).addTo(map);
 
@@ -79,45 +81,42 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
       let fillColor = '#10b981';
       let borderColor = '#059669';
 
-      if (activeLayer === 'NDVI') {
-        if (record.spectral.ndvi >= 0.75) {
+      if (activeLayer === 'BQVI') {
+        if (record.cropHealthIndex >= 85) {
           fillColor = '#15803d';
           borderColor = '#166534';
-        } else if (record.spectral.ndvi >= 0.60) {
-          fillColor = '#84cc16';
-          borderColor = '#65a30d';
-        } else if (record.spectral.ndvi >= 0.50) {
-          fillColor = '#facc15';
-          borderColor = '#ca8a04';
+        } else if (record.cropHealthIndex >= 70) {
+          fillColor = '#2563eb';
+          borderColor = '#1d4ed8';
+        } else if (record.cropHealthIndex >= 50) {
+          fillColor = '#f59e0b';
+          borderColor = '#d97706';
         } else {
           fillColor = '#ef4444';
           borderColor = '#b91c1c';
         }
-      } else if (activeLayer === 'NDWI') {
-        if (record.spectral.ndwi > 0.25) {
+      } else if (activeLayer === 'MOISTURE_HEATMAP') {
+        if (record.spectral.moisturePct > 45) {
           fillColor = '#0284c7';
           borderColor = '#0369a1';
-        } else if (record.spectral.ndwi >= 0.05) {
+        } else if (record.spectral.moisturePct > 20) {
           fillColor = '#06b6d4';
           borderColor = '#0891b2';
         } else {
-          fillColor = '#f97316';
-          borderColor = '#ea580c';
+          fillColor = '#10b981';
+          borderColor = '#047857';
         }
-      } else if (activeLayer === 'PEST_HEATMAP') {
-        if (record.pestRiskScore > 75) {
+      } else if (activeLayer === 'CORE_TEMP') {
+        if (record.spectral.coreTempC > 52) {
           fillColor = '#dc2626';
           borderColor = '#991b1b';
-        } else if (record.pestRiskScore > 40) {
+        } else if (record.spectral.coreTempC > 40) {
           fillColor = '#f59e0b';
           borderColor = '#d97706';
         } else {
           fillColor = '#10b981';
           borderColor = '#047857';
         }
-      } else if (activeLayer === 'DRONE_ORTHO') {
-        fillColor = '#10b981';
-        borderColor = '#38bdf8';
       }
 
       const isSelected = selectedRecord?.plotId === record.plotId;
@@ -131,16 +130,17 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
       });
 
       const popupContent = `
-        <div style="font-family: system-ui, sans-serif; font-size: 12px; color: #0f172a; min-width: 180px;">
-          <div style="font-weight: 700; color: #064e3b; margin-bottom: 2px;">${record.farmerName}</div>
-          <div style="font-size: 11px; color: #64748b; margin-bottom: 6px;">${record.dagNumber} • ${record.block}</div>
-          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 6px; border-radius: 4px; margin-bottom: 6px;">
-            <div><strong>Crop:</strong> ${record.crop}</div>
-            <div><strong>NDVI:</strong> <span style="font-weight: 700; color: #059669;">${record.spectral.ndvi.toFixed(2)}</span></div>
-            <div><strong>Pest Risk:</strong> <span style="font-weight: 700; color: ${record.pestRiskScore > 70 ? '#dc2626' : '#2563eb'};">${record.pestRiskScore}%</span></div>
-            <div><strong>Grade:</strong> <strong>${record.grade}</strong></div>
+        <div style="font-family: system-ui, sans-serif; font-size: 12px; color: #0f172a; min-width: 200px;">
+          <div style="font-weight: 700; color: #064e3b; margin-bottom: 2px;">${record.dagNumber}</div>
+          <div style="font-size: 11px; color: #64748b; margin-bottom: 6px;">${record.pattaNumber} • ${record.district}</div>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px; border-radius: 6px; margin-bottom: 6px;">
+            <div><strong>Feedstock:</strong> ${record.crop}</div>
+            <div><strong>Tonnage:</strong> <span style="font-weight: 700; color: #059669;">${record.tonnage} MT</span></div>
+            <div><strong>Moisture:</strong> <strong>${record.spectral.moisturePct}%</strong> | <strong>Temp:</strong> ${record.spectral.coreTempC}°C</div>
+            <div><strong>Ensilage pH:</strong> <strong>${record.spectral.ensilagePh}</strong></div>
+            <div><strong>BQVI Quality:</strong> <span style="font-weight: 700; color: ${record.cropHealthIndex > 80 ? '#059669' : '#dc2626'};">${record.cropHealthIndex}/100</span></div>
           </div>
-          <div style="font-size: 10px; color: #475569;">Click polygon to view full advisory</div>
+          <div style="font-size: 10px; color: #475569;">Click polygon to inspect telemetry & refinery off-take</div>
         </div>
       `;
 
@@ -152,7 +152,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
     });
 
     if (displayRecords.length > 0 && !selectedRecord) {
-      map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 12 });
+      map.fitBounds(group.getBounds(), { padding: [40, 40], maxZoom: 11 });
     }
   }, [records, activeLayer, opacity, filterDistrict, selectedRecord, onSelectRecord]);
 
@@ -160,7 +160,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
     const map = mapInstanceRef.current;
     if (!map || !selectedRecord) return;
 
-    map.flyTo([selectedRecord.lat, selectedRecord.lng], 14, {
+    map.flyTo([selectedRecord.lat, selectedRecord.lng], 13, {
       duration: 1.2
     });
   }, [selectedRecord]);
@@ -174,57 +174,51 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
         <div>
           <h2 className="text-base font-extrabold text-slate-900 flex items-center gap-2">
             <Layers className="w-5 h-5 text-emerald-600" />
-            Satellite & Drone Multispectral WebGIS Viewer
+            Bioenergy Supply Shed & Cluster Depots WebGIS
           </h2>
           <p className="text-xs text-slate-500">
-            Assam State Space Application Centre (ASSAC) Sentinel-2 & UAV Orthomosaic Telemetry
+            Spatio-temporal mapping of Assam biomass reserves, Numaligarh/SATAT economic haulage radii & silo telemetry
           </p>
         </div>
 
-        {/* Layer Controls */}
-        <div className="flex flex-wrap items-center gap-2 text-xs">
-          <div className="flex rounded-lg border border-slate-200 bg-slate-50 p-0.5 font-semibold">
+        {/* Layer Switcher & Opacity Slider */}
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
             <button
-              onClick={() => setActiveLayer('NDVI')}
-              className={`px-3 py-1 rounded-md transition-all ${
-                activeLayer === 'NDVI' ? 'bg-emerald-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              onClick={() => setActiveLayer('BQVI')}
+              className={`px-3 py-1 rounded-lg transition-all ${
+                activeLayer === 'BQVI'
+                  ? 'bg-emerald-600 text-white shadow-2xs font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
-              title="Normalized Difference Vegetation Index (Canopy Vigor)"
             >
-              NDVI Vigor
+              BQVI Index
             </button>
             <button
-              onClick={() => setActiveLayer('NDWI')}
-              className={`px-3 py-1 rounded-md transition-all ${
-                activeLayer === 'NDWI' ? 'bg-sky-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              onClick={() => setActiveLayer('MOISTURE_HEATMAP')}
+              className={`px-3 py-1 rounded-lg transition-all ${
+                activeLayer === 'MOISTURE_HEATMAP'
+                  ? 'bg-sky-600 text-white shadow-2xs font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
-              title="Normalized Difference Water Index (Moisture & Flood)"
             >
-              NDWI Moisture
+              Moisture %
             </button>
             <button
-              onClick={() => setActiveLayer('PEST_HEATMAP')}
-              className={`px-3 py-1 rounded-md transition-all ${
-                activeLayer === 'PEST_HEATMAP' ? 'bg-rose-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
+              onClick={() => setActiveLayer('CORE_TEMP')}
+              className={`px-3 py-1 rounded-lg transition-all ${
+                activeLayer === 'CORE_TEMP'
+                  ? 'bg-rose-600 text-white shadow-2xs font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
               }`}
-              title="Epidemiological Outbreak Vulnerability Corridors"
             >
-              Pest Outbreak
-            </button>
-            <button
-              onClick={() => setActiveLayer('DRONE_ORTHO')}
-              className={`px-3 py-1 rounded-md transition-all ${
-                activeLayer === 'DRONE_ORTHO' ? 'bg-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:text-slate-900'
-              }`}
-              title="ASSAC Sub-Meter Drone Orthomosaic"
-            >
-              Drone 5cm
+              Core Temp °C
             </button>
           </div>
 
-          {/* Opacity slider */}
-          <div className="flex items-center gap-1.5 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg">
-            <span className="text-slate-500 text-[11px] font-medium">Opacity:</span>
+          <div className="flex items-center gap-2 text-xs text-slate-500">
+            <Sliders className="w-3.5 h-3.5 text-slate-400" />
+            <span>Opacity:</span>
             <input
               type="range"
               min="0.3"
@@ -232,206 +226,110 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
               step="0.05"
               value={opacity}
               onChange={(e) => setOpacity(parseFloat(e.target.value))}
-              className="w-16 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+              className="w-20 accent-emerald-600 cursor-pointer"
             />
           </div>
         </div>
       </div>
 
-      {/* Main Map + Inspector Layout */}
+      {/* Map & Telemetry Split Screen */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Left Map Container (2 Cols) */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 overflow-hidden relative shadow-xs min-h-[500px]">
-          <div ref={mapContainerRef} className="w-full h-[520px] z-0"></div>
+        {/* Leaflet Map Canvas */}
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs h-[520px] relative">
+          <div ref={mapContainerRef} className="w-full h-full z-10" />
 
-          {/* Map Floating Legend in Light Theme */}
-          <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md border border-slate-200 p-3.5 rounded-xl text-xs z-10 text-slate-800 shadow-md max-w-xs">
-            <div className="font-bold text-slate-900 mb-2 flex items-center gap-1.5">
-              <Compass className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Layer: {activeLayer} Legend</span>
+          {/* Map Floating Legend */}
+          <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-sm border border-slate-200 p-3 rounded-xl shadow-md text-xs space-y-1.5 font-medium">
+            <span className="font-bold text-slate-900 block border-b border-slate-100 pb-1">
+              {activeLayer === 'BQVI' ? 'BQVI Quality Tier' : activeLayer === 'MOISTURE_HEATMAP' ? 'Moisture Range' : 'Thermal Alarm'}
+            </span>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-emerald-700"></span>
+              <span>Grade A Optimal (&gt;85)</span>
             </div>
-            
-            {activeLayer === 'NDVI' && (
-              <div className="space-y-1 text-[11px] font-medium">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-emerald-700"></span>
-                  <span>&gt; 0.75: Dense Healthy Canopy</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-lime-500"></span>
-                  <span>0.60 - 0.75: Moderate Vigor</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-amber-400"></span>
-                  <span>0.50 - 0.60: Early Nutrient Stress</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-rose-500"></span>
-                  <span>&lt; 0.50: Severe Chlorosis / Blight</span>
-                </div>
-              </div>
-            )}
-
-            {activeLayer === 'NDWI' && (
-              <div className="space-y-1 text-[11px] font-medium">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-sky-600"></span>
-                  <span>&gt; 0.25: Excessive Water / Flood Risk</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-cyan-500"></span>
-                  <span>0.05 - 0.25: Optimal Moisture Level</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-orange-500"></span>
-                  <span>&lt; 0.05: Moisture Deficit / Drought</span>
-                </div>
-              </div>
-            )}
-
-            {activeLayer === 'PEST_HEATMAP' && (
-              <div className="space-y-1 text-[11px] font-medium">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-rose-600"></span>
-                  <span>High Risk Outbreak Corridor (&gt;75%)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-amber-500"></span>
-                  <span>Moderate Pathogen Exposure (40-75%)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded bg-emerald-500"></span>
-                  <span>Low Risk (&lt;40%)</span>
-                </div>
-              </div>
-            )}
-
-            {activeLayer === 'DRONE_ORTHO' && (
-              <div className="text-[11px] text-slate-600">
-                UAV 5cm/pixel resolution orthomosaics provided by Assam State Space Application Centre.
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-blue-600"></span>
+              <span>Grade B Stable (70–84)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+              <span>Grade C Monsoon Risk (50–69)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-rose-600"></span>
+              <span>Grade D Critical Self-Heating (&lt;50)</span>
+            </div>
           </div>
         </div>
 
-        {/* Right Plot Inspector Panel in White Theme (1 Col) */}
-        {activeRecord && (
-          <div className="bg-white border border-slate-200 rounded-2xl p-5 flex flex-col justify-between shadow-xs space-y-4">
-            <div>
-              <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span className="text-xs font-mono text-emerald-800 font-bold">{activeRecord.plotId}</span>
-                <span className={`px-2 py-0.5 rounded text-[11px] font-bold ${
-                  activeRecord.grade === 'GRADE_A' ? 'bg-emerald-100 text-emerald-800' :
-                  activeRecord.grade === 'GRADE_B' ? 'bg-blue-100 text-blue-800' :
-                  activeRecord.grade === 'GRADE_C' ? 'bg-amber-100 text-amber-800' :
-                  'bg-rose-100 text-rose-800 animate-pulse'
-                }`}>
-                  {activeRecord.grade.replace('_', ' ')}
+        {/* Selected Depot Telemetry Panel */}
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs flex flex-col justify-between space-y-4">
+          <div>
+            <div className="flex justify-between items-start pb-2 border-b border-slate-100">
+              <div>
+                <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                  {activeRecord.plotId}
                 </span>
+                <h3 className="text-sm font-extrabold text-slate-900 mt-1">{activeRecord.dagNumber}</h3>
+                <span className="text-xs text-slate-500">{activeRecord.pattaNumber} • {activeRecord.district}</span>
               </div>
+              <span className={`px-2 py-0.5 rounded text-xs font-bold ${
+                activeRecord.grade === 'GRADE_A' ? 'bg-emerald-100 text-emerald-800' :
+                activeRecord.grade === 'GRADE_B' ? 'bg-blue-100 text-blue-800' :
+                activeRecord.grade === 'GRADE_C' ? 'bg-amber-100 text-amber-800' :
+                'bg-rose-100 text-rose-800'
+              }`}>
+                {activeRecord.grade}
+              </span>
+            </div>
 
-              {/* Farmer and Plot Identity */}
-              <div className="mt-3">
-                <h3 className="text-base font-bold text-slate-900">{activeRecord.farmerName}</h3>
-                <div className="text-xs text-slate-500 mt-0.5">
-                  {activeRecord.dagNumber} • {activeRecord.pattaNumber}
-                </div>
-                <div className="text-xs text-slate-600 mt-1 flex items-center gap-1 font-medium">
-                  <MapPin className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>{activeRecord.village}, {activeRecord.block}, {activeRecord.district}</span>
-                </div>
+            <div className="grid grid-cols-2 gap-3 mt-4">
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <span className="text-[11px] text-slate-500 font-medium">Bale Moisture</span>
+                <div className="text-lg font-bold font-mono text-slate-900 mt-0.5">{activeRecord.spectral.moisturePct}%</div>
+                <span className="text-[10px] text-slate-500">Sensor Probe FDR</span>
               </div>
-
-              {/* Crop & Acreage */}
-              <div className="mt-4 bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-2 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Crop:</span>
-                  <span className="text-slate-900 font-semibold">{activeRecord.crop}</span>
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <span className="text-[11px] text-slate-500 font-medium">Core Temp</span>
+                <div className={`text-lg font-bold font-mono mt-0.5 ${activeRecord.spectral.coreTempC > 50 ? 'text-rose-600' : 'text-slate-900'}`}>
+                  {activeRecord.spectral.coreTempC}°C
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Phenological Stage:</span>
-                  <span className="text-emerald-700 font-bold">{activeRecord.stage}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Area:</span>
-                  <span className="text-slate-900 font-mono font-medium">
-                    {activeRecord.area.bigha}B {activeRecord.area.katha}K {activeRecord.area.lesa}L ({(activeRecord.area.sqMeters / 10000).toFixed(2)} Ha)
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-500">Health Index (CHI):</span>
-                  <span className="font-extrabold text-emerald-800 font-mono">{activeRecord.cropHealthIndex}/100</span>
-                </div>
+                <span className="text-[10px] text-slate-500">Alarm: &gt;52°C</span>
               </div>
-
-              {/* Spectral Telemetry Gauges */}
-              <div className="mt-4">
-                <div className="text-xs font-bold text-slate-900 mb-2 flex items-center gap-1.5">
-                  <Sliders className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Space Telemetry (Sentinel-2 10m Bands)</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                    <span className="text-slate-500 text-[11px] block">NDVI Vigor</span>
-                    <span className="text-base font-extrabold font-mono text-emerald-700 mt-0.5 block">
-                      {activeRecord.spectral.ndvi.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                    <span className="text-slate-500 text-[11px] block">NDWI Moisture</span>
-                    <span className="text-base font-extrabold font-mono text-sky-700 mt-0.5 block">
-                      {activeRecord.spectral.ndwi.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                    <span className="text-slate-500 text-[11px] block">Soil Moisture</span>
-                    <span className="text-sm font-bold font-mono text-slate-900 mt-0.5 block">
-                      {activeRecord.spectral.soilMoisturePct}% Vol
-                    </span>
-                  </div>
-                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                    <span className="text-slate-500 text-[11px] block">Canopy Temp</span>
-                    <span className="text-sm font-bold font-mono text-amber-700 mt-0.5 block">
-                      {activeRecord.spectral.canopyTemp}&deg;C
-                    </span>
-                  </div>
-                </div>
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <span className="text-[11px] text-slate-500 font-medium">Ensilage pH</span>
+                <div className="text-lg font-bold font-mono text-emerald-700 mt-0.5">{activeRecord.spectral.ensilagePh}</div>
+                <span className="text-[10px] text-slate-500">Lactic Target: &lt;4.0</span>
               </div>
-
-              {/* Pest & Disease Diagnostic */}
-              <div className="mt-4 bg-rose-50 border border-rose-200 p-3 rounded-xl text-xs">
-                <div className="flex items-center justify-between text-rose-800 font-bold">
-                  <span>Pest: {activeRecord.primaryPest.split('(')[0]}</span>
-                  <span className="font-mono">{activeRecord.pestProbabilityPct}%</span>
-                </div>
-                <div className="mt-1 text-[11px] text-rose-700">
-                  Trajectory: <strong>{activeRecord.riskTrajectory}</strong> over next 5 days.
-                </div>
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
+                <span className="text-[11px] text-slate-500 font-medium">Inventory</span>
+                <div className="text-lg font-bold font-mono text-slate-900 mt-0.5">{activeRecord.tonnage} MT</div>
+                <span className="text-[10px] text-slate-500">Residue Volume</span>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="space-y-2 pt-2 border-t border-slate-100">
-              <button
-                onClick={() => onSelectRecord(activeRecord)}
-                className="w-full py-2 px-3 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs"
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>Open Full Advisory & Diagnostics</span>
-              </button>
-
-              {activeRecord.grade === 'GRADE_D' && (
-                <button
-                  onClick={() => onDispatchScouting(activeRecord)}
-                  className="w-full py-2 px-3 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Dispatch Extension Officer (ADO)</span>
-                </button>
-              )}
+            <div className="mt-4 p-3 rounded-xl bg-emerald-50/60 border border-emerald-100 text-xs space-y-1">
+              <div className="font-bold text-emerald-950 flex items-center gap-1">
+                <Factory className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Designated Biorefinery Off-Take:</span>
+              </div>
+              <div className="text-emerald-900 font-medium">{activeRecord.allocatedBiorefinery}</div>
+              <div className="text-[11px] text-emerald-700 font-mono pt-1">
+                Transport Distance: 18.4 km (Within Economic Radius)
+              </div>
             </div>
           </div>
-        )}
+
+          <div className="flex gap-2 pt-2 border-t border-slate-100">
+            <button
+              onClick={() => onDispatchScouting(activeRecord)}
+              className="w-full py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-1.5"
+            >
+              <Send className="w-3.5 h-3.5" />
+              <span>Dispatch Depot QA Team</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

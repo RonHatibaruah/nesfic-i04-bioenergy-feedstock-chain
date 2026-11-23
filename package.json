@@ -1,6 +1,6 @@
 {
-  "name": "sasya-swasthya",
-  "description": "Assam Crop Health Monitoring, Pest & Disease Forecasting and Location-Specific Advisory System (NESFIC-D-11)",
+  "name": "nesfic-i04-bioenergy-feedstock-chain",
+  "description": "Securing the North-East Bioenergy Feedstock Chain — Monsoon Biomass Preservation & Biorefinery Waste Valorisation (NESFIC-I-04)",
   "private": true,
   "version": "1.0.0",
   "type": "module",

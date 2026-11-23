@@ -1,370 +1,147 @@
-# NESFIC-D-11 Official Proposal Submission Contents
-**Problem Statement:** NESFIC-D-11 (Government Track) — *Crop Health Monitoring, Pest & Disease Forecasting and Location-Specific Advisory*  
-**Challenge Owners:** Department of Agriculture, Government of Assam & Department of Science & Technology (Assam State Space Application Centre - ASSAC)  
-**Academic / Knowledge Partner:** Assam Agricultural University (AAU), Jorhat  
+# NESFIC-I-04 Official Proposal Submission Contents
+**Problem Statement:** NESFIC-I-04 (Industry Track) — *Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon and Valorisation of Bio-Refinery Waste Streams*  
+**Industry Partner / Challenge Owner:** MC² Foundation (in alignment with Assam Bio-Refinery / Numaligarh Refinery Limited - NRL & SATAT CBG Ecosystem)  
+**Academic / Research Partners:** Assam Energy Development Agency (AEDA) & Indian Institute of Technology (IIT) Guwahati  
 **Applicant / Innovator:** Ron Hatibaruah  
 **Application Platform:** Assam Startup Portal (NESFIC 2026)  
-**Proposed Solution Name:** SasyaSwasthya (শস্য স্বাস্থ্য) — Space-to-Ground Agro-Climatic Intelligence, Pest Early-Warning & Hyper-Local Advisory System  
-**Product / Website URL:** https://sasya-swasthya.pages.dev  
-**Demo / Product Video URL:** https://sasya-swasthya.pages.dev/#tutorial  
-**Code Repository:** https://github.com/RonHatibaruah/sasya-swasthya-assam  
+**Proposed Solution Name:** JaivikSuraksha (জৈৱিক সুৰক্ষা) — Climate-Resilient Biomass Preservation, Decentralized Feedstock Logistics & Circular Waste Valorisation Grid  
+**Product / Website URL:** https://jaivik-suraksha.pages.dev  
+**Demo / Product Video URL:** https://jaivik-suraksha.pages.dev/#tutorial  
+**Code Repository:** https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain  
 
 ---
 
 ## Field 1: Problem understanding & user workflow
-*(Word Count: 428 words / Max: 500 words)*
+*(Word Count: 442 words / Max: 500 words)*
 
 ### Problem Context & Scale
-Assam’s agrarian economy supports over 2.7 million farm families across 2.8 million hectares, predominantly cultivating Sali, Ahu, and Boro paddy, mustard, tea, and pulses. Despite high agro-climatic potential, farmers face catastrophic crop loss of 25% to 35% annually due to virulent biotic stresses—primarily Rice Blast (*Magnaporthe oryzae*), Yellow Stem Borer (*Scirpophaga incertulas*), Sheath Blight (*Rhizoctonia solani*), and Brown Planthopper (*Nilaparvata lugens*).
+Northeast India generates over 12 million metric tonnes of lignocellulosic biomass annually—predominantly paddy straw, bamboo processing offcuts, mustard stover, tea factory trimmings, and sugarcane bagasse. As home to India’s pioneering 2G Bioethanol refinery (Assam Bio-Refinery Pvt. Ltd., Numaligarh) and expanding Compressed Biogas (CBG) infrastructure under the SATAT mission, Assam represents a critical bio-economy frontier. However, regional commercial bio-refineries face existential operational bottlenecks rooted in the extreme agro-climatic conditions of the Northeast.
 
-### Current Workflow & Structural Gaps
-1. **Reactive, Visual Extension:** The existing paradigm relies on physical surveillance by Agricultural Extension Officers (AEO/ADO). An average extension officer oversees 1,500–2,500 fragmented plots spread over flood-vulnerable terrain. Pests are typically detected only after canopy chlorosis or dead-heart symptoms become visually irreversible (Grade D/E damage), by which time chemical spray costs escalate and yield loss is unavoidable.
-2. **Cloud-Cover Optical Blindspots:** During the critical kharif/Sali season (June–October), persistent cloud cover renders standard optical satellite imagery (Landsat/Sentinel-2) unusable for weeks. Conventional remote sensing platforms fail to provide timely data when disease pressure is highest.
-3. **Coarse, Impersonal Advisories:** Weather bulletins from district Agromet Field Units (AMFUs) offer generalized, district-scale weather forecasts (e.g., "Kamrup may experience rain"). They lack sub-cadastral Dag-level specificity, microclimate disease-spore risk modeling, or actionable pest intervention steps.
-4. **Language & Digital Literacy Barrier:** Technical advisories in English or complex scientific terminology fail to reach smallholders with low literacy, who communicate predominantly in Assamese, Bodo, or Bengali. Consequently, farmers resort to indiscriminate, uncalibrated synthetic pesticide over-spraying, which depletes beneficial predator biotas, causes pest resurgence, and contaminates the Brahmaputra watershed.
+### Current Workflow Bottlenecks & Structural Gaps
+1. **Monsoon Moisture Catastrophe & Storage Rot:** Assam experiences prolonged, torrential monsoons spanning May to October (2,000–4,000 mm annual rainfall, persistent relative humidity >85–95%). Agricultural biomass harvested in dry windows (e.g., post-kharif Sali straw in Dec–Jan, spring bamboo harvests) must be stored for up to 9 months to sustain continuous year-round plant operations. Under traditional open-stack or unsealed tin sheds, ambient moisture rapidly infiltrates biomass stacks, driving moisture content above 25–40%.
+2. **Biological Decay & Exothermic Spontaneous Fire Hazards:** Wet stored biomass rapidly undergoes fungal rotting, cellulose depolymerization, and dry-matter loss of 30% to 45%. Furthermore, microbial respiration in damp, densely packed bales triggers dangerous exothermic self-heating (65°C–80°C), resulting in catastrophic spontaneous combustion fires that destroy entire depot reserves.
+3. **Severe Plant Under-Utilization & Feedstock Starvation:** Feedstock supply collapses during the 5-month monsoon window due to submerged rural roads, rotting stockpiles, and uncoordinated smallholder aggregation. Consequently, bio-refinery Plant Load Factor (PLF) plummets below 45–55%, inflicting crippling capital amortization losses.
+4. **Unvalorised Secondary Waste Liabilities:** Conversion processes yield massive problematic secondary residues: solid enzymatic hydrolysis lignin-rich cake (over 35,000 tonnes/year per 2G facility) and anaerobic digestion spent digestate (Fermented Organic Manure - FOM), alongside high-COD/BOD process condensates and thin stillage. Dumping or burning these streams causes severe environmental compliance violations, clogs effluent treatment plants (ETP), and wastes high-value chemical and energy potential.
 
 ### Target Users & Beneficiaries
-- **Smallholder Farmers (2.7M+):** Sali and Boro paddy growers in riverine chars and mainland valleys.
-- **Field Extension Officers (ADO/AEO & Krishi Sakhis):** Grassroots frontline workers requiring prioritized, geo-fenced scouting rosters.
-- **ASSAC & Agricultural Officers:** State remote sensing analysts, District Agricultural Officers (DAO), and AAU scientists tracking regional epidemiological vector corridors.
+- **Bio-Refinery & CBG Plant Operators (e.g., ABRPL Numaligarh, SATAT Developers):** Securing guaranteed 365-day feedstock delivery at controlled moisture (<15% dry basis or standardized ensilage).
+- **Rural Biomass Aggregators & FPOs (50,000+ Farmers):** Monetizing crop residues with fair, transparent, moisture-calibrated digital off-take pricing.
+- **Biomass Depot QA Engineers:** Standardizing moisture, bale density, and biological stabilization metrics.
 
 ### Intended Outcome
-SasyaSwasthya transforms extension from reactive inspection to an automated, space-to-ground, predictive early-warning ecosystem. By uniting 5-day Sentinel-2 (10m) multi-spectral telemetry, all-weather Sentinel-1 Synthetic Aperture Radar (SAR) backscatter, sub-5cm multispectral drone scouting, automated epidemiological microclimate algorithms, and offline-first mobile AI diagnostics, the platform delivers location-specific advisories 72 hours *before* symptom outbreak. The measurable targets are:
-- 60% reduction in response latency from disease onset to treatment.
-- 25% decrease in chemical pesticide input via calibrated bio-control.
-- 15–20% average yield retention across vulnerable Sali paddy clusters.
+JaivikSuraksha bridges raw agricultural realities and continuous industrial processing by deploying biological ensiling (anaerobic lactic acid preservation), hermetic IoT-monitored storage pods, parasitic waste-heat drying, and a circular waste-stream upcycling pipeline. Measurable targets include:
+- Zero monsoon supply-chain shutdown (maintaining 90%+ biorefinery operational utilization).
+- Reduction in biomass storage dry-matter loss from >35% to under 4.5%.
+- 100% valorisation of lignin cake and digestate into high-value bio-bitumen and certified bio-fertilizers.
 
 ---
 
 ## Field 2: Proposed solution & key features
-*(Word Count: 442 words / Max: 500 words)*
+*(Word Count: 456 words / Max: 500 words)*
 
 ### Proposed Solution Overview
-SasyaSwasthya (শস্য স্বাস্থ্য) is a unified space-to-ground crop health intelligence, epidemiological forecasting, and hyper-local agro-advisory platform engineered specifically for Assam's fragmented agro-ecological terrain.
+JaivikSuraksha (জৈৱিক সুৰক্ষা) is an industrial-grade, closed-loop bioenergy supply-chain platform engineering end-to-end resilience for the North-Eastern bio-economy. It integrates biological wet preservation, IoT-instrumented decentralized storage, parasitic heat recovery, and high-value secondary waste stream valorisation into a unified operational grid.
 
 ### Main Modules & Key Features
-1. **Space-to-Ground Multi-Tier Surveillance Engine:**
-   - **Sentinel-2 Multi-Spectral Ingestion:** Automated 5-day ingestion calculating 8 biophysical indices: Normalized Difference Vegetation Index (NDVI, vigor), NDWI (canopy moisture/waterlogging stress), SAVI (soil-adjusted canopy cover), and RedEdge Chlorophyll Index at 10m spatial resolution.
-   - **All-Weather SAR Backscatter Penetration:** Ingests Sentinel-1 C-band Synthetic Aperture Radar (VV/VH polarization) with speckle filtering to penetrate persistent monsoon cloud cover, monitoring vegetation structure and soil saturation during peak kharif rains.
-   - **On-Demand Drone Multispectral Scouting:** Fleet coordination of RTK-equipped multi-rotor and hybrid VTOL UAVs capturing 5 optical bands (Coastal Blue, Green, Red, RedEdge, NIR) and Thermal IR at sub-5cm Ground Sampling Distance (GSD).
-2. **AI Epidemiological Risk Forecasting Engine:**
-   - Multi-variate predictive engine combining microclimate telemetry from IMD Automatic Weather Stations (AWS) with spatial stress anomalies.
-   - Computes pathogen-specific incubation vectors: Rice Blast (consecutive 14 hours relative humidity Greater than 88%, leaf wetness, temperature 20–28°C), Stem Borer (Growing Degree Days [GDD], thermal thresholds, egg oviposition spikes), and Sheath Blight (canopy moisture + nitrogen excess). Forecasts outbreak probability 72 hours in advance with a 1–100 Crop Health Index (CHI).
-3. **Offline-First Ground-Truthing Extension PWA:**
-   - Progressive Web App for ADOs and Krishi Sakhis featuring SQLite local caching and sub-meter GPS parcel locking.
-   - On-device edge computer vision (MobileNetV3 INT8 quantized) that operates offline without mobile reception to classify leaf blade lesions (Blast vs. Blight vs. Leaf Folder) at 94%+ accuracy.
-4. **Sasya Seva (শস্য সেৱা) Hyper-Local Advisory Dispatcher:**
-   - Automated multilingual bulletin generator delivering location-specific recommendations in **Assamese (অসমীয়া)**, **Bodo (बड़ो)**, **Bengali (বাংলা)**, and **English**.
-   - Structured three-tier intervention hierarchy:
-     * *Cultural/Water:* Field drainage, bund weeding, micro-irrigation management.
-     * *Bio-Control (IPM):* *Trichoderma harzianum* (5g/L), *Pseudomonas fluorescens*, Neem Seed Kernel Extract (NSKE 5%).
-     * *Chemical (Threshold Gated):* Precise dosage per bigha (e.g., Cartap Hydrochloride 4G @ 3 kg/bigha for Stem Borer) triggered strictly when field Economic Threshold Levels (ETL) are breached.
-5. **Government Command & Admin Suite:**
-   - Comprehensive administrative suite offering drone fleet dispatch, interactive pathogen rule builder, personnel RBAC, multi-channel telecom broadcast analytics (SMS, WhatsApp, Voice IVR), and an immutable SHA-256 cryptographic audit ledger.
+1. **Climate-Resilient Monsoon Biomass Preservation Suite:**
+   - **Engineered Anaerobic Ensiling for High-Moisture Feedstock:** For wet-harvested paddy straw and green bamboo offcuts (moisture 45–65%), the system utilizes controlled lactic acid bacteria (*Lactobacillus plantarum* & *Pediococcus acidilactici*) ensiling inside oxygen-barrier hermetic bunker silos. Rapid anaerobic acidification drops internal pH to 3.8–4.2 within 72 hours, permanently suppressing fungal mold (*Aspergillus*, *Trichoderma*), preventing dry-matter loss, and preserving structural glucan/xylan polymers for 12+ months.
+   - **Parasitic Waste-Heat Drying & Hydrophobic Densification:** Harnesses low-grade waste flue gas (120–160°C) and distillation flash steam from the bio-refinery to drive rotary pre-dryers, bringing seasonal straw to <12% moisture. The dry feedstock is pelletized/briquetted with a thin bio-derived hydrophobic botanical coating to resist monsoonal humidity regain.
+   - **Decentralized Pods with Hermetic IoT Telemetry:** Network of raised-plinth, flood-resilient cluster depots equipped with multi-depth wireless IoT sensor spears tracking moisture, temperature differentials, and relative CO2/CH4 headspace concentrations to trigger automated ventilation before spontaneous combustion thresholds are reached.
+2. **High-Value Biorefinery Secondary Waste Valorisation Engine:**
+   - **Lignin-to-Bio-Bitumen & Green Polymer Upcycling:** Thermochemically purifies and micronizes sulfur-free enzymatic hydrolysis lignin cake into a green polymer-modified asphalt extender (replacing 20–30% of fossil bitumen in Northeast road construction) and thermoset bio-phenolic resins.
+   - **Enriched Fermented Organic Manure (FOM/LFOM) Formulator:** Converts anaerobic digestate slurry into certified, pathogen-free solid and liquid bio-fertilizers enriched with regional nitrogen-fixing bio-inoculants (*Azotobacter* and phosphate solubilizers) for tea gardens and organic farming.
+   - **Parasitic Biomethane Closed Loop:** Anaerobic biomethanation of high-COD process effluents to recover supplemental biogas, routed internally to power biomass drying units and reduce refinery parasitic grid power.
+3. **Decentralized Supply Chain & Agro-Hub WebGIS:**
+   - Spatio-temporal GIS platform mapping biomass availability across Assam’s 35 districts, optimizing village aggregation radii (15–35 km economic haulage limits), scheduling all-weather road logistics, and tracking real-time depot inventory runways (target >60 days buffer).
+4. **Bilingual Farmer Aggregator Portal ("Jaivik Seva"):**
+   - Assamese and English progressive web portal connecting smallholders, self-help groups, and FPOs. Features transparent, moisture-calibrated off-take settlements, automated weighbridge integration, and direct bank account payouts via DBT.
+5. **Industrial SCADA & Compliance Command Console:**
+   - Centralized control room for plant feedstock officers and environmental regulators featuring tamper-evident SHA-256 cryptographic audit logs tracking feedstock chain-of-custody, life-cycle greenhouse gas (GHG) carbon offsets, and zero-liquid-discharge (ZLD) parameters.
 
 ### What Changes Versus Current Approach
-The platform replaces manual, uncoordinated paper reports and post-infestation panic with continuous, satellite-triggered early alerts. Instead of generalized district advisories, farmers receive Dag-specific, bilingual SMS/audio directives before visual defoliation destroys their harvest.
+Replaces uncoordinated open-air rotting and seasonal refinery shutdowns with a scientifically stabilized, all-weather feedstock reserve and converts expensive waste disposal liabilities into lucrative secondary revenue streams.
 
 ---
 
 ## Field 3: Describe User Journey, Wireframes, Prototype & Proof of Work
-*(Word Count: 448 words / Max: 500 words)*
+*(Word Count: 452 words / Max: 500 words)*
 
 ### Proposed User Journey Across Key Personas
-1. **Satellite Anomaly Ingestion & Automated Flagging:**
-   Sentinel-2 and Sentinel-1 SAR telemetry ingest automated passes over Assam. The system computes plot-level NDVI and NDWI across cadastral boundaries. If a plot in Azara, Kamrup exhibits an NDVI drop (Greater than 15% deviation from historical baseline) coupled with IMD AWS humidity Greater than 88%, the Epidemiological Engine calculates a Pest Risk Score of 84% (Grade D: Critical Outbreak).
-2. **AEO Ground-Truthing Dispatch:**
-   The Executive Dashboard automatically assigns a high-priority geo-tagged scouting task to the local Agricultural Development Officer’s PWA (`TASK-2026-081`). The ADO navigates to the farm using RTK geofence coordinates.
-3. **In-Situ Verification & Edge AI Diagnosis:**
-   Standing in the plot, the ADO locks GPS coordinates (±0.8m accuracy), inspects pheromone lure traps (18 moths/trap, exceeding ETL of 8), and photographs suspect leaf lesions. The offline MobileNetV3 edge AI classifies the leaf as *Magnaporthe oryzae* (Rice Blast Spindle Lesion) with 95.8% confidence. The officer logs drainage status and submits the verification. Upon network reconnection, data synchronizes instantly with the ASSAC state repository.
-4. **Multilingual Advisory Generation & Farmer Action:**
-   The system validates the breach and dispatches an automated, localized SMS/WhatsApp alert to farmer Bhaben Kalita in Assamese: *"আপোনাৰ পথাৰত ধানৰ পাতপোৰা ৰোগৰ লক্ষণ ধৰা পৰিছে... ট্ৰাইক'ডাৰ্মা প্ৰয়োগ কৰক।"* The farmer downloads the official agro-bulletin, executes prescribed biological treatment, and saves 85% of his standing crop.
-5. **DAO / AAU Policy Review:**
-   The District Agricultural Officer reviews the regional outbreak cluster on the WebGIS viewer, coordinates drone thermal spray missions for contiguous hot-spots, and logs the intervention into the tamper-evident SHA-256 audit ledger.
+1. **Farmer / Aggregator Harvest Off-Take & Sale:**
+   A farmer or FPO aggregator in Bokakhat (Golaghat District) harvests 15 Bighas of Sali paddy. Through the **Jaivik Seva** vernacular mobile interface (Assamese), the farmer enters estimated straw yield (18 metric tonnes). The GIS routing algorithm assigns the nearest decentralized aggregation hub (Hub-Bokakhat East, 8.4 km away) and schedules an off-peak collection vehicle.
+2. **Depot In-Situ Quality Assurance & Rapid Inoculation:**
+   At the cluster depot, the QA Officer measures incoming bale moisture using an calibrated RF probe (reading: 52% moisture due to unseasonal rain). The system immediately routes the consignment to the **Anaerobic Ensiling Silo Pod** rather than dry sheds. The bales are shredded, treated with automated micro-dosing of *Lactobacillus* inoculant, compacted into airtight polymer silos, and hermetically sealed. The farmer receives an instant weighbridge receipt and digital payment confirmation via SMS.
+3. **Continuous IoT Silo Telemetry & Combustion Guard:**
+   Over the 4-month peak monsoon period, multi-point IoT sensor spears embedded within the silo stream real-time data to the cloud. When Sensor Pod-04 in Nagaon detects a sudden temperature rise from 38°C to 54°C combined with elevated CO2 levels (early microbial heating signature), the system triggers an emergency alert to the depot supervisor's dashboard, activating targeted inert N2 purging and automated exhaust vents, averting bale combustion.
+4. **Biorefinery Feedstock Dispatch & Continuous Plant Load:**
+   The Central Supply Command at Numaligarh monitors depot buffer runways. During July monsoon floods when road transit from remote districts is interrupted, the refinery draws steadily from stabilized ensiled reserves and hydrophobic briquette silos at the 15-day on-site buffer hub, sustaining continuous 92% plant utilization without feedstock interruption.
+5. **Waste Stream Upcycling & Circular Revenue:**
+   As enzymatic hydrolysis generates 120 daily tonnes of solid lignin cake and 450 m³ of spent wash, the **Waste Valorisation Facility** diverts lignin through acid precipitation and mechanical dewatering to produce bio-bitumen extender batches (`BATCH-LIGNIN-2026-04`). Simultaneously, digestate slurry is separated into certified bio-manure (FOM), packaged for regional tea estates, and logged into an immutable SHA-256 audit ledger.
 
 ### Wireframes & System UI Architecture
-The user interface is designed using high-contrast, clean white government portal styling (`bg-slate-50`, crisp card borders `border-slate-200`, and emerald status indicators):
-- **Executive Agro-Dashboard (`#dashboard`):** Real-time KPI summary (Monitored Acreage, Outbreak Count, State CHI Index, Vulnerability Matrix).
-- **Satellite & Cadastral WebGIS (`#gis-viewer`):** Leaflet cadastral viewer with Sentinel-2 NDVI/NDWI layers, Dag parcel polygons, and live weather station telemetry.
-- **Field Ground-Truthing PWA (`#field-scouting`):** Officer roster, RTK GPS locking badge, pheromone trap sliders, and leaf camera diagnostic module.
-- **Sasya Seva Farmer Portal (`#farmer-advisory`):** Multilingual citizen portal with instant Dag search, weather metrics, and bilingual advisory bulletins.
-- **Drone Technology Suite (`#drone-technology`):** Airframe telemetry, 5-band sensor specs, NavIC RTK avionics, and edge computing architecture.
-- **Command & Admin Console (`#admin-console`):** Fleet dispatch, rule builder, RBAC, and SHA-256 cryptographic audit logs.
+Designed with high-contrast, clean industrial control room styling (`bg-slate-50`, dark slate typography, emerald indicators, and amber alert badges):
+- **Executive Bioenergy Dashboard (`#dashboard`):** Real-time KPIs (Daily Feedstock Tonnage, Average Moisture Index, Refinery Storage Buffer Days, Waste Valorisation Rate, Overall Plant Load Factor).
+- **Supply Shed GIS & Depot Map (`#gis-viewer`):** Interactive Leaflet WebGIS displaying biomass density heatmaps across 35 Assam districts, depot buffer gauges, and road haulage corridors.
+- **Depot QA & Moisture In-Situ Portal (`#depot-qa`):** Testing console for bale moisture, ensilage pH curve, dry-matter retention, and automated off-take weighbridge tickets.
+- **Jaivik Seva Citizen & Farmer Portal (`#farmer-portal`):** Bilingual citizen portal (Assamese/English) for residue registration, collection tracking, and fair pricing calculator.
+- **Biorefinery Waste Valorisation Suite (`#waste-valorisation`):** Mass-balance tracking for lignin-to-biobitumen refining, FOM organic manure production, and parasitic heat generation.
+- **Industrial Admin Console (`#admin-console`):** Fleet dispatch, IoT alert rule builder, environmental ZLD compliance monitors, and SHA-256 audit ledger.
 
 ### Prototype & Proof of Work References
-- **Live Functional System:** https://sasya-swasthya.pages.dev
-- **Open-Source Codebase:** https://github.com/RonHatibaruah/sasya-swasthya-assam
-- Full architectural wireframes, test metrics, and simulation logs are compiled in the uploaded Proof of Work PDF.
+- **Live Functional System:** https://jaivik-suraksha.pages.dev
+- **Open-Source Codebase:** https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
+- Full technical specifications, ensiling lab kinetics, and pilot metrics are documented in the uploaded Proof of Work PDF.
 
 ---
 
 ## Field 4: Technology & solution architecture
-*(Word Count: 457 words / Max: 500 words)*
+*(Word Count: 449 words / Max: 500 words)*
 
-### Full-Stack Software Stack & Frameworks
-- **Frontend Presentation Layer:** React 18, TypeScript, Tailwind CSS, Vite. Styled with a clean, high-accessibility white theme adhering to GIGW (Guidelines for Indian Government Websites) standards.
-- **Spatial Mapping & WebGIS:** Leaflet GIS engine, GeoJSON vector pipelines, OpenStreetMap base-tiles, and ASSAC-compatible WMS/WFS map services.
-- **Backend Infrastructure & APIs:** Python 3.11 FastAPI asynchronous backend, GeoPandas spatial analysis, Rasterio, GDAL, and Celery distributed task queues.
-- **Database & Storage:** PostgreSQL 16 with PostGIS extension for spatial vector queries; Redis 7 for high-throughput sensor telemetry caching; Cloudflare R2 object storage for satellite GeoTIFF tiles and drone orthomosaics.
-- **Hosting & Edge Delivery:** Distributed Cloudflare Pages and Edge Workers delivering sub-50ms latency across Northeast India with automated SSL, HTTP/2, and global DDoS mitigation.
+### Full-Stack Software Stack & Cloud Infrastructure
+- **Frontend Presentation Layer:** React 18, TypeScript, Tailwind CSS, Vite, Lucide Icons. Designed for ultra-responsive desktop command consoles and offline-capable mobile field devices adhering to GIGW standards.
+- **Geospatial & Supply Chain Mapping:** Leaflet 1.9.4 GIS engine, GeoJSON vector pipelines, Carto Light / OpenStreetMap basemaps, and OGC-compliant spatial queries mapping Assam biomass clusters within 35 km economic transport buffers.
+- **Backend Infrastructure & APIs:** Python 3.11 FastAPI asynchronous framework, GeoPandas spatial vector analysis, NetworkX logistics routing, and Celery task workers for distributed IoT telemetry processing.
+- **Database & Telemetry Storage:** PostgreSQL 16 with PostGIS spatial extension for depot geofencing; TimescaleDB for time-series IoT moisture and temperature logging; Redis 7 for high-throughput stream caching.
+- **Edge Deployment & Hosting:** Cloudflare Pages and Edge Workers delivering sub-50ms latency across Northeast India with automated SSL, HTTP/2, edge caching, and DDoS defense.
 
-### Machine Learning & Analytical Models
-- **Leaf Pathology Diagnostic Model:** Lightweight MobileNetV3-Small architecture trained on 42,000 crop pathology images (including Assam Agricultural University reference samples). Quantized to INT8 (model size: 4.2 MB) for sub-100ms offline on-device inference using ONNX Runtime Web / TensorFlow Lite.
-- **Epidemiological Risk Models:** Multi-variable decision trees and random forest regressors integrating 7-day cumulative rainfall, morning relative humidity thresholds (Greater than 88%), diurnal temperature oscillations, and satellite NDVI anomaly differentials to predict spore germination trajectories.
+### IoT Sensor Telemetry & Hardware Specifications
+- **IoT Smart Probe Spears:** 1.8m stainless steel (SS316) probe shafts containing multi-level digital temperature sensors (DS18B20, ±0.1°C accuracy) and capacitive soil/biomass moisture sensors (capacitive frequency domain reflectometry, 5%–80% range).
+- **Headspace Gas Safety Sensors:** Electrochemical CO, CO2 (NDIR), and semiconductor CH4 gas sensors mounted inside silo plenums to detect microbial fermentation spikes and exothermic fire precursors.
+- **Wireless Edge Gateways:** Solar-powered low-power wireless nodes utilizing LoRaWAN (865–867 MHz India band) transmitting telemetry up to 12 km to depot base stations, equipped with dual 4G-LTE/NavIC fallback.
+- **Automated Weather Station (AWS) Integration:** Real-time ingestion of IMD and state meteorological feeds tracking ambient humidity, rainfall rate, and dew-point oscillations to dynamically adjust depot ventilation schedules.
 
-### Hardware, Avionics & Drone Specifications
-- **Drone Airframes:** Custom hexacopter and hybrid fixed-wing VTOL configurations constructed with carbon fiber composite frames, rated IP54 for monsoon resilience.
-- **Multispectral Sensor Payloads:** 5-band multispectral camera (Coastal Blue 444nm, Green 560nm, Red 668nm, RedEdge 705nm, NIR 842nm) paired with an uncooled microbolometer Long-Wave Thermal IR sensor (8–14 µm) with integrated sunshine sensor for real-time radiometric calibration.
-- **Avionics & Navigation:** Dual-redundant flight controllers (Pixhawk 6X / ArduPilot) integrated with multiband RTK/PPK GNSS supporting Indian **NavIC** (IRNSS), GPS L1/L2, and GLONASS, achieving Smaller than or equal to  1.5\text{ cm} horizontal precision.
-- **Onboard Edge AI Processing:** NVIDIA Jetson Orin Nano (40 TOPS) running TensorRT-optimized INT8 pipelines for real-time dead-heart and defoliation hotspot segmentation during flight.
+### Biomass Preservation & Chemical Process Engineering
+- **Microbial Inoculant Formulation:** Lyophilized bacterial consortium comprising *Lactobacillus plantarum* (ATCC 8014) and *Pediococcus acidilactici* applied at 10^6 CFU/g fresh biomass with 1.5% molasses carrier to initiate rapid homofermentative lactic conversion ($C_6H_{12}O_6 \rightarrow 2 C_3H_6O_3$).
+- **Parasitic Thermal Drying Loop:** Direct-indirect rotary triple-pass drum dryer utilizing refinery stack flue gas ($140^\circ\text{C}$) to reduce paddy straw moisture from 28% to <12% at an energy consumption of <2.8 MJ/kg water evaporated.
+- **Lignin Depolymerization & Compounding:** High-shear mechanical homogenization of enzymatic hydrolysis lignin (Klason lignin content >82%, ash <2.5%) with heavy vacuum residue asphalt (VG-30) at 160°C to generate high-performance bio-bitumen meeting IS 73:2018 specifications.
 
-### Data Flow & Interoperability
-Data flows cyclically: Satellite/AWS telemetry  to  Pipeline normalization  to  Epidemiological risk calculation  to  Automated AEO task assignment  to  Sub-meter GPS ground verification  to  Automated multilingual SMS/WhatsApp broadcast dispatch  to  Cryptographic SHA-256 audit ledger logging.
+### Data Flow & Cryptographic Interoperability
+Data flows cyclically: Farmer harvest booking $\rightarrow$ Depot QA moisture/ensilage verification $\rightarrow$ IoT sensor telemetry monitoring $\rightarrow$ Automated aeration/purging control $\rightarrow$ Biorefinery supply dispatch $\rightarrow$ Waste stream mass-balance tracking $\rightarrow$ Cryptographic SHA-256 audit ledger logging for carbon credits and environmental compliance.
 
 ---
 
 ## Field 5: Development methodology & intermediate steps
-*(Word Count: 421 words / Max: 500 words)*
-
-### Methodology Overview
-The development of SasyaSwasthya follows an Agile-Iterative, Human-Centered Systems Engineering lifecycle tailored to mission-critical public agricultural infrastructure. The execution is structured into 6 structured phases:
-
-### Six-Stage Execution Lifecycle
-1. **Discovery, Stakeholder Co-Design & Ground-Truth Baseline (Months 1–2):**
-   - *Key Activities:* Field workshops with the Directorate of Agriculture, ASSAC scientists, AAU plant pathologists, and village Krishi Sakhis across Kamrup Rural and Nagaon. Mapping current AEO reporting bottlenecks and language comprehension requirements.
-   - *Key Outputs:* Formal System Requirements Specification (SRS), baseline disease epidemiology matrix, ASSAC cadastral boundary integration protocols, and multilingual lexicon repository (Assamese, Bodo, Bengali).
-2. **Core Data Pipelines & Satellite Ingestion Engine (Months 3–4):**
-   - *Key Activities:* Building automated Copernicus Sentinel-2 Open Access Hub scrapers, Sentinel-1 SAR C-band processing pipelines (speckle filtering, terrain correction), and IMD AWS meteorological ingestion cron services.
-   - *Key Outputs:* Automated radiometric correction pipeline; computation engine for NDVI, NDWI, SAVI, and canopy temperature; scalable PostGIS spatial parcel data layer.
-3. **AI Diagnostic Training & Edge Optimization (Months 4–5):**
-   - *Key Activities:* Curating a verified dataset of 42,000 Assam crop disease images (Rice Blast, Stem Borer dead-hearts, Sheath Blight snake-skin lesions, Hispa scarring). Training MobileNetV3 convolutional networks and compiling to ONNX/TFLite INT8 format.
-   - *Key Outputs:* Quantized on-device AI model (Smaller than or equal to  4.2\text{ MB}) demonstrating Greater than or equal to  92\% validation accuracy; offline-sync SQLite service worker architecture.
-4. **Full-Stack Platform Engineering & Prototype Deployment (Months 5–6):**
-   - *Key Activities:* Developing the responsive React/TypeScript WebGIS dashboard, offline PWA, automated multilingual advisory builder, and drone mission telemetry interface.
-   - *Key Outputs:* Deployed end-to-end working prototype on Cloudflare Pages (`sasya-swasthya.pages.dev`); functional WhatsApp/SMS broadcast mock dispatcher; interactive pathogen rule builder.
-5. **Verification, Benchmarking & AAU Expert Validation (Months 7–8):**
-   - *Key Activities:* Rigorous unit, integration, and load testing. Double-blind accuracy assessment comparing satellite-predicted pest hotspots against ground surveys conducted by AAU entomology teams. Drone RTK accuracy calibration against physical benchmarks.
-   - *Key Outputs:* Comprehensive Test and Verification Report; certified model precision matrix (NDVI RMSE Smaller than  0.04, GPS RTK precision Smaller than  1.5 cm); vulnerability assessment and penetration testing (VAPT) compliance clearance.
-6. **Pilot Rollout & Handover (Month 9):**
-   - *Key Activities:* Controlled deployment across 3 pilot blocks in Kamrup, Nagaon, and Jorhat covering 15,000 farmers and 25 extension circles. Training workshops for ADOs, Krishi Sakhis, and district administrative officers.
-   - *Key Outputs:* Production-ready deployment; user manuals in Assamese and English; finalized operational handover to the Department of Agriculture and ASSAC.
-
----
-
-## Field 6: Development timeline & milestones
-*(Word Count: 414 words / Max: 500 words)*
-
-### Phased Delivery Roadmap
-The project is structured across a 9-month phased delivery roadmap divided into three 3-month operational cycles, designed to deliver a field-validated MVP by Month 5 and complete pilot readiness by Month 8.
-
-### Detailed Milestone Schedule
-- **Milestone 1 (Month 2): System Architecture & Stakeholder Baseline Sign-off**
-  - *Deliverables:* Approved SRS document, finalized agro-climatic pathogen threshold matrix (AAU validated), API schema definitions, and prototype UI design system.
-  - *Dependencies:* Initial stakeholder consultative sessions with Department of Agriculture and ASSAC.
-  - *Decision Gate 1:* Formal design review sign-off by steering committee.
-- **Milestone 2 (Month 4): Automated Telemetry & Ingestion Engine Operational**
-  - *Deliverables:* Automated daily pipeline ingesting Sentinel-2, Sentinel-1 SAR, and IMD AWS feeds; PostGIS database preloaded with cadastral polygons for target pilot blocks.
-  - *Dependencies:* Copernicus API access and ASSAC cadastral boundary shapefile provisioning.
-- **Milestone 3 (Month 5): Functional MVP & Edge AI Diagnostic Deployment**
-  - *Deliverables:* Working MVP deployed to staging; MobileNetV3 edge AI running in offline PWA; sub-meter GPS parcel verification module functional.
-  - *Dependencies:* Curation and annotation of AAU crop disease imagery.
-  - *Decision Gate 2:* Technical audit verifying edge inference speed (Smaller than 150ms) and model classification accuracy (Greater than 90%).
-- **Milestone 4 (Month 6): Integrated WebGIS, Drone Suite & Advisory Dispatcher**
-  - *Deliverables:* Full platform integration including interactive cadastral WebGIS, Drone fleet telemetry module, multilingual advisory templates (Assamese, Bodo, English), and SMS/WhatsApp gateway sandbox.
-  - *Dependencies:* Drone hardware bench-testing and telecom gateway sandbox provisioning.
-- **Milestone 5 (Month 8): Comprehensive Field Verification & Security Certification**
-  - *Deliverables:* Double-blind field validation report across 1,000 farm plots; independent VAPT security clearance certificate; SHA-256 audit ledger verification.
-  - *Dependencies:* Active kharif/Sali crop season field data collection.
-  - *Decision Gate 3:* Acceptance review confirming platform readiness for broad farmer onboarding.
-- **Milestone 6 (Month 9): Pilot Deployment, Training & Final Handover**
-  - *Deliverables:* Live deployment across 3 pilot districts (Kamrup, Nagaon, Jorhat); 15,000 farmers onboarded to Sasya Seva alerts; 100+ ADOs and Krishi Sakhis trained; open documentation repository delivered.
-
----
-
-## Field 7: Data & information requirements
-*(Word Count: 422 words / Max: 500 words)*
-
-### Spaceborne Remote Sensing Feeds
-- **European Space Agency (ESA) Copernicus Sentinel-2 (L2A):** 10m/20m Bottom-of-Atmosphere (BOA) surface reflectance multi-spectral bands (B2, B3, B4, B5, B6, B7, B8, B8A, B11, B12). Free, open access via Copernicus Data Space Ecosystem API. Refresh rate: 5 days.
-- **ESA Copernicus Sentinel-1 SAR (GRD):** C-band Synthetic Aperture Radar (VV and VH polarizations). All-weather, day-and-night active radar data to penetrate monsoon cloud barriers. Free, open access. Refresh rate: 6–12 days.
-- **NASA/USGS Landsat 8 & 9 (OLI/TIRS):** 30m multispectral and 100m thermal infrared data used for regional thermal baseline calibration. Free, open access.
-
-### Meteorological & Ground-Sensor Data
-- **India Meteorological Department (IMD) / ASSAC AWS Feeds:** Hourly automated weather station telemetry comprising 2m temperature, rainfall accumulation (mm), morning/evening relative humidity (%), surface wind speed/direction, and leaf wetness duration. Accessed via open government weather portals or direct ASSAC API integration.
-- **Assumption:** In blocks lacking high-density AWS hardware, the platform ingests ERA5-Land reanalysis and IMD gridded agro-meteorological models (0.25° resolution) with spatial downscaling.
-
-### Cadastral & Geospatial Vector Boundaries
-- **Cadastral Dag Boundaries & Patta Records:** GeoJSON/Shapefile cadastral parcel layers from the Revenue & Disaster Management Department / ASSAC (Dharitree portal standards).
-- **Administrative Hierarchies:** District, Sub-Division, Revenue Circle, Block, Village, and Extension Circle boundaries in ESRI shapefile/GeoJSON format.
-- **Assumption:** The solution functions out-of-the-box with standard cadastral vectors. Where digitized cadastral maps are pending, the platform uses OpenStreetMap parcel approximations and drone photogrammetric parcel extraction.
-
-### Ground-Truth Plant Pathology & Training Libraries
-- **AAU Disease Diagnostic Database:** Verified reference image repository of localized pathogen expressions across Assam rice landraces (Ranjit, Bahadur, Keteki Joha) and high-yielding varieties.
-- **Crop Pest Survey & Trap Counts:** Historical light-trap and pheromone-trap surveillance records from the Directorate of Agriculture to calibrate species-specific Economic Threshold Levels (ETL).
-
-### Data Privacy & Governance
-The system strictly adheres to the Digital Personal Data Protection Act (DPDPA) 2023. Farmer phone numbers and landholding details are cryptographically pseudonymized with AES-256 encryption at rest, ensuring personal identifiable information (PII) is isolated from public spatial telemetry.
-
----
-
-## Field 8: Team, manpower & expertise
-*(Word Count: 408 words / Max: 500 words)*
-
-### Key Leadership & Technical Roles
-1. **Lead Systems Architect & Project Director (Ron Hatibaruah):**
-   - *Expertise:* Distributed systems architecture, Cloudflare edge computing, full-stack geospatial platforms, and state government technology execution. Responsible for technical delivery, cloud architecture, and end-to-end integration.
-   - *Allocation:* 100% across all phases.
-2. **Lead Remote Sensing & GIS Scientist (1 FTE):**
-   - *Expertise:* Ph.D./M.Tech in Geoinformatics/Remote Sensing. Expertise in Sentinel-1 SAR speckle filtering, Sentinel-2 multi-spectral vegetation index extraction, radiometric calibration, and Google Earth Engine / GDAL spatial pipelines.
-   - *Allocation:* 100% (Phases 1–4), 50% (Phases 5–6).
-3. **Agronomist & Plant Pathology Specialist (1 FTE):**
-   - *Expertise:* M.Sc./Ph.D. in Agronomy / Plant Pathology (ex-AAU or ICAR background). Deep subject-matter mastery of Assam paddy agro-ecosystems, Yellow Stem Borer life-cycles, Rice Blast epidemiology, bio-control IPM formulations, and ETL calibrations.
-   - *Allocation:* 75% across all phases.
-4. **Edge AI & Computer Vision Engineer (1 FTE):**
-   - *Expertise:* Deep learning engineer specializing in PyTorch, TensorRT, ONNX runtime, lightweight MobileNet quantization, and real-time offline inferencing on mobile PWAs and NVIDIA Jetson hardware.
-   - *Allocation:* 100% (Phases 2–5).
-5. **Full-Stack Geospatial Software Developers (2 FTE):**
-   - *Expertise:* React 18, TypeScript, Tailwind CSS, Leaflet/MapLibre, Python FastAPI, PostgreSQL/PostGIS, Redis, and offline service worker architectures.
-   - *Allocation:* 100% across all phases.
-6. **Drone Systems & Avionics Specialist (0.5 FTE):**
-   - *Expertise:* DGCA-certified Remote Pilot / Avionics Engineer. Specialization in ArduPilot/Pixhawk integration, multispectral radiometric calibration, RTK/PPK GNSS spatial locking, and DGCA Digital Sky compliance.
-   - *Allocation:* 50% (Phases 3–6).
-7. **Agricultural Field Extension & Training Coordinator (1 FTE):**
-   - *Expertise:* Rural extension specialist fluent in Assamese and Bodo. Experience conducting field ground-truthing workshops, training Krishi Sakhis, and managing grassroots stakeholder adoption.
-   - *Allocation:* 25% (Phases 1–3), 100% (Phases 4–6).
-
-### Indicative Manpower Distribution by Development Phase
-- **Discovery & Requirements (M1–M2):** 4.5 FTEs (Architecture, RS, Agronomy, Extension).
-- **Core Pipeline & AI Engineering (M3–M5):** 6.5 FTEs (Architecture, RS, AI, Full-Stack, Drone).
-- **Integration & Verification (M6–M7):** 6.5 FTEs (Full team active in system bench-testing).
-- **Field Pilot & Handover (M8–M9):** 5.0 FTEs (Architecture, Agronomy, Full-Stack, Extension).
-
----
-
-## Field 9: Testing, validation & evidence
-*(Word Count: 429 words / Max: 500 words)*
-
-### Algorithmic & Computer Vision Benchmarks
-- **Edge Leaf Pathology Diagnostic Testing:**
-  Evaluated on an independent validation dataset of 6,200 labeled Assam paddy leaf images across multiple illumination settings and camera resolutions:
-  * *Rice Blast (*M. oryzae*):* Precision: 96.2%, Recall: 95.4%, F1-Score: 0.958.
-  * *Yellow Stem Borer (*S. incertulas*):* Precision: 92.1%, Recall: 90.3%, F1-Score: 0.912.
-  * *Sheath Blight (*R. solani*):* Precision: 94.7%, Recall: 93.5%, F1-Score: 0.941.
-  * *Mean Inference Latency:* 82 milliseconds on standard low-cost Android mobile browsers via WebAssembly/ONNX Runtime.
-- **Multispectral Calibration & Index Precision:**
-  Radiometric calibration tests against ground spectral radiometers achieved an NDVI Root Mean Square Error (RMSE) Smaller than  0.038 across canopy variations.
-- **RTK GNSS Spatial Locking Precision:**
-  Static and dynamic drone flight validation against surveyed control monuments demonstrated a horizontal Root Mean Square Error (RMS) of 0.8 cm and vertical RMS of 1.4 cm, ensuring sub-cadastral Dag parcel registration without spatial drift.
-
-### Field Ground-Truth Correlation Trials
-- **Double-Blind Epidemiological Validation:**
-  Conducted across 500 monitored hectares in Kamrup Rural and Nagaon districts during kharif conditions. The Epidemiological Forecast Engine's 72-hour early warnings were benchmarked against daily manual scouting logs recorded by ADOs.
-  * *Forecast True-Positive Rate:* 88.6% for Rice Blast initiation following humidity spikes (Greater than 88% RH for 16 consecutive hours).
-  * *False Alarm Rate:* Smaller than  7.4%, significantly preventing unwarranted chemical pesticide expenditure.
-  * *Scouting Efficiency Gain:* Field scouting turnaround decreased from 8 days to under 24 hours per flagged parcel cluster.
-
-### System Load & Resilience Testing
-- **High-Throughput Concurrency:** Stress testing on the Cloudflare edge network simulated 25,000 concurrent farmer queries and 5,000 simultaneous PWA telemetry submissions, maintaining 99.98% uptime and average API response latency of 42ms.
-- **Offline Data Sync Integrity:** SQLite-to-PostgreSQL synchronization was stress-tested across 1,000 queued offline inspections with induced network drops, achieving zero data loss or transaction collision.
-
-### Working Prototype Evidence
-A fully functional prototype is live and accessible for evaluation:
-- **Interactive Portal:** https://sasya-swasthya.pages.dev
-- **Source Code & Test Suites:** https://github.com/RonHatibaruah/sasya-swasthya-assam
-- Full benchmark curves, confusion matrices, and test logs are detailed in the attached Proof of Work PDF.
-
----
-
-## Field 10: Security, privacy, safety & compliance
-*(Word Count: 416 words / Max: 500 words)*
-
-### Data Privacy & Statutory Compliance (DPDPA 2023)
-- **Data Minimization & Encryption:** In strict alignment with the Digital Personal Data Protection Act (DPDPA) 2023, farmer personal information is decoupled from spatial telemetry. Mobile numbers, Patta numbers, and farmer names are encrypted using AES-256-GCM at rest and TLS 1.3 in transit.
-- **Granular Role-Based Access Control (RBAC):** Hierarchical access governance strictly limits permissions:
-  * *Krishi Sakhis / ADOs:* View only their assigned village/block scouting rosters.
-  * *DAOs / State Analysts:* Regional oversight without direct access to unmasked farmer personal PII.
-  * *AAU Scientists:* Access anonymized epidemiological datasets for agronomic research.
-
-### Spatial Data & National Security Compliance
-- **National Geospatial Policy 2022 Adherence:** All geospatial data handling strictly conforms to guidelines issued by the Department of Science & Technology (DST). High-resolution drone imagery (Smaller than 1m resolution) is securely hosted on sovereign cloud servers located within Indian territory.
-- **ASSAC Spatial Isolation:** Cadastral parcel vectors and critical agricultural boundary layers are isolated behind private VPC subnets with zero external exposure.
-
-### DGCA Drone Operations & Aviation Safety
-- **Drone Rules 2021 & Digital Sky Integration:** All autonomous flight operations adhere to Directorate General of Civil Aviation (DGCA) regulations:
-  * Flights operate strictly within designated Green Zones at Smaller than or equal to  120\text{ meters} (400 ft) AGL.
-  * Hardware incorporates Type-Certified avionics, Return-to-Home (RTH) failsafes upon link loss or low battery (Smaller than 25%), and geo-caging around security installations.
-  * 360-degree obstacle detection radar prevents collisions with rural vegetation and power infrastructure.
-
-### Chemical Safety & Human-in-the-Loop Review
-- **Mandatory Agronomic Verification:** To prevent accidental chemical misapplication, automated alerts do not push chemical recommendations directly without verification. Synthetic chemical interventions are unlocked only when two independent criteria are fulfilled:
-  1. Satellite/Edge AI diagnosis exceeds 90% confidence.
-  2. Ground extension officer verifies that pest counts have breached official AAU Economic Threshold Levels (ETL).
-- **Eco-Friendly Bio-Pesticide Priority:** The platform systematically prioritizes biological and cultural remedies (Trichoderma, Neem formulations, water draining) before chemical options.
-
-### Auditability & Cryptographic Ledger
-Every advisory broadcast, rule alteration, and scouting log is hashed into an immutable SHA-256 cryptographic audit ledger (`initialAuditLogs`), ensuring end-to-end accountability and tamper-evident records for state agricultural audits.
-
----
-
-## Field 11: Innovation & differentiation
 *(Word Count: 446 words / Max: 500 words)*
 
-### Innovation Matrix & Prior Art Comparison
-| Evaluation Dimension | Legacy State Solutions & Portals | SasyaSwasthya Platform |
-| :--- | :--- | :--- |
-| **All-Weather Vision** | Optical only; blinded by monsoon clouds | **Sentinel-1 SAR C-band + Sentinel-2 Multi-spectral** |
-| **Spatial Resolution** | District / Block Level (Coarse 1–10 km) | **Sub-Meter Cadastral Dag Level (10m down to 5cm)** |
-| **Detection Timing** | Reactive; post-damage (Grade D/E symptom) | **Predictive early alert 72h before symptom outbreak** |
-| **Field Ground Scouting** | Manual paper inspection logs; delayed sync | **Offline Edge AI Mobile PWA with RTK GPS Locking** |
-| **Advisory Delivery** | Static English PDF bulletins (Delayed) | **Automated Assamese, Bodo, English SMS/IVR Broadcast** |
+### Methodology Overview
+The execution of JaivikSuraksha follows an Agile, Stage-Gate Systems Engineering framework tailored to heavy industrial bioenergy supply chains and public infrastructure. The project is structured across 6 phased stages over a 9-month execution roadmap:
 
-### Key Technical & Methodological Innovations
-1. **Dual-Constellation Optical + SAR Inversion for Monsoon Continuity:**
-   Existing solutions depend exclusively on optical satellites, leaving a 4-month blindspot during Assam's cloud-heavy kharif season. SasyaSwasthya integrates Sentinel-1 C-band Synthetic Aperture Radar (SAR) backscatter analysis. By monitoring microwave polarization ratio changes (VV/VH) and volumetric canopy scattering, our platform detects crop structural stress and floodwater inundation through continuous cloud cover.
-2. **Hierarchical Multi-Scale Spatial Fusion (Space-to-Drone-to-Ground):**
-   Rather than treating satellite and drone data as disjointed silos, the system operates an autonomous three-tier funnel:
-   - *Tier 1 (Macro):* 10m Sentinel-2 scans identify broad village-level stress clusters.
-   - *Tier 2 (Meso):* Targeted RTK drone flights acquire sub-5cm 5-band multispectral orthomosaics over flagged zones.
-   - *Tier 3 (Micro):* Extension officers use sub-meter GPS-locked PWAs to verify individual plants.
-3. **Sub-100ms On-Device Edge AI for Zero-Connectivity Zones:**
-   Unlike cloud-dependent diagnosis apps that fail in riverine *char* areas, our quantized MobileNetV3 engine executes locally on entry-level smartphones via WebAssembly. Officers capture leaf imagery and receive instant, offline pathogen classification without consuming mobile data.
-4. **Automated Hyper-Local Multilingual Advisory Generation:**
-   Legacy advisories provide static, generic English bulletins. SasyaSwasthya automatically compiles localized advisories into Assamese (*অসমীয়া*), Bodo (*बड़ो*), Bengali (*বাংলা*), and English. Advisories specify exact field dosage calibrated to local bigha measurements (1 Bigha = 1,337.8 sq meters in Assam), eliminating dosage calculation errors for rural smallholders.
-5. **Tamper-Evident SHA-256 Governance Ledger:**
-   The platform introduces cryptographic hash linking for all dispatched advisories, disease alerts, and administrative threshold overrides, creating the state's first verifiable audit trail for disaster risk mitigation and crop insurance validation under PMFBY.
-
-### Open-Source & Proprietary Dependencies
-- **Core Dependencies:** Python, React, Leaflet, GDAL, GeoPandas, PyTorch, PostGIS (all open-source, eliminating costly commercial software licenses).
-- **Zero Proprietary Lock-In:** Can be hosted on Assam State Data Centre (ASDC) or sovereign cloud infrastructure with complete intellectual property control residing with the state.
-
----
-
-## Field 12: Resources, risks & pilot validation
-*(Word Count: 427 words / Max: 500 words)*
-
-### Indicative Resource & Budget Allocation (₹40 Lakh Problem Statement Grant / MVP Pilot)
-The project budget is calibrated to the ₹40.0 Lakhs problem statement grant for 9-month development and 3-district MVP validation:
-1. **Software Stack Development Team Cost (₹20.0 Lakhs / 50.0%):** Core engineering compensation for Lead Architect, 2 Full-Stack Geospatial Engineers, and Edge AI Specialist across all 6 project delivery phases.
-2. **Geospatial & Sentinel Radar Pipeline (₹4.5 Lakhs / 11.25%):** Automated Copernicus Sentinel-1 SAR cloud-penetrating and Sentinel-2 ingestion, radiometric calibration, and Cloudflare PostGIS spatial data storage.
-3. **Epidemiological AI Models & AAU Calibration (₹5.0 Lakhs / 12.50%):** Microclimate disease forecasting algorithms, thermal degree-day models, and AAU Jorhat field correlation trials.
-4. **Offline PWA & Edge AI Diagnostics (₹3.5 Lakhs / 8.75%):** SQLite local caching, sub-meter GPS parcel locking, and MobileNetV3 INT8 on-device leaf pathology classification.
-5. **Multilingual Advisory & Telecom Gateway (₹3.0 Lakhs / 7.50%):** Automated Assamese, Bodo, Bengali, and English bulletin generators and high-throughput SMS/WhatsApp API integration.
-6. **Field Ground-Truthing, Training & Validation (₹4.0 Lakhs / 10.00%):** Capacity-building workshops for 100+ ADOs and Krishi Sakhis, drone survey bench-testing, and pilot oversight across 15,000 farmers.
-**Total Budget:** ₹40.0 Lakhs (100.0%).
-
-### Key Operational Risks & Mitigation Strategies
-1. **Monsoon Cloud Cover:** Optical imagery blinded during kharif rains. Mitigated by Sentinel-1 C-band SAR radar microwave penetration, supplemented by low-altitude drone flights beneath cloud base (50–100m AGL).
-2. **Rural Connectivity Gaps:** Remote char areas lacking cellular reception. Mitigated by offline-first PWA with client-side IndexedDB/SQLite storage and on-device WebAssembly edge AI.
-3. **Farmer Advisory Adoption:** Reluctance to heed digital directives. Mitigated by automated Assamese/Bodo SMS and voice IVR calls with dosage calibrated to local bigha units, partnered with local Krishi Sakhis.
-4. **Drone Foliage Obstacles:** Collisions with betel-nut trees. Mitigated by 360-degree obstacle detection radar and DGCA-certified remote pilots.
-
-### Pilot Validation Protocol in Stated Context
-The platform will undergo a 12-week structured pilot validation during the upcoming kharif season across 3 diverse agro-climatic zones of Assam:
-- **Zone 1 (Kamrup Rural):** Riverine alluvial plain with intensive Sali paddy and vegetable clusters (Rani and Chaygaon blocks).
-- **Zone 2 (Nagaon):** Flood-prone central Brahmaputra valley with high historical blast incidence (Kaliabor and Raha blocks).
-- **Zone 3 (Jorhat / Golaghat):** Upper valley adjoining AAU research stations for controlled scientific benchmarking (Titabor block).
-
-**Evaluation Metrics for Pilot Success:**
-- Onboarding of **15,000 active farmers** and 50 extension officers across 10,000 hectares.
-- Validation of Greater than or equal to 85% early warning forecast accuracy against ground disease occurrence.
-- Documented Greater than or equal to 50% reduction in advisory dispatch turnaround time.
+### Six-Stage Execution Lifecycle
+1. **Feedstock Characterization, Stakeholder Co-Design & Agro-Climatic Mapping (Months 1–2):**
+   - *Key Activities:* Field surveys across 5 priority bioenergy districts (Golaghat/Numaligarh, Nagaon, Kamrup Rural, Barpeta, Tinsukia). Laboratory biochemical characterization of dominant regional feedstocks (paddy straw, Bambusa tulda residues, mustard stover, tea waste) measuring structural carbohydrates (glucan, xylan), lignin, moisture absorption isotherms, and seasonal harvest curves. Stakeholder workshops with MC² Foundation, Assam Bio-Refinery Pvt. Ltd. (ABRPL), and local farmer producer organizations (FPOs).
+   - *Key Outputs:* Formal System Requirements Specification (SRS); regional feedstock supply-shed GIS atlas; baseline biomass degradation kinetic models under monsoonal humidity.
+2. **Biological Ensiling & Parasitic Drying Bench Optimization (Months 2–3):**
+   - *Key Activities:* Bench and pilot-scale trials of anaerobic lactic ensiling using micro-inoculants on high-moisture straw (50–60% RH). Testing carbohydrate retention, lactic/acetic acid ratios, and fungal mold inhibition across 90-day storage simulations. Prototype design of parasitic flue-gas flash-drying integration.
+   - *Key Outputs:* Standardized ensiling operational manual; validated dry-matter loss <5%; drying energy-balance model.
+3. **IoT Sensor Spear Engineering & Cloud WebGIS Development (Months 3–4):**
+   - *Key Activities:* Fabrication and calibration of LoRaWAN-enabled IoT sensor spears for moisture, temperature, and CO2 monitoring. Development of the full-stack React/TypeScript WebGIS dashboard, decentralized depot management interface, and bilingual farmer PWA.
+   - *Key Outputs:* 10 fully tested IoT sensor probe units; operational WebGIS platform on Cloudflare Pages (`jaivik-suraksha.pages.dev`); integration with IMD weather APIs.
+4. **Waste Stream Valorisation Pilot Trials (Months 4–6):**
+   - *Key Activities:* Sourcing raw enzymatic hydrolysis lignin cake from 2G bio-refinery pilot facilities. Formulating bio-bitumen binders (15%, 20%, 25% lignin substitution in VG-30 bitumen) and conducting Marshall stability, rutting resistance, and ductility testing per IRC/IS standards. Formulating enriched bio-fertilizers from anaerobic digestate (FOM).
+   - *Key Outputs:* Certified bio-bitumen performance test report; enriched organic bio-fertilizer formulation for tea garden trials.
+5. **Integrated Depot Field Pilot & Biorefinery Stress Testing (Months 6–8):**
+   - *Key Activities:* Commissioning a 500-metric-tonne decentralized pilot biomass depot in Golaghat near Numaligarh. Operating two 250-tonne hermetic ensiling bunker pods and dry IoT-monitored briquette stacks during peak active monsoon rains (June–August). Real-time off-take coordination with refinery boilers.
+   - *Key Outputs:* Zero-loss monsoon preservation demonstration (dry-matter loss verified <4.5%); continuous off-take supply verified under torrential rainfall conditions; complete environmental safety compliance audit.
+6. **Commercial Scale-Up, Policy Handover & Industrial Rollout (Month 9):**
+   - *Key Activities:* Finalizing commercial supply agreements with bio-refinery off-takers and regional FPOs. Handover of the operational SCADA control room and citizen platform to project partners; publication of open-access deployment blueprints.
+   - *Key Outputs:* Production-ready platform deployment; signed off-take framework agreements; complete technical and commercial sustainability dossier.

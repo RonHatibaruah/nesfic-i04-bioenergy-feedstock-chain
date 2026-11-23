@@ -73,14 +73,14 @@ export function App() {
       block: record.block,
       village: record.village,
       assignedOfficer: 'Pranab Jyoti Sarma',
-      officerRole: 'ADO (Agri Dev Officer)',
+      officerRole: 'Depot QA Engineer',
       targetPest: record.primaryPest,
       priority: record.grade === 'GRADE_D' ? 'CRITICAL' : 'HIGH',
       status: 'PENDING_VISIT',
       scheduledDate: new Date().toISOString().split('T')[0],
       trapCount: 0,
       visualDefoliationPct: 0,
-      scoutingNotes: 'Urgent task dispatched from Executive Dashboard following satellite stress anomaly.',
+      scoutingNotes: 'Urgent QA inspection dispatched following moisture/thermal sensor anomaly.',
       gpsVerified: false
     };
 

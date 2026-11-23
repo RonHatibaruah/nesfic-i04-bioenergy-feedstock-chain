@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout, Map, ClipboardCheck, Radio, Activity, BookOpen, Sliders, AlertTriangle, Plane } from 'lucide-react';
+import { Sprout, Map, ClipboardCheck, Radio, Activity, BookOpen, Sliders, AlertTriangle, Recycle, Flame } from 'lucide-react';
 
 export type ActiveTab = 'dashboard' | 'gis-map' | 'field-verification' | 'citizen-portal' | 'drone-tech' | 'admin';
 
@@ -24,25 +24,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   return (
     <header className="bg-white text-slate-900 border-b border-slate-200 sticky top-0 z-50 shadow-xs">
-      {/* Top Government Official Banner */}
+      {/* Top Government & Industry Partner Official Banner */}
       <div className="bg-slate-900 px-4 py-1.5 text-xs text-slate-300 flex flex-wrap justify-between items-center border-b border-slate-800">
         <div className="flex items-center space-x-2">
           <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span className="font-semibold text-slate-100">Government of Assam</span>
           <span className="text-slate-500">•</span>
-          <span>Dept. of Agriculture & ASSAC (Science & Tech)</span>
+          <span>Industry Track Sponsored by MC² Foundation</span>
           <span className="text-slate-500">•</span>
-          <span className="text-amber-400 font-semibold">NESFIC-D-11 Challenge Solution</span>
+          <span className="text-emerald-400 font-semibold">NESFIC-I-04 Solution</span>
+          <span className="text-slate-500 hidden sm:inline">•</span>
+          <span className="text-slate-400 hidden sm:inline">Assam Bio-Refinery (NRL) Ecosystem</span>
         </div>
         <div className="flex items-center space-x-4">
-          <span className="text-slate-400 hidden sm:inline">Sentinel-2 & Drone Space-to-Ground Telemetry</span>
+          <span className="text-slate-400 hidden sm:inline">IoT LoRaWAN Sensor Spears & Biorefinery Grid</span>
           <span className="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
-            {totalRecords} Plots Monitored
+            {totalRecords} Depots & Silos Active
           </span>
           {criticalCount > 0 && (
             <span className="bg-rose-950 text-rose-300 border border-rose-800 px-2 py-0.5 rounded text-[11px] font-semibold flex items-center gap-1 animate-pulse">
               <AlertTriangle className="w-3 h-3 text-rose-400" />
-              {criticalCount} Outbreaks
+              {criticalCount} Overheating Alerts
             </span>
           )}
         </div>
@@ -55,16 +57,17 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Logo & Title */}
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-700 via-emerald-600 to-teal-500 flex items-center justify-center shadow-md shadow-emerald-700/20">
-              <Sprout className="w-6 h-6 text-white" />
+              <Flame className="w-6 h-6 text-white" />
             </div>
             <div>
               <div className="flex items-center space-x-2">
                 <h1 className="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-2">
-                  SasyaSwasthya <span className="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 rounded-full font-semibold">শস্য স্বাস্থ্য</span>
+                  JaivikSuraksha <span className="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 rounded-full font-semibold">জৈৱিক সুৰক্ষা</span>
                 </h1>
+                <span className="text-xs bg-blue-100 text-blue-800 border border-blue-200 px-2 py-0.5 rounded font-mono font-bold">NESFIC-I-04</span>
               </div>
               <p className="text-xs text-slate-600 font-medium">
-                Crop Health Monitoring, Pest Forecasting & Location-Specific Agro-Advisory Engine
+                North-East Bioenergy Feedstock Chain — Monsoon Biomass Preservation & Biorefinery Waste Valorisation
               </p>
             </div>
           </div>
@@ -72,22 +75,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Quick Filter & Actions */}
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-2 bg-slate-50 px-3 py-1.5 rounded-lg border border-slate-200 text-xs">
-              <span className="text-slate-500 font-medium">District:</span>
+              <span className="text-slate-500 font-medium">Bioenergy Supply Shed:</span>
               <select
-                aria-label="Filter records by Assam District"
+                aria-label="Filter records by Assam District Supply Shed"
                 value={selectedDistrict}
                 onChange={(e) => setSelectedDistrict(e.target.value)}
                 className="bg-transparent text-emerald-800 font-bold focus:outline-none cursor-pointer"
               >
-                <option value="ALL">All Assam Agro-Zones</option>
-                <option value="Kamrup Rural">Kamrup Rural (Azara/Rani)</option>
-                <option value="Nagaon">Nagaon (Raha/Kaliabor)</option>
-                <option value="Jorhat">Jorhat (Titabor AAU Hub)</option>
-                <option value="Barpeta">Barpeta (Howly/Mandia)</option>
-                <option value="Sonitpur">Sonitpur (Dhekiajuli)</option>
-                <option value="Cachar">Cachar (Silchar/Barak Valley)</option>
-                <option value="Dhubri">Dhubri (Bilasipara Chars)</option>
-                <option value="Golaghat">Golaghat (Bokakhat)</option>
+                <option value="ALL">All Assam Supply Sheds (35 Dists)</option>
+                <option value="Golaghat">Golaghat (Numaligarh 2G Hub)</option>
+                <option value="Nagaon">Nagaon (Kaliabor / SATAT CBG)</option>
+                <option value="Kamrup Rural">Kamrup Rural (Azara / Guwahati)</option>
+                <option value="Barpeta">Barpeta (Howly / Dense Straw)</option>
+                <option value="Tinsukia">Tinsukia (Doomdooma / Tea Waste)</option>
+                <option value="Cachar">Cachar (Silchar / Barak Valley)</option>
               </select>
             </div>
 
@@ -97,7 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Open System Architecture Guide"
             >
               <BookOpen className="w-3.5 h-3.5 text-emerald-700" />
-              <span>D-11 Guide</span>
+              <span>I-04 Guide</span>
             </button>
           </div>
         </div>
@@ -113,7 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Activity className="w-4 h-4 text-emerald-600" />
-            <span>Executive Agro-Dashboard</span>
+            <span>Executive Feedstock Dashboard</span>
           </button>
 
           <button
@@ -125,7 +126,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Map className="w-4 h-4 text-emerald-600" />
-            <span>Satellite & Drone WebGIS</span>
+            <span>Feedstock WebGIS & Supply Sheds</span>
           </button>
 
           <button
@@ -137,7 +138,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <ClipboardCheck className="w-4 h-4 text-emerald-600" />
-            <span>Field Scouting & PWA</span>
+            <span>Depot QA & Moisture Triage</span>
           </button>
 
           <button
@@ -149,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Radio className="w-4 h-4 text-emerald-600" />
-            <span>Farmer Advisory (Sasya Seva)</span>
+            <span>Farmer Off-Take (Jaivik Seva)</span>
           </button>
 
           <button
@@ -160,8 +161,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
             }`}
           >
-            <Plane className="w-4 h-4 text-emerald-600" />
-            <span>Drone Technology</span>
+            <Recycle className="w-4 h-4 text-emerald-600" />
+            <span>Biorefinery Waste Valorisation</span>
           </button>
 
           <button
@@ -173,7 +174,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             <Sliders className="w-4 h-4 text-amber-600" />
-            <span>Command & Admin Console</span>
+            <span>Industrial SCADA Control Room</span>
           </button>
         </div>
       </div>

@@ -1,33 +1,46 @@
-export type CropCategory = 
-  | 'Sali Paddy (Winter Rice)'
-  | 'Boro Paddy (Summer Rice)'
-  | 'Ahu Paddy (Autumn Rice)'
-  | 'Rapeseed & Mustard'
-  | 'Jute'
-  | 'Potato'
-  | 'Black Gram (Matikalai)'
-  | 'Winter Vegetables';
+// -------------------------------------------------------------
+// JaivikSuraksha (জৈৱিক সুৰক্ষা) - NESFIC-I-04 Type Definitions
+// Bioenergy Feedstock Chain, Monsoon Preservation & Waste Valorisation
+// -------------------------------------------------------------
 
-export type PhenologicalStage = 
-  | 'Germination & Seedling'
-  | 'Active Tillering'
-  | 'Panicle Initiation'
-  | 'Flowering & Anthesis'
-  | 'Dough / Grain Filling'
-  | 'Ripening & Harvest Ready';
+export type FeedstockCategory = 
+  | 'Sali Paddy Straw (Winter Residue)'
+  | 'Boro Paddy Straw (Wet Summer)'
+  | 'Bamboo Harvest Offcuts (Bambusa tulda)'
+  | 'Rapeseed & Mustard Stover'
+  | 'Sugarcane Bagasse & Press Mud'
+  | 'Tea Factory Prunings & Residue'
+  | 'Jute Sticks & Agricultural Waste'
+  | 'Aquatic Biomass (Water Hyacinth)';
+
+// Backward-compatible alias
+export type CropCategory = FeedstockCategory;
+
+export type PreservationMethod = 
+  | 'Anaerobic Ensiling (Lactic Inoculated)'
+  | 'Parasitic Flue-Gas Pre-Dried (<12%)'
+  | 'Hermetic Pod (LoRaWAN Monitored)'
+  | 'Hydrophobic Pelletized Briquette'
+  | 'Raised Plinth Open Buffer Shed'
+  | 'Fresh Harvest Consignment';
+
+// Backward-compatible alias
+export type PhenologicalStage = PreservationMethod;
 
 export type HealthGrade = 'GRADE_A' | 'GRADE_B' | 'GRADE_C' | 'GRADE_D';
 
-export type PestType = 
-  | 'Rice Blast (Magnaporthe oryzae)'
-  | 'Yellow Stem Borer (Scirpophaga incertulas)'
-  | 'Sheath Blight (Rhizoctonia solani)'
-  | 'Bacterial Leaf Blight (Xanthomonas oryzae)'
-  | 'Brown Plant Hopper (Nilaparvata lugens)'
-  | 'Mustard Aphid (Lipaphis erysimi)'
-  | 'Fall Armyworm (Spodoptera frugiperda)'
-  | 'Late Blight (Phytophthora infestans)'
-  | 'None (Healthy Crop)';
+export type DegradationRiskType = 
+  | 'Fungal Spore Mold (Aspergillus/Trichoderma)'
+  | 'Exothermic Self-Heating & Spontaneous Fire'
+  | 'High Moisture Waterlogging (>45%)'
+  | 'Cellulose Hydrolysis & Matter Loss'
+  | 'Acidification Failure (pH > 4.8)'
+  | 'Secondary Wet Rot'
+  | 'Optimal Anaerobic Preservation'
+  | 'None (Certified Stable Feedstock)';
+
+// Backward-compatible alias
+export type PestType = DegradationRiskType;
 
 export type AgroClimaticZone = 
   | 'Upper Brahmaputra Valley'
@@ -37,14 +50,27 @@ export type AgroClimaticZone =
   | 'Barak Valley'
   | 'Hill Zone';
 
-export interface SpectralMetrics {
-  ndvi: number; // 0.0 - 1.0 (Canopy vigor)
-  ndwi: number; // -1.0 - 1.0 (Water/moisture stress)
-  savi: number; // Soil adjusted
-  evi: number;  // Enhanced vegetation index
-  canopyTemp: number; // Celsius
-  soilMoisturePct: number; // Volumetric %
-  lastSatellitePass: string; // ISO Date (Sentinel-2 / Landsat)
+export interface BiomassTelemetry {
+  moisturePct: number; // 5.0 - 80.0%
+  coreTempC: number; // Celsius (self-heating danger >55°C)
+  ensilagePh: number; // 3.5 - 7.5 (target <4.0 for stability)
+  co2HeadspacePpm: number; // 0 - 50,000 ppm
+  dryMatterRetentionPct: number; // %
+  glucanContentPct: number; // Cellulose %
+  xylanContentPct: number; // Hemicellulose %
+  lastSensorReading: string; // ISO Date
+  batteryPct: number;
+}
+
+// Backward-compatible alias
+export interface SpectralMetrics extends BiomassTelemetry {
+  ndvi: number;
+  ndwi: number;
+  savi: number;
+  evi: number;
+  canopyTemp: number;
+  soilMoisturePct: number;
+  lastSatellitePass: string;
   cloudCoverPct: number;
 }
 
@@ -64,31 +90,35 @@ export interface BKLUnits {
   katha: number;
   lesa: number;
   sqMeters: number;
+  tonnageEstimate?: number;
 }
 
-export interface AgroAdvisory {
+export interface BiomassProcurementAdvisory {
   advisoryId: string;
   headlineEn: string;
   headlineAs: string;
   summaryEn: string;
   summaryAs: string;
-  culturalActionEn: string;
-  culturalActionAs: string;
-  bioPesticideEn: string;
-  bioPesticideAs: string;
+  preservationActionEn: string;
+  preservationActionAs: string;
+  depotTriageEn: string;
+  depotTriageAs: string;
   chemicalInterventionEn: string;
   chemicalInterventionAs: string;
-  dosagePerBigha: string;
-  waterDrainageAdvice: string;
+  pricingRatePerTonne: string;
+  payoutAmount: string;
   issuingAuthority: string;
   validUntil: string;
 }
 
-export interface CropHealthRecord {
-  plotId: string;
-  dagNumber: string;
-  pattaNumber: string;
-  farmerName: string;
+// Backward-compatible alias
+export type AgroAdvisory = BiomassProcurementAdvisory;
+
+export interface FeedstockDepotRecord {
+  plotId: string; // Depot / Lot ID
+  dagNumber: string; // Hub / Cluster Name
+  pattaNumber: string; // Storage Unit / Pod ID
+  farmerName: string; // Aggregator / Lead Farmer
   farmerPhone: string;
   district: string;
   block: string;
@@ -98,21 +128,26 @@ export interface CropHealthRecord {
   lat: number;
   lng: number;
   area: BKLUnits;
-  crop: CropCategory;
-  sowingDate: string;
-  stage: PhenologicalStage;
+  crop: FeedstockCategory;
+  sowingDate: string; // Harvest / Ingestion Date
+  stage: PreservationMethod;
   spectral: SpectralMetrics;
   weather: WeatherMetrics;
-  primaryPest: PestType;
-  pestRiskScore: number; // 0 - 100
+  primaryPest: DegradationRiskType;
+  pestRiskScore: number; // 0 - 100 (Degradation Risk)
   pestProbabilityPct: number; // 0 - 100
   riskTrajectory: 'RISING' | 'STABLE' | 'DECLINING';
-  cropHealthIndex: number; // 0 - 100
+  cropHealthIndex: number; // 0 - 100 (Biomass Quality & Rot Vulnerability Index - BQVI)
   grade: HealthGrade;
-  advisory: AgroAdvisory;
+  advisory: BiomassProcurementAdvisory;
   polygon: [number, number][]; // Lat, Lng coordinates for GeoJSON
   status: 'OPTIMAL' | 'WATCHLIST' | 'ADVISORY_ISSUED' | 'EMERGENCY_DISPATCHED';
+  tonnage: number;
+  allocatedBiorefinery: string;
 }
+
+// Backward-compatible alias
+export type CropHealthRecord = FeedstockDepotRecord;
 
 export interface FieldScoutingTask {
   taskId: string;
@@ -122,13 +157,13 @@ export interface FieldScoutingTask {
   block: string;
   village: string;
   assignedOfficer: string;
-  officerRole: 'ADO (Agri Dev Officer)' | 'AEO (Agri Extension Officer)' | 'Krishi Sakhi' | 'KVK Scientist';
-  targetPest: PestType;
+  officerRole: 'Depot QA Engineer' | 'Bioenergy Supply Officer' | 'FPO Lead Aggregator' | 'Biorefinery Auditor';
+  targetPest: DegradationRiskType;
   priority: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   status: 'PENDING_VISIT' | 'SCOUTING_IN_PROGRESS' | 'TRAP_VERIFIED' | 'COMPLETED';
   scheduledDate: string;
-  trapCount?: number;
-  visualDefoliationPct?: number;
+  trapCount?: number; // Measured Moisture %
+  visualDefoliationPct?: number; // Ensilage pH or dry-matter loss %
   scoutingNotes?: string;
   leafSampleImageUrl?: string;
   aiDiagnosticPrediction?: string;
@@ -141,8 +176,8 @@ export interface AdvisoryBroadcast {
   title: string;
   district: string;
   block: string;
-  crop: CropCategory;
-  pest: PestType;
+  crop: FeedstockCategory;
+  pest: DegradationRiskType;
   broadcastChannel: 'SMS' | 'WHATSAPP' | 'IVRS_VOICE' | 'COMMUNITY_RADIO';
   recipientCount: number;
   status: 'DRAFT' | 'APPROVED' | 'DISPATCHED';
@@ -153,9 +188,30 @@ export interface AdvisoryBroadcast {
 }
 
 // -------------------------------------------------------------
-// Drone Technology & Fleet Operations Types
+// Biorefinery Waste Stream & Secondary Valorisation Types
 // -------------------------------------------------------------
-export type DroneType = 'Multi-Rotor Hexacopter' | 'Hybrid VTOL Fixed-Wing';
+export type WasteStreamType = 
+  | 'Enzymatic Hydrolysis Lignin Cake'
+  | 'Fermented Organic Manure (FOM Digestate)'
+  | 'Liquid Digestate / Stillage (LFOM)'
+  | 'Flue-Gas Sensible Heat'
+  | 'Process Wash Condensate';
+
+export interface BiorefineryWasteUnit {
+  id: string;
+  streamType: WasteStreamType;
+  dailyProductionTons: number;
+  moisturePct: number;
+  purityPct: number;
+  primaryTargetProduct: string;
+  economicValueInrPerTon: number;
+  status: 'PROCESSING' | 'CERTIFIED' | 'DISPATCHED';
+  offtakerName: string;
+  co2OffsetTonnes: number;
+}
+
+// Drone / Logistics Fleet Specs
+export type DroneType = 'Heavy-Lift Biomass Cargo UAV' | 'Sensor Recon & Thermal Hexacopter';
 
 export interface DroneAirframe {
   id: string;
@@ -163,7 +219,7 @@ export interface DroneAirframe {
   type: DroneType;
   manufacturer: string;
   wingspanOrDiagonal: string;
-  mtowKg: number; // Max Takeoff Weight
+  mtowKg: number;
   payloadCapacityKg: number;
   flightTimeMin: number;
   maxSurveySpeedKmh: number;
@@ -194,7 +250,7 @@ export interface DroneFlightMission {
   block: string;
   targetPlots: string;
   altitudeM: number;
-  gsdCmPerPixel: number; // Ground Sampling Distance
+  gsdCmPerPixel: number;
   forwardOverlapPct: number;
   sideOverlapPct: number;
   scheduledDate: string;
@@ -204,12 +260,9 @@ export interface DroneFlightMission {
   orthomosaicTifUrl?: string;
 }
 
-// -------------------------------------------------------------
-// Advanced Admin & Governance Types
-// -------------------------------------------------------------
 export interface PathogenRule {
   ruleId: string;
-  pest: PestType;
+  pest: DegradationRiskType;
   title: string;
   minTempC: number;
   maxTempC: number;
@@ -253,4 +306,3 @@ export interface SystemAuditLog {
   details: string;
   sha256Hash: string;
 }
-
