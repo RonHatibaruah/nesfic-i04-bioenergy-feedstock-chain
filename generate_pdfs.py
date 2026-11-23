@@ -242,23 +242,35 @@ def build_proposal_pdf(output_path, workspace_dir):
             ('diagram_1_before_after_workflow.jpg', "Figure 1: Paradigm Shift - Monsoon Feedstock Degradation vs. JaivikSuraksha Preservation")
         ],
         'Field 2': [
-            ('diagram_2_dual_system_reconciliation.jpg', "Figure 2: Dual-Pillar Architecture - Monsoon Preservation & Biorefinery Waste Upcycling"),
-            ('diagram_8_ensiling_kinetics_curves.jpg', "Figure 3: 180-Day Biochemical Ensiling & Polymer Wrap Preservation Kinetics"),
-            ('diagram_10_lignin_biobitumen_pavement_engineering.jpg', "Figure 4: Hydrolytic Lignin Bio-Bitumen (VG-30) Cross-Section & Pavement Performance"),
-            ('diagram_11_biorefinery_circular_mass_balance.jpg', "Figure 5: 1,000 MT/Day Commercial Biorefinery Circular Mass Balance Flowsheet")
+            ('diagram_2_dual_system_reconciliation.jpg', "Figure 2: Dual-Pillar Architecture - Monsoon Preservation & Biorefinery Waste Upcycling")
         ],
         'Field 3': [
-            ('diagram_3_cadastral_anomaly_catalog.jpg', "Figure 6: Assam Agro-Climatic Biomass Feedstock & Waste Stream Catalog"),
-            ('diagram_5_lat_mandal_mobile_app.jpg', "Figure 7: Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console"),
-            ('diagram_6_citizen_land_health_certificate.jpg', "Figure 8: Bilingual Farmer Off-Take Settlement & Quality Certificate (Assamese/English)"),
-            ('diagram_12_user_journey_persona_progression.jpg', "Figure 9: Multi-Stakeholder Digital Platform Progression & User Journey")
+            ('diagram_5_lat_mandal_mobile_app.jpg', "Figure 3: Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console"),
+            ('diagram_12_user_journey_persona_progression.jpg', "Figure 4: Multi-Stakeholder Digital Platform Progression & User Journey")
         ],
         'Field 4': [
-            ('diagram_9_lorawan_smart_probe_spear.jpg', "Figure 10: LoRaWAN IoT Smart Probe Spear (SS316) Hardware Blueprint & Sensor Array"),
-            ('diagram_4_land_health_score_hierarchy.jpg', "Figure 11: Multi-Criteria Biomass Quality & Rot Vulnerability Index (BQVI) Hierarchy"),
-            ('diagram_7_enterprise_system_architecture.jpg', "Figure 12: Industrial Enterprise SCADA & Cloud Telemetry Architecture")
+            ('diagram_9_lorawan_smart_probe_spear.jpg', "Figure 5: LoRaWAN IoT Smart Probe Spear (SS316) Hardware Blueprint & Sensor Array"),
+            ('diagram_7_enterprise_system_architecture.jpg', "Figure 6: Industrial Enterprise SCADA & Cloud Telemetry Architecture")
         ],
-        'Field 5': []
+        'Field 5': [
+            ('diagram_11_biorefinery_circular_mass_balance.jpg', "Figure 7: 1,000 MT/Day Commercial Biorefinery Circular Mass Balance Flowsheet")
+        ],
+        'Field 6': [
+            ('diagram_3_cadastral_anomaly_catalog.jpg', "Figure 8: Assam Agro-Climatic Biomass Feedstock & Waste Stream Matrix")
+        ],
+        'Field 7': [],
+        'Field 8': [],
+        'Field 9': [
+            ('diagram_8_ensiling_kinetics_curves.jpg', "Figure 9: 180-Day Biochemical Ensiling & Polymer Wrap Preservation Kinetics"),
+            ('diagram_10_lignin_biobitumen_pavement_engineering.jpg', "Figure 10: Hydrolytic Lignin Bio-Bitumen (VG-30) Cross-Section & Pavement Performance")
+        ],
+        'Field 10': [
+            ('diagram_6_citizen_land_health_certificate.jpg', "Figure 11: Cryptographic Bilingual Farmer Off-Take Settlement & Quality Certificate")
+        ],
+        'Field 11': [
+            ('diagram_4_land_health_score_hierarchy.jpg', "Figure 12: Biomass Quality & Rot Vulnerability Index (BQVI) Multi-Criteria Decision Hierarchy")
+        ],
+        'Field 12': []
     }
 
     prop_path = os.path.join(workspace_dir, 'proposal_contents.md')
@@ -288,7 +300,7 @@ def build_proposal_pdf(output_path, workspace_dir):
                     story.append(safe_paragraph(caption, cap_style))
                     story.append(Spacer(1, 4))
 
-        if matched_field_key == 'Field 5':
+        if matched_field_key == 'Field 12':
             budget_data = [
                 [safe_paragraph("<b>Project Phase / Line Item</b>", meta_style), safe_paragraph("<b>Estimated Cost</b>", meta_style), safe_paragraph("<b>Share</b>", meta_style), safe_paragraph("<b>Primary Deliverable & Milestones</b>", meta_style)],
                 [safe_paragraph("Decentralized Bunker Silos & Ensiling Packs", meta_style), safe_paragraph("Rs. 14.00 Lakh", meta_style), safe_paragraph("35.00%", meta_style), safe_paragraph("500 MT pilot bunker silos in Golaghat near Numaligarh", meta_style)],
@@ -435,10 +447,95 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     doc.build(story, canvasmaker=NumberedCanvas)
     print(f"Generated Proof of Work PDF: {output_path}")
 
+# -----------------------------------------------------------------------------
+# 3. BUILD ADDITIONAL SUPPORTING MATERIAL PDF
+# -----------------------------------------------------------------------------
+def build_additional_supporting_material_pdf(output_path, workspace_dir):
+    doc = SimpleDocTemplate(output_path, pagesize=letter, leftMargin=54, rightMargin=54, topMargin=54, bottomMargin=54)
+    styles = getSampleStyleSheet()
+
+    title_style = ParagraphStyle('DocTitle', parent=styles['Heading1'], fontName='Helvetica-Bold', fontSize=15, leading=19, textColor=colors.HexColor('#064e3b'), spaceAfter=4)
+    subtitle_style = ParagraphStyle('DocSubTitle', parent=styles['Normal'], fontName='Helvetica-Bold', fontSize=9, leading=12, textColor=colors.HexColor('#0284c7'), spaceAfter=6)
+    meta_style = ParagraphStyle('MetaStyle', parent=styles['Normal'], fontName='Helvetica', fontSize=8, leading=10.5, textColor=colors.HexColor('#334155'))
+    h2_style = ParagraphStyle('H2Style', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=10.5, leading=13.5, textColor=colors.HexColor('#064e3b'), spaceBefore=8, spaceAfter=4, keepWithNext=True)
+
+    story = []
+    story.append(safe_paragraph("ADDITIONAL SUPPORTING MATERIAL & FEASIBILITY STUDY", title_style))
+    story.append(safe_paragraph("JaivikSuraksha — Securing the North-East Bioenergy Feedstock Chain", subtitle_style))
+    story.append(safe_paragraph("<b>Agro-Climatic Zoning, Biomass Kinetics, Techno-Economics & Carbon Accounting</b>", subtitle_style))
+    
+    meta_data = [
+        [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-I-04", meta_style), safe_paragraph("<b>Industry Partner:</b> MC2 Foundation", meta_style)],
+        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Academic Collaborator:</b> AEDA & IIT Guwahati", meta_style)],
+        [safe_paragraph("<b>Live Production Platform:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
+    ]
+    t_meta = Table(meta_data, colWidths=[245, 259])
+    t_meta.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,-1), colors.HexColor('#f0fdf4')),
+        ('BOX', (0,0), (-1,-1), 1, colors.HexColor('#059669')),
+        ('PADDING', (0,0), (-1,-1), 4),
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+    ]))
+    story.append(t_meta)
+    story.append(Spacer(1, 8))
+
+    img_dir = os.path.join(workspace_dir, 'assets', 'proposal_images')
+    asm_path = os.path.join(workspace_dir, 'additional_supporting_material.md')
+    with open(asm_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    sections = content.split('\n## ')
+    if sections[0].strip():
+        story.extend(parse_markdown_content(sections[0].strip().split('\n'), available_width=490))
+
+    cap_style = ParagraphStyle('CapStyleASM', parent=styles['Normal'], fontName='Helvetica-Oblique', fontSize=7.5, leading=9.5, textColor=colors.HexColor('#475569'), alignment=1, spaceAfter=4)
+
+    for sec in sections[1:]:
+        lines = sec.strip().split('\n')
+        sec_title = lines[0].strip()
+        story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor('#059669'), spaceBefore=8, spaceAfter=5))
+        story.append(safe_paragraph(sec_title, h2_style))
+
+        if '1. Agro-Climatic' in sec_title:
+            for img_name, cap in [('diagram_3_cadastral_anomaly_catalog.jpg', "Figure A1: Assam Agro-Climatic Biomass Availability & Monsoonal Degradation Matrix")]:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
+                    story.append(Spacer(1, 4))
+        elif '2. Biochemical Kinetics' in sec_title:
+            for img_name, cap in [('diagram_8_ensiling_kinetics_curves.jpg', "Figure A2: 180-Day Anaerobic Lactic Acid Ensiling Carbohydrate Retention Kinetics")]:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
+                    story.append(Spacer(1, 4))
+        elif '3. High-Value Secondary' in sec_title:
+            for img_name, cap in [
+                ('diagram_11_biorefinery_circular_mass_balance.jpg', "Figure A3: 1,000 MT/Day Commercial Biorefinery Circular Mass Balance Flowsheet"),
+                ('diagram_10_lignin_biobitumen_pavement_engineering.jpg', "Figure A4: Enzymatic Hydrolysis Lignin Bio-Bitumen (VG-30) Pavement Engineering")
+            ]:
+                img_path = os.path.join(img_dir, img_name)
+                if os.path.exists(img_path):
+                    story.append(Spacer(1, 4))
+                    story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
+                    story.append(Spacer(1, 4))
+
+        body_flowables = parse_markdown_content(lines[1:], available_width=490)
+        story.extend(body_flowables)
+
+    doc.build(story, canvasmaker=NumberedCanvas)
+    print(f"Generated Additional Supporting Material PDF: {output_path}")
+
 if __name__ == '__main__':
     workspace_dir = os.path.dirname(os.path.abspath(__file__))
     proposal_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Proposal_Ron_Hatibaruah.pdf')
     pow_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf')
+    asm_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Additional_Supporting_Material_Ron_Hatibaruah.pdf')
     
     build_proposal_pdf(proposal_pdf, workspace_dir)
     build_proof_of_work_pdf(pow_pdf, workspace_dir)
+    build_additional_supporting_material_pdf(asm_pdf, workspace_dir)
