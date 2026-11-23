@@ -2,7 +2,7 @@
 **NESFIC-I-04: Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon and Valorisation of Bio-Refinery Waste Streams**  
 **Industry Partner / Sponsor:** MC² Foundation (Industry Track)  
 **Lead Applicant & Systems Architect:** Ron Hatibaruah  
-**Live Production Platform:** https://jaivik-suraksha.pages.dev  
+**Live Production Platform:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev  
 **Open-Source Repository:** https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain  
 
 ---
@@ -92,10 +92,28 @@ The depot instrumentation consists of ruggedized probe arrays deployed across bu
 ## 5. Live Prototype & Digital Artifact Verification
 
 The platform prototype is deployed and accessible:
-- **Cloudflare Edge Deployment:** https://jaivik-suraksha.pages.dev
+- **Cloudflare Edge Deployment:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
 - **Source Code Repository:** https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
 - **Automated Verification Checkpoints:**
   * District Biomass Ingestion Engine: Real-time calculation of available feedstock across all 35 Assam districts.
   * Multi-depth IoT Telemetry Simulator: Demonstrates active temperature and humidity sensor streams with live alert triggering.
   * Multilingual Farmer Interface: Fully functional Assamese (`অসমীয়া`) and English advisory/settlement generator.
   * SHA-256 Audit Trail: Cryptographically verified digital records for transparent bioenergy supply chains.
+
+---
+
+## 6. Embedded Technical Infographics Reference (Figures 1 to 12)
+
+The compiled PDF dossier embeds 12 technical engineering infographics:
+- **Figure 1:** Paradigm Shift - Monsoon Feedstock Degradation vs. JaivikSuraksha Preservation
+- **Figure 2:** Dual-Pillar Architecture - Monsoon Preservation & Biorefinery Waste Upcycling
+- **Figure 3:** 180-Day Biochemical Ensiling & Polymer Wrap Preservation Kinetics
+- **Figure 4:** Hydrolytic Lignin Bio-Bitumen (VG-30) Cross-Section & Pavement Performance
+- **Figure 5:** 1,000 MT/Day Commercial Biorefinery Circular Mass Balance Flowsheet
+- **Figure 6:** Assam Agro-Climatic Biomass Feedstock & Waste Stream Catalog
+- **Figure 7:** Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console
+- **Figure 8:** Bilingual Farmer Off-Take Settlement & Quality Certificate (Assamese/English)
+- **Figure 9:** Multi-Stakeholder Digital Platform Progression & User Journey
+- **Figure 10:** LoRaWAN IoT Smart Probe Spear (SS316) Hardware Blueprint & Sensor Array
+- **Figure 11:** Multi-Criteria Biomass Quality & Rot Vulnerability Index (BQVI) Hierarchy
+- **Figure 12:** Industrial Enterprise SCADA & Cloud Telemetry Architecture

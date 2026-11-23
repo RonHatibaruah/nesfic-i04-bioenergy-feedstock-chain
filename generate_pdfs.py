@@ -223,7 +223,7 @@ def build_proposal_pdf(output_path, workspace_dir):
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-I-04", meta_style), safe_paragraph("<b>Challenge Partner:</b> MC2 Foundation", meta_style)],
         [safe_paragraph("<b>Title:</b> Bioenergy Feedstock Chain & Waste Valorisation", meta_style), safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style)],
         [safe_paragraph("<b>Solution Name:</b> JaivikSuraksha", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
-        [safe_paragraph("<b>Live Prototype:</b> https://jaivik-suraksha.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
+        [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[245, 259])
     t_meta.setStyle(TableStyle([
@@ -238,18 +238,25 @@ def build_proposal_pdf(output_path, workspace_dir):
 
     img_dir = os.path.join(workspace_dir, 'assets', 'proposal_images')
     field_to_image = {
-        'Field 1': [('diagram_1_before_after_workflow.jpg', "Figure 1: Paradigm Shift - Monsoon Feedstock Degradation vs. JaivikSuraksha Assurance")],
+        'Field 1': [
+            ('diagram_1_before_after_workflow.jpg', "Figure 1: Paradigm Shift - Monsoon Feedstock Degradation vs. JaivikSuraksha Preservation")
+        ],
         'Field 2': [
             ('diagram_2_dual_system_reconciliation.jpg', "Figure 2: Dual-Pillar Architecture - Monsoon Preservation & Biorefinery Waste Upcycling"),
-            ('diagram_3_cadastral_anomaly_catalog.jpg', "Figure 3: Assam Biomass Feedstock & Waste Stream Catalog")
+            ('diagram_8_ensiling_kinetics_curves.jpg', "Figure 3: 180-Day Biochemical Ensiling & Polymer Wrap Preservation Kinetics"),
+            ('diagram_10_lignin_biobitumen_pavement_engineering.jpg', "Figure 4: Hydrolytic Lignin Bio-Bitumen (VG-30) Cross-Section & Pavement Performance"),
+            ('diagram_11_biorefinery_circular_mass_balance.jpg', "Figure 5: 1,000 MT/Day Commercial Biorefinery Circular Mass Balance Flowsheet")
         ],
         'Field 3': [
-            ('diagram_5_lat_mandal_mobile_app.jpg', "Figure 4: Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console"),
-            ('diagram_6_citizen_land_health_certificate.jpg', "Figure 5: Bilingual Farmer Off-Take Settlement Certificate (Assamese/English)")
+            ('diagram_3_cadastral_anomaly_catalog.jpg', "Figure 6: Assam Agro-Climatic Biomass Feedstock & Waste Stream Catalog"),
+            ('diagram_5_lat_mandal_mobile_app.jpg', "Figure 7: Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console"),
+            ('diagram_6_citizen_land_health_certificate.jpg', "Figure 8: Bilingual Farmer Off-Take Settlement & Quality Certificate (Assamese/English)"),
+            ('diagram_12_user_journey_persona_progression.jpg', "Figure 9: Multi-Stakeholder Digital Platform Progression & User Journey")
         ],
         'Field 4': [
-            ('diagram_4_land_health_score_hierarchy.jpg', "Figure 6: Multi-Criteria Biomass Quality & Rot Vulnerability Index (BQVI) Hierarchy"),
-            ('diagram_7_enterprise_system_architecture.jpg', "Figure 7: Industrial Enterprise SCADA & Cloud Telemetry Architecture")
+            ('diagram_9_lorawan_smart_probe_spear.jpg', "Figure 10: LoRaWAN IoT Smart Probe Spear (SS316) Hardware Blueprint & Sensor Array"),
+            ('diagram_4_land_health_score_hierarchy.jpg', "Figure 11: Multi-Criteria Biomass Quality & Rot Vulnerability Index (BQVI) Hierarchy"),
+            ('diagram_7_enterprise_system_architecture.jpg', "Figure 12: Industrial Enterprise SCADA & Cloud Telemetry Architecture")
         ],
         'Field 5': []
     }
@@ -330,7 +337,7 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     meta_data = [
         [safe_paragraph("<b>Challenge ID:</b> NESFIC-I-04 (Industry Track)", meta_style), safe_paragraph("<b>Partner:</b> MC2 Foundation", meta_style)],
         [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
-        [safe_paragraph("<b>Live Prototype:</b> https://jaivik-suraksha.pages.dev", meta_style), safe_paragraph("<b>Status:</b> Fully Built & Verified", meta_style)]
+        [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Status:</b> Fully Built & Verified", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
     t_meta.setStyle(TableStyle([
@@ -351,6 +358,8 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     if sections[0].strip():
         story.extend(parse_markdown_content(sections[0].strip().split('\n'), available_width=490))
 
+    cap_style = ParagraphStyle('CapStylePoW', parent=styles['Normal'], fontName='Helvetica-Oblique', fontSize=7.5, leading=9.5, textColor=colors.HexColor('#475569'), alignment=1, spaceAfter=4)
+
     for sec in sections[1:]:
         lines = sec.strip().split('\n')
         sec_title = lines[0].strip()
@@ -358,39 +367,66 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
         story.append(safe_paragraph(sec_title, h2_style))
 
         if '1. Executive Summary' in sec_title:
-            for img_name in ['diagram_1_before_after_workflow.jpg', 'diagram_2_dual_system_reconciliation.jpg']:
+            imgs = [
+                ('diagram_1_before_after_workflow.jpg', "Figure 1: Paradigm Shift - Monsoon Feedstock Degradation vs. JaivikSuraksha Preservation"),
+                ('diagram_2_dual_system_reconciliation.jpg', "Figure 2: Dual-Pillar Architecture - Monsoon Preservation & Biorefinery Waste Upcycling"),
+                ('diagram_11_biorefinery_circular_mass_balance.jpg', "Figure 5: 1,000 MT/Day Commercial Biorefinery Circular Mass Balance Flowsheet")
+            ]
+            for img_name, cap in imgs:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
                     story.append(Spacer(1, 4))
         elif '2. Experimental Data' in sec_title:
-            for img_name in ['diagram_3_cadastral_anomaly_catalog.jpg', 'diagram_4_land_health_score_hierarchy.jpg']:
+            imgs = [
+                ('diagram_8_ensiling_kinetics_curves.jpg', "Figure 3: 180-Day Biochemical Ensiling & Polymer Wrap Preservation Kinetics"),
+                ('diagram_3_cadastral_anomaly_catalog.jpg', "Figure 6: Assam Agro-Climatic Biomass Feedstock & Waste Stream Catalog"),
+                ('diagram_4_land_health_score_hierarchy.jpg', "Figure 11: Multi-Criteria Biomass Quality & Rot Vulnerability Index (BQVI) Hierarchy")
+            ]
+            for img_name, cap in imgs:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
                     story.append(Spacer(1, 4))
         elif '3. Hardware Architecture' in sec_title:
-            for img_name in ['diagram_5_lat_mandal_mobile_app.jpg']:
+            imgs = [
+                ('diagram_9_lorawan_smart_probe_spear.jpg', "Figure 10: LoRaWAN IoT Smart Probe Spear (SS316) Hardware Blueprint & Sensor Array"),
+                ('diagram_5_lat_mandal_mobile_app.jpg', "Figure 7: Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console")
+            ]
+            for img_name, cap in imgs:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
                     story.append(Spacer(1, 4))
         elif '4. Biorefinery Waste Stream' in sec_title:
-            for img_name in ['diagram_6_citizen_land_health_certificate.jpg']:
+            imgs = [
+                ('diagram_10_lignin_biobitumen_pavement_engineering.jpg', "Figure 4: Hydrolytic Lignin Bio-Bitumen (VG-30) Cross-Section & Pavement Performance"),
+                ('diagram_6_citizen_land_health_certificate.jpg', "Figure 8: Bilingual Farmer Off-Take Settlement & Quality Certificate (Assamese/English)")
+            ]
+            for img_name, cap in imgs:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
                     story.append(Spacer(1, 4))
         elif '5. Live Prototype' in sec_title:
-            for img_name in ['diagram_7_enterprise_system_architecture.jpg']:
+            imgs = [
+                ('diagram_12_user_journey_persona_progression.jpg', "Figure 9: Multi-Stakeholder Digital Platform Progression & User Journey"),
+                ('diagram_7_enterprise_system_architecture.jpg', "Figure 12: Industrial Enterprise SCADA & Cloud Telemetry Architecture")
+            ]
+            for img_name, cap in imgs:
                 img_path = os.path.join(img_dir, img_name)
                 if os.path.exists(img_path):
                     story.append(Spacer(1, 4))
                     story.append(Image(img_path, width=490, height=265))
+                    story.append(safe_paragraph(cap, cap_style))
                     story.append(Spacer(1, 4))
 
         body_flowables = parse_markdown_content(lines[1:], available_width=490)

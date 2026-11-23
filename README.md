@@ -111,7 +111,26 @@ python3 generate_pdfs.py
 
 ## 📄 Official Submission Deliverables
 
-- **Official Proposal Submission PDF:** [`NESFIC_I04_Proposal_Ron_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proposal_Ron_Hatibaruah.pdf) (1.8 MB)
-- **Proof of Work & Technical Dossier PDF:** [`NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf) (1.8 MB)
+- **Official Proposal Submission PDF:** [`NESFIC_I04_Proposal_Ron_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proposal_Ron_Hatibaruah.pdf) (3.2 MB, 11 Pages, All 12 Architectural Figures Embedded)
+- **Proof of Work & Technical Dossier PDF:** [`NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf) (3.2 MB, 9 Pages, Complete Kinetic Assays & Blueprints)
 - **Form-Ready Copy-Paste Text File:** [`proposal_plain_text_form_ready.txt`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/proposal_plain_text_form_ready.txt)
 - **Supporting Technical Material:** [`additional_supporting_material.md`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/additional_supporting_material.md)
+
+---
+
+## 📊 Comprehensive Technical Infographics Catalog (Figures 1 to 12)
+
+| Figure # | Title & Description | Deliverable Role |
+| :--- | :--- | :--- |
+| **Figure 1** | **Monsoon Degradation vs. JaivikSuraksha Preservation** | Contrasts unmanaged 38% dry-matter loss with controlled anaerobic ensiling (<4% loss). |
+| **Figure 2** | **Dual-Pillar Architecture (Preservation & Waste Upcycling)** | Overview of feedstock supply assurance and biorefinery residue valorisation loops. |
+| **Figure 3** | **180-Day Biochemical Ensiling & Polymer Wrap Kinetics** | Lactic acid accumulation, pH drop to 3.9, and hemicellulose retention curves over 180 monsoon days. |
+| **Figure 4** | **Hydrolytic Lignin Bio-Bitumen (VG-30) Road Pavement Engineering** | Cross-section and performance gains (Marshall stability, rutting resistance, IRC:SP:53 compliance). |
+| **Figure 5** | **1,000 MT/Day Commercial Biorefinery Circular Mass Balance** | Mass flow: 1,000 MT/day bamboo -> bio-ethanol, furfural, bio-bitumen, and FOM bio-fertilizer. |
+| **Figure 6** | **Assam Biomass Feedstock & Waste Stream Catalog** | Multi-feedstock matrix (Bamboo, Paddy Straw, Bagasse, Citronella) and waste streams. |
+| **Figure 7** | **Decentralized Depot QA & LoRaWAN Smart Probe Telemetry Console** | Mobile interface showing real-time moisture, BQVI scores, thermal alerts, and offline sync. |
+| **Figure 8** | **Bilingual Farmer Off-Take Settlement & Quality Certificate** | Assamese/English certificate with QR code, batch grading, and Aadhaar DBT payout details. |
+| **Figure 9** | **Multi-Stakeholder Digital Platform Progression & User Journey** | End-to-end journey from FPO harvesting to depot testing, SCADA dispatch, and refinery off-take. |
+| **Figure 10** | **LoRaWAN IoT Smart Probe Spear (SS316) Hardware Blueprint** | Multi-depth sensor array (FDR, DS18B20, NDIR CO2) and IP67 solar-powered telemetry head. |
+| **Figure 11** | **Biomass Quality & Rot Vulnerability Index (BQVI) Hierarchy** | AHP multi-criteria scoring model balancing moisture, fungal titer, packing density, and sugar loss. |
+| **Figure 12** | **Industrial Enterprise SCADA & Cloud Telemetry Architecture** | Complete edge-to-cloud telemetry stack: ESP32/SX1262 -> ChirpStack -> TimescaleDB -> React. |
