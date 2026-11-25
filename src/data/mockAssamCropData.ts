@@ -560,13 +560,13 @@ export const mockAdvisoryTemplates: AdvisoryTemplate[] = [
 export const mockAdminPersonnel: AdminPersonnel[] = [
   {
     userId: 'ADM-JS-01',
-    name: 'Ron Hatibaruah',
+    name: 'Kalyanjit Hatibaruah',
     designation: 'Lead Bioenergy Systems Architect',
     department: 'Dept of Agriculture',
     district: 'Statewide',
     role: 'ASSAC Lead Analyst',
     phone: '+91 94350 99881',
-    email: 'ron.hatibaruah@bioenergy-assam.gov.in',
+    email: 'kalyanjit.hatibaruah@flugelsoft.com',
     status: 'ACTIVE'
   },
   {

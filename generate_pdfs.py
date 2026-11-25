@@ -34,7 +34,7 @@ class NumberedCanvas(canvas.Canvas):
         # Header (pages after page 1)
         if self._pageNumber > 1:
             self.drawString(54, letter[1] - 36, "Government of Assam • Industry Track (MC2 Foundation) • NESFIC-I-04")
-            self.drawRightString(letter[0] - 54, letter[1] - 36, "JaivikSuraksha — Ron Hatibaruah")
+            self.drawRightString(letter[0] - 54, letter[1] - 36, "JaivikSuraksha — Kalyanjit Hatibaruah")
             self.setStrokeColor(colors.HexColor("#cbd5e1"))
             self.setLineWidth(0.5)
             self.line(54, letter[1] - 42, letter[0] - 54, letter[1] - 42)
@@ -43,7 +43,7 @@ class NumberedCanvas(canvas.Canvas):
         self.setStrokeColor(colors.HexColor("#cbd5e1"))
         self.setLineWidth(0.5)
         self.line(54, 45, letter[0] - 54, 45)
-        self.drawString(54, 32, "NESFIC 2026 Proposal • Problem NESFIC-I-04 • Applicant: Ron Hatibaruah")
+        self.drawString(54, 32, "NESFIC 2026 Proposal • NESFIC-I-04 • Lead Applicant: Kalyanjit Hatibaruah • © Flugelsoft Labs")
         self.drawRightString(letter[0] - 54, 32, f"Page {self._pageNumber} of {page_count}")
         self.restoreState()
 
@@ -221,7 +221,7 @@ def build_proposal_pdf(output_path, workspace_dir):
     
     meta_data = [
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-I-04", meta_style), safe_paragraph("<b>Challenge Partner:</b> MC2 Foundation", meta_style)],
-        [safe_paragraph("<b>Title:</b> Bioenergy Feedstock Chain & Waste Valorisation", meta_style), safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style)],
+        [safe_paragraph("<b>Title:</b> Bioenergy Feedstock Chain & Waste Valorisation", meta_style), safe_paragraph("<b>Lead Applicant:</b> Kalyanjit Hatibaruah (Flugelsoft Labs)", meta_style)],
         [safe_paragraph("<b>Solution Name:</b> JaivikSuraksha", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
         [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
     ]
@@ -348,7 +348,7 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     
     meta_data = [
         [safe_paragraph("<b>Challenge ID:</b> NESFIC-I-04 (Industry Track)", meta_style), safe_paragraph("<b>Partner:</b> MC2 Foundation", meta_style)],
-        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
+        [safe_paragraph("<b>Lead Applicant:</b> Kalyanjit Hatibaruah (Flugelsoft Labs)", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
         [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Status:</b> Fully Built & Verified", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
@@ -466,7 +466,7 @@ def build_additional_supporting_material_pdf(output_path, workspace_dir):
     
     meta_data = [
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-I-04", meta_style), safe_paragraph("<b>Industry Partner:</b> MC2 Foundation", meta_style)],
-        [safe_paragraph("<b>Lead Applicant:</b> Ron Hatibaruah", meta_style), safe_paragraph("<b>Academic Collaborator:</b> AEDA & IIT Guwahati", meta_style)],
+        [safe_paragraph("<b>Lead Applicant:</b> Kalyanjit Hatibaruah (Flugelsoft Labs)", meta_style), safe_paragraph("<b>Academic Collaborator:</b> AEDA & IIT Guwahati", meta_style)],
         [safe_paragraph("<b>Live Production Platform:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[245, 259])
@@ -532,9 +532,9 @@ def build_additional_supporting_material_pdf(output_path, workspace_dir):
 
 if __name__ == '__main__':
     workspace_dir = os.path.dirname(os.path.abspath(__file__))
-    proposal_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Proposal_Ron_Hatibaruah.pdf')
-    pow_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf')
-    asm_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Additional_Supporting_Material_Ron_Hatibaruah.pdf')
+    proposal_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Proposal_Kalyanjit_Hatibaruah.pdf')
+    pow_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf')
+    asm_pdf = os.path.join(workspace_dir, 'NESFIC_I04_Additional_Supporting_Material_Kalyanjit_Hatibaruah.pdf')
     
     build_proposal_pdf(proposal_pdf, workspace_dir)
     build_proof_of_work_pdf(pow_pdf, workspace_dir)

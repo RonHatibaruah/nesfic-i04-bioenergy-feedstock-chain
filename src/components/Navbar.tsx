@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sprout, Map, ClipboardCheck, Radio, Activity, BookOpen, Sliders, AlertTriangle, Recycle, Flame, HelpCircle } from 'lucide-react';
+import { Sprout, Map, ClipboardCheck, Radio, Activity, BookOpen, Sliders, AlertTriangle, Recycle, Flame, HelpCircle, Github } from 'lucide-react';
 
 export type ActiveTab = 'dashboard' | 'gis-map' | 'field-verification' | 'citizen-portal' | 'drone-tech' | 'admin';
 
@@ -43,6 +43,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <span>Tutorial: What It Does & How to Use</span>
           </button>
+          <span className="text-slate-500 hidden sm:inline">•</span>
+          <a
+            href="https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-slate-300 hover:text-white text-[11px] font-medium flex items-center gap-1 transition-colors hidden sm:flex"
+          >
+            <Github className="w-3 h-3 text-slate-400" />
+            <span>flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain</span>
+          </a>
           <span className="text-slate-500 hidden sm:inline">•</span>
           <span className="text-slate-400 hidden sm:inline">IoT LoRaWAN Sensor Spears & Biorefinery Grid</span>
           <span className="bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded text-[11px] font-mono">
@@ -107,6 +117,17 @@ export const Navbar: React.FC<NavbarProps> = ({
               <HelpCircle className="w-4 h-4 text-emerald-200" />
               <span>Tutorial: How to Use</span>
             </button>
+
+            <a
+              href="https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold transition-all shadow-xs"
+              title="Open GitHub Repository (flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain)"
+            >
+              <Github className="w-4 h-4 text-slate-300" />
+              <span>GitHub</span>
+            </a>
           </div>
         </div>
 

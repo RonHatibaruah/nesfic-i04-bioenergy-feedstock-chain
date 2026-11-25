@@ -7,11 +7,11 @@ Problem Statement    : Securing the North-East Bioenergy Feedstock Chain — Bio
                        Preservation Through the Monsoon and Valorisation of 
                        Bio-Refinery Waste Streams
 Industry Partner     : MC² Foundation (in alignment with ABRPL Numaligarh / NRL)
-Lead Applicant       : Ron Hatibaruah
+Lead Applicant       : Kalyanjit Hatibaruah (Flugelsoft Labs)
 Proposed Solution    : JaivikSuraksha (জৈৱিক সুৰক্ষা)
 Product / Website URL: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
 Demo / Video URL     : https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial
-GitHub Repository    : https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
+GitHub Repository    : https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain
 ================================================================================
 
 --------------------------------------------------------------------------------
@@ -99,8 +99,8 @@ Designed with high-contrast, clean industrial control room styling:
 Prototype & Proof of Work Deliverables
 - Live Functional System: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
 - Interactive Tutorial: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial
-- Open-Source Codebase: https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
-- Proof of Work PDF: Uploaded below (NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf), compiling 180-day empirical ensiling kinetics, LoRaWAN IoT spear blueprints, bio-bitumen Marshall stability assays (14.8 kN), and 12 embedded high-impact technological infographics.
+- Open-Source Codebase: https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain
+- Proof of Work PDF: Uploaded below (NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf), compiling 180-day empirical ensiling kinetics, LoRaWAN IoT spear blueprints, bio-bitumen Marshall stability assays (14.8 kN), and 12 embedded high-impact technological infographics.
 
 --------------------------------------------------------------------------------
 FIELD 4: TECHNOLOGY & SOLUTION ARCHITECTURE
@@ -236,7 +236,7 @@ Status  : 472 words (Limit: 500 words)
 Core Leadership & Technical Team Composition
 The JaivikSuraksha implementation team combines deep cross-disciplinary expertise in systems architecture, biochemical fermentation engineering, IoT embedded hardware, geospatial analytics, and rural community extension:
 
-1. Systems Architect & Principal Investigator (Ron Hatibaruah) - Lead Systems Engineer:
+1. Systems Architect & Principal Investigator (Kalyanjit Hatibaruah) - Lead Systems Engineer:
    - Expertise: Full-stack geospatial systems, edge-to-cloud architectures, SCADA telemetry, industrial supply-chain optimization, and public policy alignment.
    - Responsibilities: Overall project technical leadership, systems integration, stakeholder alignment with MC² Foundation/ABRPL, and security architecture. Full-time across all phases (M01-M12).
 2. Senior Biochemical & Fermentation Engineer (Co-Investigator):
@@ -390,7 +390,7 @@ The solution will be validated in its real-world operational environment in Gola
 03 SUPPORTING MATERIAL SUBMISSION FIELDS
 ================================================================================
 1. Upload Proof of Work / Solution Evidence:
-   File to Upload : NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf (4.3 MB, PDF only)
+   File to Upload : NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf (4.3 MB, PDF only)
    Description    : 180-day empirical ensiling kinetics, LoRaWAN smart probe CAD 
                     blueprints, lignin bio-bitumen Marshall stability assays (14.8 kN), 
                     1,000 MT/day biorefinery circular mass balance flowsheet, and 
@@ -403,7 +403,7 @@ The solution will be validated in its real-world operational environment in Gola
    https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
 
 4. Additional Supporting Material (Optional):
-   File to Upload : NESFIC_I04_Additional_Supporting_Material_Ron_Hatibaruah.pdf (PDF only)
+   File to Upload : NESFIC_I04_Additional_Supporting_Material_Kalyanjit_Hatibaruah.pdf (PDF only)
    Description    : Agro-climatic biomass availability across Assam's 6 zones, 
                     biochemical ensiling reaction mechanisms, techno-economic 
                     model with 1.8-year payback, and LCA carbon offset accounting.

@@ -208,8 +208,10 @@ export function App() {
             <span>Assam Energy Development Agency (AEDA)</span>
           </div>
 
-          <div className="text-slate-500 font-mono text-[11px]">
-            Lead Systems Architect: Ron Hatibaruah
+          <div className="flex flex-col sm:flex-row items-center gap-2 text-slate-500 font-mono text-[11px]">
+            <span>Lead Applicant: Kalyanjit Hatibaruah</span>
+            <span className="hidden sm:inline">•</span>
+            <span>&copy; {new Date().getFullYear()} Flugelsoft Labs. All Rights Reserved.</span>
           </div>
         </div>
       </footer>

@@ -2,12 +2,12 @@
 **Problem Statement:** NESFIC-I-04 (Industry Track) — *Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon and Valorisation of Bio-Refinery Waste Streams*  
 **Industry Partner / Challenge Owner:** MC² Foundation (in partnership with Assam Bio-Refinery Pvt. Ltd. - ABRPL, Numaligarh Refinery Limited - NRL & SATAT CBG Ecosystem)  
 **Academic & Research Collaborators:** Assam Energy Development Agency (AEDA) & Indian Institute of Technology (IIT) Guwahati  
-**Lead Applicant & Systems Architect:** Ron Hatibaruah  
+**Lead Applicant & Systems Architect:** Kalyanjit Hatibaruah (Flugelsoft Labs)  
 **Application Platform:** Assam Startup Portal (NESFIC 2026)  
 **Proposed Solution Name:** JaivikSuraksha (জৈৱিক সুৰক্ষা) — Climate-Resilient Biomass Preservation, Decentralized Feedstock Logistics & Circular Waste Valorisation Grid  
 **Product / Website URL:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev  
 **Demo / Product Video URL:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial  
-**Open-Source Code Repository:** https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain  
+**Open-Source Code Repository:** https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain  
 
 ---
 
@@ -97,8 +97,8 @@ Designed with high-contrast, clean industrial control room styling:
 ### Prototype & Proof of Work Deliverables
 - Live Functional System: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
 - Interactive Tutorial: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial
-- Open-Source Codebase: https://github.com/RonHatibaruah/nesfic-i04-bioenergy-feedstock-chain
-- Proof of Work PDF: Uploaded below (NESFIC_I04_Proof_of_Work_Ron_Hatibaruah.pdf), compiling 180-day empirical ensiling kinetics, LoRaWAN IoT spear blueprints, bio-bitumen Marshall stability assays (14.8 kN), and 12 embedded high-impact technological infographics.
+- Open-Source Codebase: https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain
+- Proof of Work PDF: Uploaded below (NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf), compiling 180-day empirical ensiling kinetics, LoRaWAN IoT spear blueprints, bio-bitumen Marshall stability assays (14.8 kN), and 12 embedded high-impact technological infographics.
 
 ---
 
@@ -239,7 +239,7 @@ The architecture relies entirely on open APIs (IMD, OSM, Sentinel open access) a
 ### Core Leadership & Technical Team Composition
 The JaivikSuraksha implementation team combines deep cross-disciplinary expertise in systems architecture, biochemical fermentation engineering, IoT embedded hardware, geospatial analytics, and rural community extension:
 
-1. Systems Architect & Principal Investigator (Ron Hatibaruah) - Lead Systems Engineer:
+1. Systems Architect & Principal Investigator (Kalyanjit Hatibaruah) - Lead Systems Engineer:
    - Expertise: Full-stack geospatial systems, edge-to-cloud architectures, SCADA telemetry, industrial supply-chain optimization, and public policy alignment.
    - Responsibilities: Overall project technical leadership, systems integration, stakeholder alignment with MC² Foundation/ABRPL, and security architecture. Full-time across all phases (M01-M12).
 2. Senior Biochemical & Fermentation Engineer (Co-Investigator):
