@@ -3,8 +3,8 @@
         xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">
   <!-- Main Application Landing Page -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <geo:geo>
@@ -12,59 +12,59 @@
     </geo:geo>
   </url>
 
-  <!-- Executive Agro-Climatic Intelligence Dashboard -->
+  <!-- Executive Biomass Supply-Chain & Silo Intelligence Dashboard -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#dashboard</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#dashboard</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Satellite & Drone Multispectral WebGIS Viewer -->
+  <!-- Assam Bioenergy Supply Shed WebGIS & Transport Corridors -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#gis-viewer</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#gis-map</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Agriculture Extension Field Scouting & Mobile PWA Portal -->
+  <!-- Decentralized Depot QA, Ensiling Kinetics & IoT Moisture Spear Verification -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#field-scouting</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#field-verification</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Farmer Hyper-Local Advisory & Outbreak Warning Portal (Sasya Seva) -->
+  <!-- Bilingual Farmer Off-Take & DBT Fair Value Procurement (Jaivik Seva) -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#farmer-advisory</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#citizen-portal</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Drone Technology & Multispectral Fleet Operations -->
+  <!-- Drone Logistics & Aerial Moisture/Thermal Reconnaissance Fleet -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#drone-technology</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#drone-tech</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
-  <!-- Agro-Command Center & Administrative Console -->
+  <!-- Biorefinery Governance, IoT Alert Rules & Cryptographic Audit Ledger -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#admin-console</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#admin</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Interactive Walkthrough & Training Guide -->
+  <!-- Interactive Platform Tutorial & Technical Walkthrough -->
   <url>
-    <loc>https://sasya-swasthya.pages.dev/#tutorial</loc>
-    <lastmod>2026-11-22</lastmod>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>

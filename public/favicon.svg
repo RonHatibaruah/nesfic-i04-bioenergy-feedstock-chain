@@ -1,38 +1,48 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Background circular badge -->
-  <rect width="64" height="64" rx="16" fill="#064e3b"/>
-  
-  <!-- Subtle satellite orbital rings / radar sweeps -->
-  <circle cx="32" cy="32" r="26" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.4"/>
-  <circle cx="32" cy="32" r="20" stroke="#34d399" stroke-width="1.5" opacity="0.3"/>
-  
-  <!-- Satellite sensor beam wave -->
-  <path d="M12 18 C 22 14, 42 14, 52 18" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-  <path d="M16 23 C 24 20, 40 20, 48 23" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" opacity="0.9"/>
-  
-  <!-- Satellite icon at top right -->
-  <rect x="44" y="10" width="7" height="4" rx="1" fill="#38bdf8" transform="rotate(-25 44 10)"/>
-  <line x1="42" y1="9" x2="38" y2="7" stroke="#93c5fd" stroke-width="1.2"/>
-  <line x1="51" y1="13" x2="55" y2="15" stroke="#93c5fd" stroke-width="1.2"/>
-  <circle cx="48" cy="13" r="1.5" fill="#ffffff"/>
+  <!-- Gradient Definitions -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b"/>
+      <stop offset="50%" stop-color="#047857"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#facc15"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#15803d"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Golden Paddy ear & Central vibrant green crop leaf -->
-  <!-- Left golden paddy grain -->
-  <path d="M22 36 C 20 30, 24 26, 26 24 C 27 28, 25 34, 22 36 Z" fill="#facc15"/>
-  <path d="M19 43 C 17 38, 21 34, 23 32 C 24 36, 22 41, 19 43 Z" fill="#eab308"/>
-  
-  <!-- Central main flourishing leaf -->
-  <path d="M32 50 C 32 50, 48 42, 46 26 C 36 24, 24 34, 24 44 C 24 48, 28 50, 32 50 Z" fill="#22c55e"/>
-  <!-- Leaf central vein / pulse line -->
-  <path d="M26 47 C 32 40, 38 33, 44 28" stroke="#dcfce7" stroke-width="1.5" stroke-linecap="round"/>
-  <!-- Inner leaf branch veins -->
-  <path d="M32 40 C 36 38, 40 37, 42 36" stroke="#bbf7d0" stroke-width="1" stroke-linecap="round"/>
-  <path d="M29 44 C 33 43, 36 43, 38 41" stroke="#bbf7d0" stroke-width="1" stroke-linecap="round"/>
+  <!-- Background App Icon Badge -->
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#34d399" stroke-width="1.5" stroke-opacity="0.3"/>
 
-  <!-- Stem root anchor -->
-  <path d="M30 50 C 31 54, 32 56, 32 56" stroke="#15803d" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Circular Bio-economy & LoRaWAN Radio Wave Orbit -->
+  <circle cx="32" cy="32" r="25" stroke="url(#ringGrad)" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.45"/>
+  <circle cx="32" cy="32" r="19" stroke="#34d399" stroke-width="1.2" opacity="0.3"/>
+
+  <!-- Biomass Sprout (Left Leaf - Bamboo / Paddy Straw) -->
+  <path d="M30 46 C24 45, 16 38, 17 28 C 24 28, 30 33, 31 40 Z" fill="url(#leafGrad)"/>
+  <path d="M21 34 C 25 36, 28 39, 30 43" stroke="#bbf7d0" stroke-width="1.2" stroke-linecap="round"/>
+
+  <!-- Bioenergy Clean Flame (Center Right - 2G Bioethanol / Green Power) -->
+  <path d="M31 46 C 30 38, 33 32, 38 27 C 40 31, 44 32, 45 28 C 48 34, 47 41, 41 45 C 38 47, 34 47, 31 46 Z" fill="url(#flameGrad)"/>
+  <!-- Inner Flame Core -->
+  <path d="M34 45 C 33 40, 36 36, 39 33 C 41 37, 43 38, 41 43 C 39 45, 36 46, 34 45 Z" fill="#fef08a"/>
+
+  <!-- Stem & Smart IoT Root Core -->
+  <path d="M30 46 L 31 52" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
   
-  <!-- Sensor Pulse dot (AI / Health check ping) -->
-  <circle cx="46" cy="26" r="3" fill="#38bdf8"/>
-  <circle cx="46" cy="26" r="5" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
+  <!-- Active Telemetry Probe Pulse Dot -->
+  <circle cx="45" cy="18" r="2.5" fill="#38bdf8"/>
+  <circle cx="45" cy="18" r="5" stroke="#38bdf8" stroke-width="1" opacity="0.6"/>
 </svg>

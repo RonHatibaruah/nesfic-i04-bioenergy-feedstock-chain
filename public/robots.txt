@@ -1,6 +1,7 @@
-# SasyaSwasthya (শস্য স্বাস্থ্য) - Robots Configuration
+# JaivikSuraksha (জৈৱিক সুৰক্ষা) - Robots Configuration
+# NESFIC-I-04 Bioenergy Feedstock Chain & Biorefinery Waste Valorisation
 User-agent: *
 Allow: /
 
 # Canonical Sitemaps
-Sitemap: https://sasya-swasthya.pages.dev/sitemap.xml
+Sitemap: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/sitemap.xml

@@ -11,7 +11,7 @@ import { TutorialModal } from './components/TutorialModal';
 import { initialCropRecords, initialScoutingTasks } from './data/mockAssamCropData';
 import { CropHealthRecord, FieldScoutingTask } from './types/cropHealth';
 import { AgroRuleEngineConfig, DEFAULT_AGRO_CONFIG } from './services/cropIntelligenceEngine';
-import { Sprout } from 'lucide-react';
+import { Sprout, ShieldAlert, FileText, ExternalLink, HelpCircle, Github } from 'lucide-react';
 
 export function App() {
   const [records, setRecords] = useState<CropHealthRecord[]>(initialCropRecords);
@@ -189,29 +189,112 @@ export function App() {
       />
 
       {/* Footer */}
-      <footer className="bg-white border-t border-slate-200 text-slate-600 text-xs py-6 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-2">
-            <div className="w-6 h-6 rounded bg-emerald-600 flex items-center justify-center text-white">
-              <Sprout className="w-4 h-4" />
+      <footer className="bg-white border-t border-slate-200 text-slate-600 text-xs py-8 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          {/* Top Row: Brand & Stakeholders */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white shadow-xs">
+                <Sprout className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex items-center space-x-2">
+                  <span className="font-bold text-slate-900 text-sm">JaivikSuraksha (জৈৱিক সুৰক্ষা)</span>
+                  <span className="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-300 px-1.5 py-0.5 rounded font-mono font-bold">NESFIC-I-04</span>
+                </div>
+                <p className="text-[11px] text-slate-500">
+                  North-East Bioenergy Feedstock Chain — Monsoon Biomass Preservation & Biorefinery Waste Valorisation
+                </p>
+              </div>
             </div>
-            <span className="font-bold text-slate-900">JaivikSuraksha (জৈৱিক সুৰক্ষা)</span>
-            <span>•</span>
-            <span className="text-emerald-700 font-semibold">NESFIC-I-04 Industry Track Solution</span>
+
+            <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-600">
+              <span className="font-semibold text-slate-800">Stakeholder Alignment:</span>
+              <span className="bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Government of Assam</span>
+              <span>•</span>
+              <span className="bg-slate-100 px-2 py-0.5 rounded border border-slate-200">MC² Foundation</span>
+              <span>•</span>
+              <span className="bg-slate-100 px-2 py-0.5 rounded border border-slate-200">Assam Bio-Refinery Pvt. Ltd. (Numaligarh / NRL)</span>
+              <span>•</span>
+              <span className="bg-slate-100 px-2 py-0.5 rounded border border-slate-200">AEDA</span>
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4 text-slate-600">
-            <span>MC² Foundation</span>
-            <span>•</span>
-            <span>Assam Bio-Refinery Pvt. Ltd. (Numaligarh / NRL)</span>
-            <span>•</span>
-            <span>Assam Energy Development Agency (AEDA)</span>
+          {/* Quick Action Navigation & PDF Download Links */}
+          <div className="flex flex-wrap items-center justify-between gap-4 text-xs bg-slate-50 p-3 rounded-lg border border-slate-200">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={() => setIsTutorialOpen(true)}
+                className="flex items-center space-x-1 text-emerald-700 hover:text-emerald-900 font-semibold"
+              >
+                <HelpCircle className="w-3.5 h-3.5" />
+                <span>Interactive Tutorial & Guide</span>
+              </button>
+              <span className="text-slate-300">|</span>
+              <a
+                href="https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-slate-700 hover:text-slate-900 font-semibold"
+              >
+                <Github className="w-3.5 h-3.5" />
+                <span>GitHub Repository</span>
+              </a>
+              <span className="text-slate-300">|</span>
+              <a
+                href="https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/"
+                className="flex items-center space-x-1 text-slate-700 hover:text-slate-900 font-semibold"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Production URL: nesfic-i04-bioenergy-feedstock-chain.pages.dev</span>
+              </a>
+            </div>
+
+            <div className="flex items-center space-x-2 text-[11px]">
+              <a
+                href="/NESFIC_I04_Proposal_Kalyanjit_Hatibaruah.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-blue-700 hover:text-blue-900 font-semibold underline"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Proposal PDF (18pp)</span>
+              </a>
+              <span className="text-slate-300">•</span>
+              <a
+                href="/NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-1 text-blue-700 hover:text-blue-900 font-semibold underline"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Proof of Work PDF (9pp)</span>
+              </a>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-2 text-slate-500 font-mono text-[11px]">
-            <span>Lead Applicant: Kalyanjit Hatibaruah</span>
-            <span className="hidden sm:inline">•</span>
-            <span>&copy; {new Date().getFullYear()} Flugelsoft Labs. All Rights Reserved.</span>
+          {/* Official Disclaimer Box */}
+          <div className="p-3.5 rounded-lg bg-amber-50/70 border border-amber-200/80 text-amber-950 text-[11px] leading-relaxed">
+            <div className="flex items-start space-x-2">
+              <ShieldAlert className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
+              <div>
+                <strong className="font-bold text-amber-900">Disclaimer: </strong>
+                JaivikSuraksha (জৈৱিক সুৰক্ষা) is an open innovation proposal, technical architecture, and decision-support prototype developed for the <strong>North East Seva First Innovation Challenge (NESFIC 2026)</strong> under Problem Statement <strong>NESFIC-I-04</strong> (<em>Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon and Valorisation of Bio-Refinery Waste Streams</em>). All empirical ensilage kinetics, dry-matter preservation models, LoRaWAN multi-depth spear telemetry, satellite multispectral indexes, biorefinery mass-balance allocations, and farmer direct benefit transfer (DBT) calculators are engineered for technological demonstration, scientific feasibility validation, and competitive jury evaluation. References to institutional entities (Government of Assam, MC² Foundation, Assam Bio-Refinery Pvt. Ltd. / ABRPL, Numaligarh Refinery Limited / NRL, AEDA, and IIT Guwahati) represent challenge problem statement alignment and do not constitute formal commercial warranty prior to statutory stage-gate sanction.
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar: Lead Applicant & Copyright */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-slate-500 font-mono text-[11px]">
+            <div>
+              <span className="font-semibold text-slate-700">Lead Applicant: </span>
+              <span className="text-emerald-700 font-bold">Kalyanjit Hatibaruah</span>
+              <span className="text-slate-400"> (Lead Systems Architect &amp; Principal Investigator)</span>
+            </div>
+
+            <div className="text-slate-600">
+              &copy; {new Date().getFullYear()} <strong className="font-semibold text-slate-800">Flugelsoft Labs</strong>. All Rights Reserved.
+            </div>
           </div>
         </div>
       </footer>
