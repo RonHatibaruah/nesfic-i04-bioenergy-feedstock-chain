@@ -8,7 +8,13 @@ import {
   Compass, 
   Send,
   Flame,
-  Factory
+  Factory,
+  Globe,
+  Mountain,
+  Moon,
+  Sun,
+  Map as MapIcon,
+  Check
 } from 'lucide-react';
 import { FeedstockDepotRecord } from '../types/cropHealth';
 
@@ -21,6 +27,71 @@ interface CadastralMapViewerProps {
 
 type FeedstockLayer = 'BQVI' | 'MOISTURE_HEATMAP' | 'CORE_TEMP' | 'TRUE_COLOR';
 
+export type BasemapType = 'VOYAGER' | 'SATELLITE' | 'TOPO' | 'DARK' | 'LIGHT';
+
+interface BasemapConfig {
+  id: BasemapType;
+  name: string;
+  shortName: string;
+  badge: string;
+  url: string;
+  attribution: string;
+  maxZoom: number;
+  subdomains?: string | string[];
+}
+
+const BASEMAP_CONFIGS: Record<BasemapType, BasemapConfig> = {
+  VOYAGER: {
+    id: 'VOYAGER',
+    name: 'Carto Voyager (Street)',
+    shortName: 'Street',
+    badge: 'OpenStreetMap',
+    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OpenStreetMap contributors | Assam Bioenergy Grid',
+    maxZoom: 19,
+    subdomains: 'abcd'
+  },
+  SATELLITE: {
+    id: 'SATELLITE',
+    name: 'Esri World Imagery (High-Res Aerial)',
+    shortName: 'Satellite',
+    badge: 'Esri Satellite',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    attribution: 'Tiles &copy; Esri &mdash; Maxar, Earthstar Geographics, USDA, USGS, AeroGRID, IGN',
+    maxZoom: 19
+  },
+  TOPO: {
+    id: 'TOPO',
+    name: 'OpenTopoMap (Topography & Contours)',
+    shortName: 'Terrain',
+    badge: 'SRTM Contours',
+    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, SRTM | &copy; <a href="https://opentopomap.org">OpenTopoMap</a>',
+    maxZoom: 17,
+    subdomains: ['a', 'b', 'c']
+  },
+  DARK: {
+    id: 'DARK',
+    name: 'Carto Dark Matter (Night SCADA)',
+    shortName: 'Dark',
+    badge: 'Night Ops',
+    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    maxZoom: 20,
+    subdomains: 'abcd'
+  },
+  LIGHT: {
+    id: 'LIGHT',
+    name: 'Carto Positron (Minimal Light)',
+    shortName: 'Light',
+    badge: 'Clean Overlay',
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    maxZoom: 20,
+    subdomains: 'abcd'
+  }
+};
+
 export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
   records,
   selectedRecord,
@@ -30,6 +101,8 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<L.Map | null>(null);
   const polygonsGroupRef = useRef<L.FeatureGroup | null>(null);
+  const currentTileLayerRef = useRef<L.TileLayer | null>(null);
+  const [selectedBasemap, setSelectedBasemap] = useState<BasemapType>('VOYAGER');
   const [activeLayer, setActiveLayer] = useState<FeedstockLayer>('BQVI');
   const [opacity, setOpacity] = useState<number>(0.85);
   const [filterDistrict, setFilterDistrict] = useState<string>('ALL');
@@ -47,11 +120,14 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
 
       L.control.zoom({ position: 'topright' }).addTo(map);
 
-      // Clean Light Carto Voyager Basemap
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OpenStreetMap contributors | Assam Bioenergy Grid',
-        maxZoom: 19
+      // Free Base Layer (No API Key Required)
+      const initialBasemap = BASEMAP_CONFIGS[selectedBasemap];
+      const tileLayer = L.tileLayer(initialBasemap.url, {
+        attribution: initialBasemap.attribution,
+        maxZoom: initialBasemap.maxZoom,
+        subdomains: initialBasemap.subdomains || 'abc'
       }).addTo(map);
+      currentTileLayerRef.current = tileLayer;
 
       polygonsGroupRef.current = L.featureGroup().addTo(map);
       mapInstanceRef.current = map;
@@ -64,6 +140,27 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
       }
     };
   }, []);
+
+  // Dynamically Switch Basemap Layer on the fly (Zero API key)
+  useEffect(() => {
+    const map = mapInstanceRef.current;
+    if (!map) return;
+
+    if (currentTileLayerRef.current) {
+      map.removeLayer(currentTileLayerRef.current);
+    }
+
+    const config = BASEMAP_CONFIGS[selectedBasemap];
+    const newTileLayer = L.tileLayer(config.url, {
+      attribution: config.attribution,
+      maxZoom: config.maxZoom,
+      subdomains: config.subdomains || 'abc'
+    }).addTo(map);
+
+    // Keep base layer below vectors & markers
+    newTileLayer.bringToBack();
+    currentTileLayerRef.current = newTileLayer;
+  }, [selectedBasemap]);
 
   // Render Polygons and Spectral Highlights whenever records or activeLayer change
   useEffect(() => {
@@ -183,10 +280,12 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
 
         {/* Layer Switcher & Opacity Slider */}
         <div className="flex flex-wrap items-center gap-3">
+          {/* Data Overlay Selector */}
           <div className="flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider px-1.5 hidden sm:inline">Data:</span>
             <button
               onClick={() => setActiveLayer('BQVI')}
-              className={`px-3 py-1 rounded-lg transition-all ${
+              className={`px-2.5 py-1 rounded-lg transition-all ${
                 activeLayer === 'BQVI'
                   ? 'bg-emerald-600 text-white shadow-2xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
@@ -196,7 +295,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
             </button>
             <button
               onClick={() => setActiveLayer('MOISTURE_HEATMAP')}
-              className={`px-3 py-1 rounded-lg transition-all ${
+              className={`px-2.5 py-1 rounded-lg transition-all ${
                 activeLayer === 'MOISTURE_HEATMAP'
                   ? 'bg-sky-600 text-white shadow-2xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
@@ -206,7 +305,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
             </button>
             <button
               onClick={() => setActiveLayer('CORE_TEMP')}
-              className={`px-3 py-1 rounded-lg transition-all ${
+              className={`px-2.5 py-1 rounded-lg transition-all ${
                 activeLayer === 'CORE_TEMP'
                   ? 'bg-rose-600 text-white shadow-2xs font-bold'
                   : 'text-slate-600 hover:text-slate-900'
@@ -216,9 +315,41 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
             </button>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-500">
+          {/* Free Basemap Layer Selector */}
+          <div className="flex items-center gap-1 bg-slate-50 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+            <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider px-1.5 hidden sm:inline flex items-center gap-1">
+              <Globe className="w-3 h-3 text-emerald-600" />
+              Basemap:
+            </span>
+            {(['VOYAGER', 'SATELLITE', 'TOPO', 'DARK', 'LIGHT'] as BasemapType[]).map((type) => {
+              const cfg = BASEMAP_CONFIGS[type];
+              const isSelected = selectedBasemap === type;
+              return (
+                <button
+                  key={type}
+                  onClick={() => setSelectedBasemap(type)}
+                  className={`px-2 py-1 rounded-lg text-xs transition-all flex items-center gap-1 ${
+                    isSelected
+                      ? 'bg-slate-900 text-white shadow-2xs font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                  title={`${cfg.name} (Free • No API Key)`}
+                >
+                  {type === 'VOYAGER' && <MapIcon className="w-3 h-3 text-emerald-400" />}
+                  {type === 'SATELLITE' && <Globe className="w-3 h-3 text-sky-400" />}
+                  {type === 'TOPO' && <Mountain className="w-3 h-3 text-amber-400" />}
+                  {type === 'DARK' && <Moon className="w-3 h-3 text-purple-400" />}
+                  {type === 'LIGHT' && <Sun className="w-3 h-3 text-yellow-400" />}
+                  <span>{cfg.shortName}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Opacity Slider */}
+          <div className="flex items-center gap-2 text-xs text-slate-500 bg-slate-50 px-2.5 py-1.5 rounded-xl border border-slate-200">
             <Sliders className="w-3.5 h-3.5 text-slate-400" />
-            <span>Opacity:</span>
+            <span className="hidden sm:inline">Opacity:</span>
             <input
               type="range"
               min="0.3"
@@ -226,7 +357,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
               step="0.05"
               value={opacity}
               onChange={(e) => setOpacity(parseFloat(e.target.value))}
-              className="w-20 accent-emerald-600 cursor-pointer"
+              className="w-16 accent-emerald-600 cursor-pointer"
             />
           </div>
         </div>
@@ -237,6 +368,44 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
         {/* Leaflet Map Canvas */}
         <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs h-[520px] relative">
           <div ref={mapContainerRef} className="w-full h-full z-10" />
+
+          {/* Floating Free Basemap Quick Switcher on Map */}
+          <div className="absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-xl p-1 shadow-md flex items-center gap-1 text-xs">
+            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider px-2 hidden sm:inline flex items-center gap-1">
+              <Globe className="w-3 h-3 text-emerald-600" />
+              Basemap:
+            </span>
+            {(['VOYAGER', 'SATELLITE', 'TOPO', 'DARK', 'LIGHT'] as BasemapType[]).map((type) => {
+              const cfg = BASEMAP_CONFIGS[type];
+              const isSelected = selectedBasemap === type;
+              return (
+                <button
+                  key={type}
+                  onClick={() => setSelectedBasemap(type)}
+                  className={`px-2 py-1 rounded-lg text-[11px] font-semibold transition-all flex items-center gap-1 ${
+                    isSelected
+                      ? 'bg-emerald-700 text-white shadow-2xs'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  }`}
+                  title={`${cfg.name} (Free • No API Key)`}
+                >
+                  {type === 'VOYAGER' && <MapIcon className="w-3 h-3" />}
+                  {type === 'SATELLITE' && <Globe className="w-3 h-3" />}
+                  {type === 'TOPO' && <Mountain className="w-3 h-3" />}
+                  {type === 'DARK' && <Moon className="w-3 h-3" />}
+                  {type === 'LIGHT' && <Sun className="w-3 h-3" />}
+                  <span>{cfg.shortName}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Basemap Zero-Key Badge */}
+          <div className="absolute top-3 right-12 z-20 hidden md:flex items-center gap-1.5 bg-slate-900/80 backdrop-blur-md text-slate-200 px-2.5 py-1 rounded-lg text-[10px] font-mono border border-slate-700">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>{BASEMAP_CONFIGS[selectedBasemap].name}</span>
+            <span className="text-emerald-400 font-bold">• Free Layer</span>
+          </div>
 
           {/* Map Floating Legend */}
           <div className="absolute bottom-4 left-4 z-20 bg-white/95 backdrop-blur-sm border border-slate-200 p-3 rounded-xl shadow-md text-xs space-y-1.5 font-medium">
