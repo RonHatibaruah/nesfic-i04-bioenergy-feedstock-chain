@@ -27,7 +27,7 @@ interface CadastralMapViewerProps {
 
 type FeedstockLayer = 'BQVI' | 'MOISTURE_HEATMAP' | 'CORE_TEMP' | 'TRUE_COLOR';
 
-export type BasemapType = 'VOYAGER' | 'SATELLITE' | 'TOPO' | 'DARK' | 'LIGHT';
+export type BasemapType = 'OSM' | 'SATELLITE' | 'TOPO' | 'HUMANITARIAN' | 'DARK';
 
 interface BasemapConfig {
   id: BasemapType;
@@ -41,19 +41,18 @@ interface BasemapConfig {
 }
 
 const BASEMAP_CONFIGS: Record<BasemapType, BasemapConfig> = {
-  VOYAGER: {
-    id: 'VOYAGER',
-    name: 'Carto Voyager (Street)',
+  OSM: {
+    id: 'OSM',
+    name: 'OpenStreetMap (Standard)',
     shortName: 'Street',
-    badge: 'OpenStreetMap',
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; OpenStreetMap contributors | Assam Bioenergy Grid',
-    maxZoom: 19,
-    subdomains: 'abcd'
+    badge: 'OSM Official',
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Assam Bioenergy Grid',
+    maxZoom: 19
   },
   SATELLITE: {
     id: 'SATELLITE',
-    name: 'Esri World Imagery (High-Res Aerial)',
+    name: 'Esri World Imagery (Satellite)',
     shortName: 'Satellite',
     badge: 'Esri Satellite',
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -62,7 +61,7 @@ const BASEMAP_CONFIGS: Record<BasemapType, BasemapConfig> = {
   },
   TOPO: {
     id: 'TOPO',
-    name: 'OpenTopoMap (Topography & Contours)',
+    name: 'OpenTopoMap (Topography)',
     shortName: 'Terrain',
     badge: 'SRTM Contours',
     url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
@@ -70,25 +69,24 @@ const BASEMAP_CONFIGS: Record<BasemapType, BasemapConfig> = {
     maxZoom: 17,
     subdomains: ['a', 'b', 'c']
   },
+  HUMANITARIAN: {
+    id: 'HUMANITARIAN',
+    name: 'Humanitarian OSM (Roads & Villages)',
+    shortName: 'Humanitarian',
+    badge: 'HOT Roads',
+    url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles by <a href="https://www.hotosm.org/">HOT</a>',
+    maxZoom: 19,
+    subdomains: ['a', 'b', 'c']
+  },
   DARK: {
     id: 'DARK',
-    name: 'Carto Dark Matter (Night SCADA)',
+    name: 'Esri Dark Canvas (Night SCADA)',
     shortName: 'Dark',
     badge: 'Night Ops',
-    url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxZoom: 20,
-    subdomains: 'abcd'
-  },
-  LIGHT: {
-    id: 'LIGHT',
-    name: 'Carto Positron (Minimal Light)',
-    shortName: 'Light',
-    badge: 'Clean Overlay',
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxZoom: 20,
-    subdomains: 'abcd'
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    maxZoom: 16
   }
 };
 
@@ -102,7 +100,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
   const mapInstanceRef = useRef<L.Map | null>(null);
   const polygonsGroupRef = useRef<L.FeatureGroup | null>(null);
   const currentTileLayerRef = useRef<L.TileLayer | null>(null);
-  const [selectedBasemap, setSelectedBasemap] = useState<BasemapType>('VOYAGER');
+  const [selectedBasemap, setSelectedBasemap] = useState<BasemapType>('OSM');
   const [activeLayer, setActiveLayer] = useState<FeedstockLayer>('BQVI');
   const [opacity, setOpacity] = useState<number>(0.85);
   const [filterDistrict, setFilterDistrict] = useState<string>('ALL');
@@ -321,7 +319,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
               <Globe className="w-3 h-3 text-emerald-600" />
               Basemap:
             </span>
-            {(['VOYAGER', 'SATELLITE', 'TOPO', 'DARK', 'LIGHT'] as BasemapType[]).map((type) => {
+            {(['OSM', 'SATELLITE', 'TOPO', 'HUMANITARIAN', 'DARK'] as BasemapType[]).map((type) => {
               const cfg = BASEMAP_CONFIGS[type];
               const isSelected = selectedBasemap === type;
               return (
@@ -335,11 +333,11 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
                   }`}
                   title={`${cfg.name} (Free • No API Key)`}
                 >
-                  {type === 'VOYAGER' && <MapIcon className="w-3 h-3 text-emerald-400" />}
+                  {type === 'OSM' && <MapIcon className="w-3 h-3 text-emerald-400" />}
                   {type === 'SATELLITE' && <Globe className="w-3 h-3 text-sky-400" />}
                   {type === 'TOPO' && <Mountain className="w-3 h-3 text-amber-400" />}
+                  {type === 'HUMANITARIAN' && <Compass className="w-3 h-3 text-teal-400" />}
                   {type === 'DARK' && <Moon className="w-3 h-3 text-purple-400" />}
-                  {type === 'LIGHT' && <Sun className="w-3 h-3 text-yellow-400" />}
                   <span>{cfg.shortName}</span>
                 </button>
               );
@@ -375,7 +373,7 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
               <Globe className="w-3 h-3 text-emerald-600" />
               Basemap:
             </span>
-            {(['VOYAGER', 'SATELLITE', 'TOPO', 'DARK', 'LIGHT'] as BasemapType[]).map((type) => {
+            {(['OSM', 'SATELLITE', 'TOPO', 'HUMANITARIAN', 'DARK'] as BasemapType[]).map((type) => {
               const cfg = BASEMAP_CONFIGS[type];
               const isSelected = selectedBasemap === type;
               return (
@@ -389,11 +387,11 @@ export const CadastralMapViewer: React.FC<CadastralMapViewerProps> = ({
                   }`}
                   title={`${cfg.name} (Free • No API Key)`}
                 >
-                  {type === 'VOYAGER' && <MapIcon className="w-3 h-3" />}
+                  {type === 'OSM' && <MapIcon className="w-3 h-3" />}
                   {type === 'SATELLITE' && <Globe className="w-3 h-3" />}
                   {type === 'TOPO' && <Mountain className="w-3 h-3" />}
+                  {type === 'HUMANITARIAN' && <Compass className="w-3 h-3" />}
                   {type === 'DARK' && <Moon className="w-3 h-3" />}
-                  {type === 'LIGHT' && <Sun className="w-3 h-3" />}
                   <span>{cfg.shortName}</span>
                 </button>
               );
