@@ -3,7 +3,7 @@
         xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">
   <!-- Main Application Landing Page -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
   <!-- Executive Biomass Supply-Chain & Silo Intelligence Dashboard -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#dashboard</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#dashboard</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -22,7 +22,7 @@
 
   <!-- Assam Bioenergy Supply Shed WebGIS & Transport Corridors -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#gis-map</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#gis-map</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -30,7 +30,7 @@
 
   <!-- Decentralized Depot QA, Ensiling Kinetics & IoT Moisture Spear Verification -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#field-verification</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#field-verification</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -38,7 +38,7 @@
 
   <!-- Bilingual Farmer Off-Take & DBT Fair Value Procurement (Jaivik Seva) -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#citizen-portal</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#citizen-portal</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -46,7 +46,7 @@
 
   <!-- Drone Logistics & Aerial Moisture/Thermal Reconnaissance Fleet -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#drone-tech</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#drone-tech</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -54,7 +54,7 @@
 
   <!-- Biorefinery Governance, IoT Alert Rules & Cryptographic Audit Ledger -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#admin</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#admin</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -62,7 +62,7 @@
 
   <!-- Interactive Platform Tutorial & Technical Walkthrough -->
   <url>
-    <loc>https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial</loc>
+    <loc>https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#tutorial</loc>
     <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

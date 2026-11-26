@@ -1,15 +1,15 @@
 # JaivikSuraksha (জৈৱিক সুৰক্ষা)
 ### Securing the North-East Bioenergy Feedstock Chain — Biomass Preservation Through the Monsoon & Valorisation of Bio-Refinery Waste Streams
 
-[![Live Prototype](https://img.shields.io/badge/Live_Prototype-nesfic--i04--bioenergy--feedstock--chain.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/)
+[![Live Prototype](https://img.shields.io/badge/Live_Prototype-nesfic--i04--bioenergy--feedstock--chain.pages.dev-10b981?style=for-the-badge&logo=cloudflarepages)](https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/)
 [![Industry Track](https://img.shields.io/badge/NESFIC_2026-Industry_Track_--_NESFIC--I--04-0284c7?style=for-the-badge)](https://startup.assam.gov.in/nesfic26/problem-statements/nesfic-i-04)
 [![Sponsor](https://img.shields.io/badge/Challenge_Partner-MC%C2%B2_Foundation-064e3b?style=for-the-badge)](https://startup.assam.gov.in/)
 [![Refinery Target](https://img.shields.io/badge/Target_Refinery-Assam_Bio--Refinery_(NRL)-d97706?style=for-the-badge)](https://www.nrl.co.in/)
-[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/)
+[![Cloudflare Ready](https://img.shields.io/badge/Deployed_on-Cloudflare_Pages-f38020?style=for-the-badge&logo=cloudflare)](https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/)
 [![React 18](https://img.shields.io/badge/Frontend-React_18_%7C_TypeScript_%7C_Tailwind-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
 [![Leaflet GIS](https://img.shields.io/badge/Geospatial-Leaflet_%7C_PostGIS-199900?style=for-the-badge&logo=leaflet)](https://leafletjs.com/)
 
-> 🌐 **Live Interactive Control Room:** **[https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/)**  
+> 🌐 **Live Interactive Control Room:** **[https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/](https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/)**  
 > Explore the Executive Feedstock Dashboard, Supply Shed WebGIS, Decentralized Depot QA Portal, Bilingual Farmer Off-Take Hub ("Jaivik Seva"), and the Biorefinery Waste Stream Valorisation Suite.
 
 ---
@@ -112,8 +112,8 @@ python3 generate_pdfs.py
 ## 📄 Official Submission Deliverables
 
 - **Lead Applicant:** Kalyanjit Hatibaruah (Flugelsoft Labs)
-- **Live Functional System:** [https://nesfic-i04-bioenergy-feedstock-chain.pages.dev](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev)
-- **Application Tutorial:** [https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial](https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial)
+- **Live Functional System:** [https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev](https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev)
+- **Application Tutorial:** [https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#tutorial](https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#tutorial)
 - **Official Proposal Submission PDF:** [`NESFIC_I04_Proposal_Kalyanjit_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proposal_Kalyanjit_Hatibaruah.pdf) (18 Pages, All 12 Architectural Figures & Budget Table Embedded)
 - **Proof of Work & Technical Dossier PDF:** [`NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf) (9 Pages, Complete Kinetic Assays, LoRaWAN IoT Blueprints & Bio-Bitumen Assays)
 - **Additional Supporting Material PDF:** [`NESFIC_I04_Additional_Supporting_Material_Kalyanjit_Hatibaruah.pdf`](file:///Users/kalyan/Downloads/2026/Nov2026/Bioenergy-Feedstock-Chain-NESFIC-I-04/NESFIC_I04_Additional_Supporting_Material_Kalyanjit_Hatibaruah.pdf) (6 Pages, Agro-Climatic Zoning, Kinetics & Carbon Accounting)

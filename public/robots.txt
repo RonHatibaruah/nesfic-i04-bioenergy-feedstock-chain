@@ -4,4 +4,4 @@ User-agent: *
 Allow: /
 
 # Canonical Sitemaps
-Sitemap: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/sitemap.xml
+Sitemap: https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/sitemap.xml

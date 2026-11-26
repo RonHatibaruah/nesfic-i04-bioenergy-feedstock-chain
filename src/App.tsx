@@ -242,11 +242,11 @@ export function App() {
               </a>
               <span className="text-slate-300">|</span>
               <a
-                href="https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/"
+                href="https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/"
                 className="flex items-center space-x-1 text-slate-700 hover:text-slate-900 font-semibold"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
-                <span>Production URL: nesfic-i04-bioenergy-feedstock-chain.pages.dev</span>
+                <span>Production URL: nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev</span>
               </a>
             </div>
 

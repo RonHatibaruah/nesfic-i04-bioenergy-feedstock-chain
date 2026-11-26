@@ -223,7 +223,7 @@ def build_proposal_pdf(output_path, workspace_dir):
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-I-04", meta_style), safe_paragraph("<b>Challenge Partner:</b> MC2 Foundation", meta_style)],
         [safe_paragraph("<b>Title:</b> Bioenergy Feedstock Chain & Waste Valorisation", meta_style), safe_paragraph("<b>Lead Applicant:</b> Kalyanjit Hatibaruah (Flugelsoft Labs)", meta_style)],
         [safe_paragraph("<b>Solution Name:</b> JaivikSuraksha", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
-        [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
+        [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[245, 259])
     t_meta.setStyle(TableStyle([
@@ -349,7 +349,7 @@ def build_proof_of_work_pdf(output_path, workspace_dir):
     meta_data = [
         [safe_paragraph("<b>Challenge ID:</b> NESFIC-I-04 (Industry Track)", meta_style), safe_paragraph("<b>Partner:</b> MC2 Foundation", meta_style)],
         [safe_paragraph("<b>Lead Applicant:</b> Kalyanjit Hatibaruah (Flugelsoft Labs)", meta_style), safe_paragraph("<b>Technology Readiness:</b> TRL 6 (Validated)", meta_style)],
-        [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Status:</b> Fully Built & Verified", meta_style)]
+        [safe_paragraph("<b>Live Prototype:</b> https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev", meta_style), safe_paragraph("<b>Status:</b> Fully Built & Verified", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[240, 264])
     t_meta.setStyle(TableStyle([
@@ -467,7 +467,7 @@ def build_additional_supporting_material_pdf(output_path, workspace_dir):
     meta_data = [
         [safe_paragraph("<b>Problem Statement ID:</b> NESFIC-I-04", meta_style), safe_paragraph("<b>Industry Partner:</b> MC2 Foundation", meta_style)],
         [safe_paragraph("<b>Lead Applicant:</b> Kalyanjit Hatibaruah (Flugelsoft Labs)", meta_style), safe_paragraph("<b>Academic Collaborator:</b> AEDA & IIT Guwahati", meta_style)],
-        [safe_paragraph("<b>Live Production Platform:</b> https://nesfic-i04-bioenergy-feedstock-chain.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
+        [safe_paragraph("<b>Live Production Platform:</b> https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev", meta_style), safe_paragraph("<b>Target Refinery:</b> ABRPL Numaligarh & SATAT CBG", meta_style)]
     ]
     t_meta = Table(meta_data, colWidths=[245, 259])
     t_meta.setStyle(TableStyle([

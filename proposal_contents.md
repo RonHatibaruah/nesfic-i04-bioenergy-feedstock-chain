@@ -5,8 +5,8 @@
 **Lead Applicant & Systems Architect:** Kalyanjit Hatibaruah (Flugelsoft Labs)  
 **Application Platform:** Assam Startup Portal (NESFIC 2026)  
 **Proposed Solution Name:** JaivikSuraksha (জৈৱিক সুৰক্ষা) — Climate-Resilient Biomass Preservation, Decentralized Feedstock Logistics & Circular Waste Valorisation Grid  
-**Product / Website URL:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev  
-**Demo / Product Video URL:** https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial  
+**Product / Website URL:** https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev  
+**Demo / Product Video URL:** https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#tutorial  
 **Open-Source Code Repository:** https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain  
 
 ---
@@ -95,8 +95,8 @@ Designed with high-contrast, clean industrial control room styling:
 - Industrial Admin Console: Fleet dispatch, IoT alert rule builder, and SHA-256 audit ledger.
 
 ### Prototype & Proof of Work Deliverables
-- Live Functional System: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev
-- Interactive Tutorial: https://nesfic-i04-bioenergy-feedstock-chain.pages.dev/#tutorial
+- Live Functional System: https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev
+- Interactive Tutorial: https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev/#tutorial
 - Open-Source Codebase: https://github.com/flugelsoft-01/nesfic-i04-bioenergy-feedstock-chain
 - Proof of Work PDF: Uploaded below (NESFIC_I04_Proof_of_Work_Kalyanjit_Hatibaruah.pdf), compiling 180-day empirical ensiling kinetics, LoRaWAN IoT spear blueprints, bio-bitumen Marshall stability assays (14.8 kN), and 12 embedded high-impact technological infographics.
 
@@ -295,7 +295,7 @@ The JaivikSuraksha platform is validated across four rigorous empirical tiers: l
      * Softening Point: Increased from 48.5°C to 53.2°C, preventing surface bleeding during high Assam summer temperatures.
      * TFOT Retained Penetration: 68% retained penetration (exceeding standard 55% threshold), demonstrating superior anti-aging oxidation resistance under heavy tropical precipitation.
 4. Digital Prototype & System Performance Evidence:
-   - Live Production Deployment: Deployed and verified on Cloudflare Pages (https://nesfic-i04-bioenergy-feedstock-chain.pages.dev).
+   - Live Production Deployment: Deployed and verified on Cloudflare Pages (https://nesfic-i04-bioenergy-feedstock-chain-7n0.pages.dev).
    - Stress Testing: Simulated concurrent real-time ingestion of 1,000 IoT probe telemetry packets per second with <45 ms database write latency into TimescaleDB; sub-second spatial querying across 35 Assam districts in Leaflet WebGIS.
    - Cryptographic Audit Trail: Successfully verified SHA-256 tamper-evident digital certificate generation and QR-code validation for off-take settlements.
 
